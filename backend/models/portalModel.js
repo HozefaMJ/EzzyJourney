@@ -4,7 +4,6 @@ const portalSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
     },
     logo: {
         type: String,
