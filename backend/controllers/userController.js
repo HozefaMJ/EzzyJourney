@@ -148,10 +148,25 @@ const deleteUserProfile = asyncHandler(async(req,res) => {
 })
 
 
+// @desc Get ALL Users
+// @route GET /api/user/all
+// @access Private Admin
+const getAllUsers = asyncHandler(async(req,res) => {
+    const users = await User.find({});
+
+    if(users){
+        res.json(users)
+    } else {
+        res.status(404);
+        throw new Error("No Users have registered yet")
+    }
+})
+
 export {
     authUser,
     registerUser,
     getUserProfile,
     updateUserProfile,
-    deleteUserProfile
+    deleteUserProfile,
+    getAllUsers
 }

@@ -6,6 +6,7 @@ const router = express.Router()
 import {
     authUser, 
     deleteUserProfile, 
+    getAllUsers, 
     getUserProfile, 
     registerUser,
     updateUserProfile,
@@ -23,7 +24,11 @@ router.post('/login',authUser)
 router
     .route('/')
     .post(registerUser)
-    
+
+router
+    .route('/all')
+    .get(protect,admin,getAllUsers)
+
 router
     .route('/profile')
     .get(protect, getUserProfile)
