@@ -209,7 +209,7 @@ const updateUserProfileById = asyncHandler(async(req,res) => {
         user.email = req.body.email || user.email,
         user.contact = req.body.contact || user.contact,
         user.dob = req.body.dob || user.dob,
-        user.isEmployee = user.isEmployee,
+        user.isEmployee = req.body.isEmployee,
         user.isBlocked = req.body.isBlocked
 
         if(req.body.password) {
@@ -235,6 +235,51 @@ const updateUserProfileById = asyncHandler(async(req,res) => {
 })
 
 
+// @desc Add Employee
+// @route POST /api/user/employee
+// @access Private
+const addEmployee = asyncHandler(async(req,res) => {
+    const {name,email} = req.body;
+
+    const userExists = await User.findOne({email: email})
+
+    if(userExists){
+        res.status(400);
+        throw new Error("User already exists")
+    }
+
+    const user = await User.create({
+        name,
+        email,
+        contact: "0000000",
+        dob: "dob",
+        password: "ChangeYourPassword",
+        address: "Earth is where I live",
+        isEmployee: true
+    })
+
+    if(user) {
+        res.status(201).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            contact: user.contact,
+            dob: user.dob,
+            address: user.address,
+            password: user.password,
+            isAdmin: user.isAdmin,
+            isEmployee: user.isEmployee,
+            isBlocked: user.isBlocked
+        })
+    } else {
+        res.status(404);
+        throw new Error("User Not Found")
+    }
+
+})
+
+
+
 export {
     authUser,
     registerUser,
@@ -244,5 +289,6 @@ export {
     getAllUsers,
     deleteUserById,
     getUserById,
-    updateUserProfileById
+    updateUserProfileById,
+    addEmployee
 }

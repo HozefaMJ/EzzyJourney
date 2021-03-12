@@ -4,6 +4,7 @@ const router = express.Router()
 
 // CONTROLLERS
 import {
+    addEmployee,
     authUser, 
     deleteUserById, 
     deleteUserProfile, 
@@ -37,6 +38,10 @@ router
     .get(protect, getUserProfile)
     .put(protect,updateUserProfile)
     .delete(protect,deleteUserProfile)
+
+router
+    .route('/employee')
+    .post(protect,admin,addEmployee)
 
 router
     .route('/:id')
