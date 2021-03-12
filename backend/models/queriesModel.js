@@ -35,6 +35,6 @@ const querySchema = mongoose.Schema({
     
 })
 
-const Coupon = mongoose.model('Coupon', couponSchema);
+const Query = mongoose.model('Query', querySchema);
 
-export default Coupon
+export default Query
