@@ -5,8 +5,10 @@ const router = express.Router()
 // CONTROLLERS
 import {
     authUser, 
+    deleteUserById, 
     deleteUserProfile, 
     getAllUsers, 
+    getUserById, 
     getUserProfile, 
     registerUser,
     updateUserProfile,
@@ -34,5 +36,10 @@ router
     .get(protect, getUserProfile)
     .put(protect,updateUserProfile)
     .delete(protect,deleteUserProfile)
+
+router
+    .route('/:id')
+    .delete(protect,admin,deleteUserById)
+    .get(protect,admin,getUserById)
 
 export default router;
