@@ -5,6 +5,7 @@ const router = express.Router()
 // CONTROLLERS
 import {
     authUser, 
+    deleteUserProfile, 
     getUserProfile, 
     registerUser,
     updateUserProfile,
@@ -27,5 +28,6 @@ router
     .route('/profile')
     .get(protect, getUserProfile)
     .put(protect,updateUserProfile)
+    .delete(protect,deleteUserProfile)
 
 export default router;
