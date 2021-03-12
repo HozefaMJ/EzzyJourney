@@ -197,6 +197,44 @@ const getUserById = asyncHandler(async(req,res) => {
     }
 })
 
+
+// @desc Update User Profile By ID
+// @route PUT /api/user/:id
+// @access Private Admin
+const updateUserProfileById = asyncHandler(async(req,res) => {
+    const user = await User.findById(req.params.id);
+
+    if(user){
+        user.name = req.body.name || user.name,
+        user.email = req.body.email || user.email,
+        user.contact = req.body.contact || user.contact,
+        user.dob = req.body.dob || user.dob,
+        user.isEmployee = user.isEmployee,
+        user.isBlocked = req.body.isBlocked
+
+        if(req.body.password) {
+            user.address = req.body.address || user.address
+        }
+
+        const updatedUser = await user.save()
+
+        res.json({
+            name: updatedUser.name,
+            email: updatedUser.email,
+            contact: updatedUser.contact,
+            dob: updatedUser.dob,
+            isAdmin: updatedUser.isAdmin,
+            isEmployee: updatedUser.isEmployee,
+            isBlocked: updatedUser.isBlocked,
+            token: generateToken(updatedUser._id)
+        })
+    } else {
+        res.status(404);
+        throw new Error("User Not Found")
+    }
+})
+
+
 export {
     authUser,
     registerUser,
@@ -205,5 +243,6 @@ export {
     deleteUserProfile,
     getAllUsers,
     deleteUserById,
-    getUserById
+    getUserById,
+    updateUserProfileById
 }

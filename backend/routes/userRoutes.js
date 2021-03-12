@@ -12,6 +12,7 @@ import {
     getUserProfile, 
     registerUser,
     updateUserProfile,
+    updateUserProfileById,
 } from "../controllers/userController.js";
 
 
@@ -41,5 +42,6 @@ router
     .route('/:id')
     .delete(protect,admin,deleteUserById)
     .get(protect,admin,getUserById)
+    .put(protect,admin,updateUserProfileById)
 
 export default router;
