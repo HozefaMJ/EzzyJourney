@@ -4,7 +4,9 @@ const router = express.Router()
 
 // CONTROLLERS
 import {
-    authUser, registerUser,
+    authUser, 
+    getUserProfile, 
+    registerUser,
 } from "../controllers/userController.js";
 
 
@@ -19,5 +21,6 @@ router.post('/login',authUser)
 router
     .route('/')
     .post(registerUser)
+    .get(protect, getUserProfile)
 
 export default router;

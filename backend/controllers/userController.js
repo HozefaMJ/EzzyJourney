@@ -33,7 +33,7 @@ const authUser = asyncHandler(async(req,res)=>{
 })
 
 // @desc Register User
-// @route POST /api/user/register
+// @route POST /api/user/
 // @access Public
 const registerUser = asyncHandler(async(req,res) => {
     const {name,email,contact,dob,password,address} = req.body;
@@ -74,7 +74,29 @@ const registerUser = asyncHandler(async(req,res) => {
 
 })
 
+
+// @desc Get User Profile
+// @route Get /api/user/
+// @access Private
+const getUserProfile = asyncHandler(async(req,res) => {
+    const user = await User.findById(req.user._id);
+
+    if(user) {
+        res.json({
+            name: user.name,
+            email: user.email,
+            contact: user.contact,
+            dob: user.dob,
+            address: user.address
+        })
+    } else {
+        res.status(404);
+        throw new Error("User Not Found")
+    }
+})
+
 export {
     authUser,
-    registerUser
+    registerUser,
+    getUserProfile
 }
