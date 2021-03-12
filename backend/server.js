@@ -11,7 +11,7 @@ import connectDB from "./config/db.js";
 import {notFound, errorHandler} from "./middleware/errorMiddleware.js";
 
 // Routes
-//import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 dotenv.config()
 
@@ -25,15 +25,9 @@ if(process.env.NODE_ENV === 'development') {
 
 app.use(express.json())
 
-//app.use('/api/products',productRoutes);
-//app.use('/api/users',userRoutes);
-//app.use('/api/stores',storeRoutes);
-//app.use('/api/orders',orderRoutes);
+app.use('/api/users',userRoutes);
 //app.use('/api/coupons',couponRoutes);
 //app.use('/api/upload',uploadRoutes);
-
-//app.get('/api/config/paypal',(req,res)=>res.send(process.env.PAYPAL_CLIENT_ID))
-
 
 // For Image Upload
 {/*

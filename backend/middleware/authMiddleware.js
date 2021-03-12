@@ -28,11 +28,11 @@ const protect = expressAsyncHandler(async(req,res,next) => {
 })
 
 const employee = (req,res,next) => {
-    if(req.user && req.user.isOwner){
+    if(req.user && req.user.isEmployee){
         next()
     } else {
         res.status(401)
-        throw new Error('Not Authorized as an Owner')
+        throw new Error('Not Authorized as an Employee')
     }
 } 
 
