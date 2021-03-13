@@ -238,6 +238,26 @@ const togglePackageById = asyncHandler(async(req,res) => {
 
 })
 
+
+// @desc delete Package By Id
+// @route DELETE /api/package/:id
+// @access Private Admin
+const deletePackage = asyncHandler(async(req,res) => {
+    const packages = await Package.findById(req.params.id);
+
+    if(packages){
+        await packages.remove()
+
+        res.json({
+            message: "You have deleted the package"
+        })
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+})
+
+
 export {
     addPackage,
     getAllPackages,
@@ -245,5 +265,6 @@ export {
     updatePackage,
     verifyPackageById,
     blockPackageById,
-    togglePackageById
+    togglePackageById,
+    deletePackage
 }

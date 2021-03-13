@@ -10,7 +10,8 @@ import {
     updatePackage,
     verifyPackageById,
     blockPackageById,
-    togglePackageById
+    togglePackageById,
+    deletePackage
 } from "../controllers/packageController.js";
 
 import {
@@ -40,5 +41,6 @@ router
     .route("/:id")
     .get(getPackageById)
     .put(protect,employee,updatePackage)
+    .delete(protect,admin,deletePackage)
 
 export default router;
