@@ -8,7 +8,9 @@ import {
     getAllPackages,
     getPackageById,
     updatePackage,
-    verifyPackageById
+    verifyPackageById,
+    blockPackageById,
+    togglePackageById
 } from "../controllers/packageController.js";
 
 import {
@@ -24,6 +26,15 @@ router.get("/all",getAllPackages)
 router
     .route("/verify/:id")
     .put(protect,admin,verifyPackageById)
+
+router
+    .route("/block/:id")
+    .put(protect,admin,blockPackageById)
+
+
+router
+    .route("/active/:id")
+    .put(protect,admin,togglePackageById)
 
 router
     .route("/:id")

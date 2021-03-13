@@ -199,10 +199,51 @@ const verifyPackageById = asyncHandler(async(req,res) => {
 })
 
 
+// @desc Block Package
+// @route PUT /api/package/block/:id
+// @access private admin
+const blockPackageById = asyncHandler(async(req,res) => {
+    const blockPackage = await Package.findById(req.params.id);
+
+    if(blockPackage){
+        blockPackage.isBlocked = req.body.isBlocked
+
+        const blockedPackage = await blockPackage.save();
+
+        res.json(blockedPackage)
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+
+})
+
+
+// @desc Toggle Package Status
+// @route PUT /api/package/active/:id
+// @access private admin
+const togglePackageById = asyncHandler(async(req,res) => {
+    const togglePackage = await Package.findById(req.params.id);
+
+    if(togglePackage){
+        togglePackage.isActive = req.body.isActive
+
+        const toggledPackage = await togglePackage.save();
+
+        res.json(toggledPackage)
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+
+})
+
 export {
     addPackage,
     getAllPackages,
     getPackageById,
     updatePackage,
-    verifyPackageById
+    verifyPackageById,
+    blockPackageById,
+    togglePackageById
 }
