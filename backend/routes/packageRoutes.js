@@ -4,7 +4,8 @@ const router = express.Router()
 
 // Controllers
 import {
-    addPackage
+    addPackage, 
+    getAllPackages
 } from "../controllers/packageController.js";
 
 import {
@@ -14,5 +15,7 @@ import {
 } from "../middleware/authMiddleware.js";
 
 router.post('/new',protect,employee,addPackage)
+
+router.get("/all",protect,employee,getAllPackages)
 
 export default router;

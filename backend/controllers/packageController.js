@@ -90,6 +90,23 @@ const addPackage = asyncHandler(async(req,res) => {
 
 })
 
+
+// @desc Get All Packages
+// @route GET /api/package/all
+// @access Private Employees
+const getAllPackages = asyncHandler(async(req,res) => {
+    const packages = await Package.find({});
+
+    if(packages){
+        res.json(packages)
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+})
+
+
 export {
-    addPackage
+    addPackage,
+    getAllPackages
 }
