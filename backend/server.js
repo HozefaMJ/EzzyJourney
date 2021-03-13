@@ -13,6 +13,7 @@ import {notFound, errorHandler} from "./middleware/errorMiddleware.js";
 // Routes
 import userRoutes from "./routes/userRoutes.js";
 import packageRoutes from "./routes/packageRoutes.js";
+import portalRoutes from "./routes/portalRoutes.js";
 
 dotenv.config()
 
@@ -28,6 +29,7 @@ app.use(express.json())
 
 app.use('/api/users',userRoutes);
 app.use('/api/packages',packageRoutes);
+app.use('/api/portal',portalRoutes);
 //app.use('/api/coupons',couponRoutes);
 //app.use('/api/upload',uploadRoutes);
 

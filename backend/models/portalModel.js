@@ -7,7 +7,7 @@ const portalSchema = mongoose.Schema({
     },
     logo: {
         type: String,
-        required: true
+        name: String
     },
     coverImages: [
         {
@@ -17,11 +17,9 @@ const portalSchema = mongoose.Schema({
     ],
     vision: {
         type: String,
-        required: true
     },
     mission: {
         type: String,
-        required: true
     },
     aboutus: {
         type: String,
@@ -32,11 +30,10 @@ const portalSchema = mongoose.Schema({
         required: true
     },
     contactSecondary: {
-        type: Number,
-        required: true
+        type: Number
     },
     address: {
-        type: Number,
+        type: String,
         required: true
     },
     createdAt: {
