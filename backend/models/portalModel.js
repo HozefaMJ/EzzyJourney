@@ -47,6 +47,8 @@ const portalSchema = mongoose.Schema({
         required: true,
         default: false
     }
+},{
+    timestamps: true
 })
 
 const Portal = mongoose.model('Portal', portalSchema);

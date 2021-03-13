@@ -33,6 +33,8 @@ const querySchema = mongoose.Schema({
         }
     }
     
+},{
+    timestamps: true
 })
 
 const Query = mongoose.model('Query', querySchema);
