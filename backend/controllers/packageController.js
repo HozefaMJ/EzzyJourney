@@ -178,9 +178,31 @@ const updatePackage = asyncHandler(async(req,res) => {
     }
 })
 
+
+// @desc Verify Package
+// @route PUT /api/package/verify/:id
+// @access private admin
+const verifyPackageById = asyncHandler(async(req,res) => {
+    const verifyPackage = await Package.findById(req.params.id);
+
+    if(verifyPackage){
+        verifyPackage.isVerified = req.body.isVerified
+
+        const verifiedPackage = await verifyPackage.save();
+
+        res.json(verifiedPackage)
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+
+})
+
+
 export {
     addPackage,
     getAllPackages,
     getPackageById,
-    updatePackage
+    updatePackage,
+    verifyPackageById
 }

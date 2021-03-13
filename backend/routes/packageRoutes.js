@@ -7,7 +7,8 @@ import {
     addPackage, 
     getAllPackages,
     getPackageById,
-    updatePackage
+    updatePackage,
+    verifyPackageById
 } from "../controllers/packageController.js";
 
 import {
@@ -19,6 +20,10 @@ import {
 router.post('/new',protect,employee,addPackage)
 
 router.get("/all",getAllPackages)
+
+router
+    .route("/verify/:id")
+    .put(protect,admin,verifyPackageById)
 
 router
     .route("/:id")
