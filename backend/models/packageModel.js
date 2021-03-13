@@ -53,7 +53,12 @@ const wishlistSchema = mongoose.Schema({
 
 
 const packageSchema = mongoose.Schema({
-    name: {
+    packageCode: {
+        type: String,
+        required: true,
+        unique: true
+    },
+    title: {
         type: String,
         required: true
     },
@@ -67,11 +72,11 @@ const packageSchema = mongoose.Schema({
     }],
     placesCovered: [{
         type: String,
-        name: String
+        required: true
     }],
     hotelNames: [{
         type: String,
-        name: String
+        required: true
     }],
     itinerary: {
         type: String,
@@ -157,7 +162,7 @@ const packageSchema = mongoose.Schema({
         required: true,
         default: false
     },
-    isTransportion: {
+    isTransportation: {
         type: Boolean,
         required: true,
         default: false
