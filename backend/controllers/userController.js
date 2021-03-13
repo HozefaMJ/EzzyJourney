@@ -210,11 +210,9 @@ const updateUserProfileById = asyncHandler(async(req,res) => {
         user.contact = req.body.contact || user.contact,
         user.dob = req.body.dob || user.dob,
         user.isEmployee = req.body.isEmployee,
-        user.isBlocked = req.body.isBlocked
-
-        if(req.body.password) {
-            user.address = req.body.address || user.address
-        }
+        user.isBlocked = req.body.isBlocked,
+        user.address = req.body.address || user.address
+        
 
         const updatedUser = await user.save()
 

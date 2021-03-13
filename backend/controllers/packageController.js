@@ -119,8 +119,68 @@ const getPackageById = asyncHandler(async(req,res) => {
     }
 })
 
+
+// @desc Update Package
+// @route PUT /api/package/:id
+// @access private admin
+const updatePackage = asyncHandler(async(req,res) => {
+    const packages = await Package.findById(req.params.id);
+
+    if(packages) {
+        packages.packageCode = req.body.packageCode || packages.packageCode,
+        packages.title = req.body.title || packages.title,
+        packages.description = req.body.description || packages.description,
+        packages.placesCovered = req.body.placesCovered || packages.placesCovered,
+        packages.hotelNames = req.body.hotelNames || packages.hotelNames,
+        packages.itinerary = req.body.itinerary || packages.itinerary,
+        packages.termsConditions = req.body.termsConditions || packages.termsConditions,
+        packages.duration = req.body.duration || packages.duration,
+        packages.destination = req.body.destination || packages.destination,
+        packages.exclusions = req.body.exclusions || packages.exclusions,
+        packages.category = req.body.category || packages.category,
+        
+        packages.price.adults = req.body.adultPrice || packages.price.adults,
+        packages.price.childAbove6 = req.body.childAbove6 || packages.price.childAbove6,
+        packages.price.childBelow6 = req.body.childBelow6 || packages.price.childBelow6,
+        
+        // Always send booleans from frontend
+        packages.isMeal = req.body.isMeal,
+        packages.isFlights = req.body.isFlights,
+        packages.isHotel = req.body.isHotel,
+        packages.isTransportation = req.body.isTransportation,
+        packages.isVisa = req.body.isVisa
+        
+
+        const updatedPackage = await packages.save();
+
+        res.json({
+            packageCode: updatedPackage.packageCode,
+            title: updatedPackage.title,
+            description: updatedPackage.description,
+            placesCovered: updatedPackage.placesCovered,
+            hotelNames: updatedPackage.hotelNames,
+            itinerary: updatedPackage.itinerary,
+            termsConditions: updatedPackage.termsConditions,
+            duration: updatedPackage.duration,
+            destination: updatedPackage.destination,
+            exclusions: updatedPackage.exclusions,
+            category: updatedPackage.category,
+            price: updatedPackage.price,
+            isMeal: updatedPackage.isMeal,
+            isFlights: updatedPackage.isFlights,
+            isHotel: updatedPackage.isHotel,
+            isTransportation: updatedPackage.isTransportation,
+            isVisa: updatedPackage.isVisa,
+        })
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+})
+
 export {
     addPackage,
     getAllPackages,
-    getPackageById
+    getPackageById,
+    updatePackage
 }
