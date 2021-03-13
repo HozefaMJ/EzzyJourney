@@ -13,6 +13,6 @@ import {
     admin
 } from "../middleware/authMiddleware.js";
 
-router.post('/new',addPackage)
+router.post('/new',protect,employee,addPackage)
 
 export default router;
