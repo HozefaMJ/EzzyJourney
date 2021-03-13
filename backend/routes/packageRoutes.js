@@ -5,7 +5,8 @@ const router = express.Router()
 // Controllers
 import {
     addPackage, 
-    getAllPackages
+    getAllPackages,
+    getPackageById
 } from "../controllers/packageController.js";
 
 import {
@@ -16,6 +17,10 @@ import {
 
 router.post('/new',protect,employee,addPackage)
 
-router.get("/all",protect,employee,getAllPackages)
+router.get("/all",getAllPackages)
+
+router
+    .route("/:id")
+    .get(getPackageById)
 
 export default router;

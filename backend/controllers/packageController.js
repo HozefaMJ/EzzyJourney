@@ -93,7 +93,7 @@ const addPackage = asyncHandler(async(req,res) => {
 
 // @desc Get All Packages
 // @route GET /api/package/all
-// @access Private Employees
+// @access Public
 const getAllPackages = asyncHandler(async(req,res) => {
     const packages = await Package.find({});
 
@@ -101,12 +101,26 @@ const getAllPackages = asyncHandler(async(req,res) => {
         res.json(packages)
     } else {
         res.status(404);
+        throw new Error("No Package has been created")
+    }
+})
+
+// @desc Get Package by id
+// @route GET /api/package/:id
+// @access public
+const getPackageById = asyncHandler(async(req,res) => {
+    const packages = await Package.findById(req.params.id);
+
+    if(packages) {
+        res.json(packages)
+    } else {
+        res.status(404);
         throw new Error("Package Not Found")
     }
 })
 
-
 export {
     addPackage,
-    getAllPackages
+    getAllPackages,
+    getPackageById
 }
