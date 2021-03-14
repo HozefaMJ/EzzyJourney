@@ -5,7 +5,8 @@ const router = express.Router();
 // Controllers
 import {
     allQueries,
-    newQuery
+    newQuery,
+    allMyQueries
 } from "../controllers/queryController.js";
 
 
@@ -23,5 +24,8 @@ router
     .route("/all")
     .get(protect,admin,allQueries)
 
+router
+    .route('/myqueries')
+    .get(protect,allMyQueries)
 
 export default router;

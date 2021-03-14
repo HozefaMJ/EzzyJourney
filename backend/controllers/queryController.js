@@ -61,7 +61,22 @@ const allQueries = asyncHandler(async(req,res) => {
     }
 })
 
+// @desc Get all Queries My Queries
+// @route GET /api/queries/myqueries
+// @access Private
+const allMyQueries = asyncHandler(async(req,res) => {
+    const queries = await Query.find({user: req.user._id}).populate('package','title packageCode');
+
+    if(queries) {
+        res.json(queries);
+    } else {
+        res.status(404);
+        throw new Error("You have not queried anything.")
+    }
+})
+
 export {
     newQuery,
-    allQueries
+    allQueries,
+    allMyQueries
 }
