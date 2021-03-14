@@ -68,7 +68,7 @@ const useCoupon = asyncHandler(async(req,res) => {
 
 
 // @desc Set Coupon Active
-// @route GET /api/coupons/:id/active
+// @route Put /api/coupons/:id/active
 // @access Private
 const toggleCouponActive = asyncHandler(async(req,res) => {
     const coupon = await Coupon.findById(req.params.id);
@@ -86,9 +86,30 @@ const toggleCouponActive = asyncHandler(async(req,res) => {
 })
 
 
+
+// @desc Update coupon to used
+// @route PUT /api/coupons/:id/used
+// @access Private
+const setCouponUsed = asyncHandler(async(req,res) => {
+    const coupon = await Coupon.findById(req.params.id);
+
+    if(coupon) {
+        coupon.isUsed = req.body.isUsed;
+
+        const usedCoupon = await coupon.save();
+
+        res.json(usedCoupon);
+    } else {
+        res.status(404);
+        throw new Error("Coupon Not Found")
+    }
+})
+
+
 export {
     createCoupon,
     allCoupons,
     useCoupon,
-    toggleCouponActive
+    toggleCouponActive,
+    setCouponUsed
 }

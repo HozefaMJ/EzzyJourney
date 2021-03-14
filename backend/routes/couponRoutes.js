@@ -7,12 +7,14 @@ import {
     allCoupons,
     createCoupon,
     useCoupon,
-    toggleCouponActive
+    toggleCouponActive,
+    setCouponUsed
 } from "../controllers/couponController.js";
 
 import {
     protect,
-    admin
+    admin,
+    employee
 } from "../middleware/authMiddleware.js";
 
 router
@@ -30,5 +32,10 @@ router
 router
     .route("/:id/active")
     .put(protect,admin,toggleCouponActive)
+
+router
+    .route("/:id/markused")
+    .put(protect,employee,setCouponUsed)
+
 
 export default router;
