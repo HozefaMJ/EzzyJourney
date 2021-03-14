@@ -6,7 +6,8 @@ const router = express.Router();
 import {
     allQueries,
     newQuery,
-    allMyQueries
+    allMyQueries,
+    respondQuery
 } from "../controllers/queryController.js";
 
 
@@ -16,9 +17,7 @@ import {
     admin
 } from "../middleware/authMiddleware.js"
 
-router
-    .route("/:id/new")
-    .post(protect,newQuery)
+
 
 router
     .route("/all")
@@ -27,5 +26,13 @@ router
 router
     .route('/myqueries')
     .get(protect,allMyQueries)
+
+router
+    .route("/:id/new")
+    .post(protect,newQuery)
+
+router
+    .route('/:id/reverted')
+    .put(protect,employee,respondQuery)
 
 export default router;

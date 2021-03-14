@@ -31,8 +31,12 @@ const querySchema = mongoose.Schema({
             required: true,
             default: 0
         }
+    },
+    isResponded: {
+        type: Boolean,
+        required: true,
+        default: false
     }
-    
 },{
     timestamps: true
 })

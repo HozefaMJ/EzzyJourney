@@ -61,7 +61,7 @@ const allQueries = asyncHandler(async(req,res) => {
     }
 })
 
-// @desc Get all Queries My Queries
+ //@desc Get all Queries My Queries
 // @route GET /api/queries/myqueries
 // @access Private
 const allMyQueries = asyncHandler(async(req,res) => {
@@ -75,8 +75,26 @@ const allMyQueries = asyncHandler(async(req,res) => {
     }
 })
 
+ //@desc Query Responded
+// @route Put /api/queries/:id/reverted
+// @access Private Employee
+const respondQuery = asyncHandler(async(req,res) => {
+    const query = await Query.findById(req.params.id);
+
+    if(query){
+        query.isResponded = true
+
+        const respondedQuery = await query.save()
+
+        res.json(respondedQuery)
+    } else {
+        res.status(404);
+        throw new Error("Query Not Found")
+    }
+})
 export {
     newQuery,
     allQueries,
-    allMyQueries
+    allMyQueries,
+    respondQuery
 }
