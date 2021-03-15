@@ -16,6 +16,8 @@ import packageRoutes from "./routes/packageRoutes.js";
 import portalRoutes from "./routes/portalRoutes.js";
 import couponRoutes from "./routes/couponRoutes.js";
 import queryRoutes from "./routes/queryRoutes.js";
+import uploadRoutes from "./routes/uploadRoutes.js";
+
 
 dotenv.config()
 
@@ -34,13 +36,12 @@ app.use('/api/packages',packageRoutes);
 app.use('/api/portal',portalRoutes);
 app.use('/api/coupons',couponRoutes);
 app.use('/api/queries',queryRoutes);
-//app.use('/api/upload',uploadRoutes);
+app.use('/api/upload',uploadRoutes);
 
 // For Image Upload
-{/*
 const __dirname = path.resolve()
 app.use('/uploads',express.static(path.join(__dirname,'/uploads')))
-*/}
+
 // After Build In Production Mode 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '/frontend/build')))

@@ -36,7 +36,7 @@ const authUser = asyncHandler(async(req,res)=>{
 // @route POST /api/user/
 // @access Public
 const registerUser = asyncHandler(async(req,res) => {
-    const {name,email,contact,dob,password,address} = req.body;
+    const {name,profilePicture,email,contact,dob,password,address} = req.body;
 
     const userExists = await User.findOne({email: email})
 
@@ -47,6 +47,7 @@ const registerUser = asyncHandler(async(req,res) => {
 
     const user = await User.create({
         name,
+        profilePicture,
         email,
         contact,
         dob: dob,
@@ -103,6 +104,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
 
     if(user){
         user.name = req.body.name || user.name,
+        user.profilePicture = req.body.profilePicture || user.profilePicture,
         user.email = req.body.email || user.email,
         user.contact = req.body.contact || user.contact,
         user.dob = req.body.dob || user.dob
@@ -115,6 +117,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
 
         res.json({
             name: updatedUser.name,
+            profilePicture: updatedUser.profilePicture,
             email: updatedUser.email,
             contact: updatedUser.contact,
             dob: updatedUser.dob,
