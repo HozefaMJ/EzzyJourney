@@ -93,6 +93,10 @@ const packageSchema = mongoose.Schema({
         default: 0
     },
     wishlist: [wishlistSchema],
+    numWishlisted: {
+        type: Number,
+        default: 0
+    },
     queried: [{
         type: mongoose.Schema.Types.ObjectId,
         required: true,

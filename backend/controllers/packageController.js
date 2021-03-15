@@ -120,6 +120,7 @@ const getPackageById = asyncHandler(async(req,res) => {
 })
 
 
+
 // @desc Update Package
 // @route PUT /api/package/:id
 // @access private admin
@@ -298,6 +299,41 @@ const newPackageReview = asyncHandler(async(req,res) => {
 })
 
 
+// @desc Create new package Review
+// @route POST /api/packages/:id/wishlist
+// @access Private
+const addPackageToWishlist = asyncHandler(async(req,res) => {
+    
+    const packages = await Package.findById(req.params.id);
+
+    if(packages){
+        const alreadyWishlisted = packages.wishlist.find(r => r.user.toString() == req.user._id.toString())
+
+        if(alreadyWishlisted){
+            res.status(400);
+            throw new Error("Already Wishlisted")
+        }
+
+        const wishlisted = {
+            name: req.user.name,
+            user: req.user._id
+        }
+
+        packages.wishlist.push(wishlisted);
+
+        packages.numWishlisted = packages.wishlist.length;
+
+        await packages.save()
+        res.status(201).json({msg: "Wishlisted"})
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+})
+
+
+
+
 // @desc    Get top rated products
 // @route   GET /api/products/top
 // @access  Public
@@ -318,5 +354,6 @@ export {
     togglePackageById,
     deletePackage,
     newPackageReview,
-    getTopPackages
+    getTopPackages,
+    addPackageToWishlist
 }

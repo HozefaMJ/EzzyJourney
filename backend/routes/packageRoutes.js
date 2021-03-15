@@ -13,7 +13,8 @@ import {
     togglePackageById,
     deletePackage,
     newPackageReview,
-    getTopPackages
+    getTopPackages,
+    addPackageToWishlist
 } from "../controllers/packageController.js";
 
 import {
@@ -44,6 +45,10 @@ router
 router
     .route("/:id/reviews")
     .post(protect,newPackageReview)
+
+router
+    .route("/:id/wishlist")
+    .post(protect,addPackageToWishlist)
 
 router
     .route("/:id")
