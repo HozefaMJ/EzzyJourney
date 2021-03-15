@@ -3,6 +3,7 @@ import asyncHandler from "express-async-handler";
 // Models
 import Query from "../models/queriesModel.js";
 import Package from "../models/packageModel.js";
+import User from '../models/userModel.js';
 
 
 // @desc Create Query By Package ID
@@ -11,7 +12,11 @@ import Package from "../models/packageModel.js";
 const newQuery = asyncHandler(async(req,res) => {
     const {message,adults,childAbove6,childBelow6} = req.body;
 
+    
+
     const packages = await Package.findById(req.params.id);
+
+    const user = await User.findById(req.user._id);
 
     if(packages){
 
@@ -21,8 +26,17 @@ const newQuery = asyncHandler(async(req,res) => {
             childBelow6
         }
 
+        let userId = "604f145d1a43091a78e14ce9";
+
+        if(user){
+            userId = user._id
+        }
+
+        // If user is logged in use user Id or anonymous id
+        
+
         const query = await Query.create({
-            user: req.user._id,
+            user: userId,
             package: req.params.id,
             message,
             people: people
