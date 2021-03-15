@@ -32,6 +32,19 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    wishlist:[
+        {
+            name: {
+                type:String,
+                required: true
+            },
+            package: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: 'Package'
+            },
+        }
+    ],
     isAdmin: {
         type: Boolean,
         required: true,

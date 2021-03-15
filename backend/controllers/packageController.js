@@ -4,6 +4,7 @@ import asyncHandler from "express-async-handler";
 ///////  MODELS   //////////
 ////////////////////////////
 import Package from "../models/packageModel.js";
+import User from "../models/userModel.js";
 
 // @desc Add Package
 // @route POST /api/package/new
@@ -311,33 +312,64 @@ const addPackageToWishlist = asyncHandler(async(req,res) => {
     
     const packages = await Package.findById(req.params.id);
 
+    const user = await User.findById(req.user._id);
+
     if(packages){
-        const alreadyWishlisted = packages.wishlist.find(r => r.user.toString() == req.user._id.toString())
+        if(user){
+            const alreadyWishlisted = packages.wishlist.find(r => r.user.toString() == req.user._id.toString())
 
-        if(alreadyWishlisted){
-            res.status(400);
-            throw new Error("Already Wishlisted")
+            const userWishlisted = user.wishlist.find(r => r.name.toString() == packages.packageCode.toString())
+
+            if(alreadyWishlisted){
+                res.status(400);
+                throw new Error("Already Wishlisted")
+            }
+
+            if(userWishlisted) {
+                res.status(400);
+                throw new Error("Already Wishlisted")
+            }
+
+            const wishlistedPackage = {
+                name: req.user.name,
+                user: req.user._id
+            }
+
+            const wishlistedUser = {
+                name: packages.packageCode,
+                package: req.params.id
+            }
+
+            packages.wishlist.push(wishlistedPackage);
+
+            user.wishlist.push(wishlistedUser);
+
+            packages.numWishlisted = packages.wishlist.length;
+
+            await packages.save()
+            await user.save()
+
+            res.status(201).json({msg: "Added to Wishlist"})
         }
-
-        const wishlisted = {
-            name: req.user.name,
-            user: req.user._id
-        }
-
-        packages.wishlist.push(wishlisted);
-
-        packages.numWishlisted = packages.wishlist.length;
-
-        await packages.save()
-        res.status(201).json({msg: "Wishlisted"})
     } else {
         res.status(404);
         throw new Error("Package Not Found")
     }
 })
 
+// @desc Get My Wishlist
+// @route GET /api/packages/myWishlist
+// @access Private
+const myWishlist = asyncHandler(async(req,res) => {
+    const user = await User.findById(req.user._id);
 
-
+    if(user){
+        res.json(user.wishlist)
+    } else {
+        res.status(404);
+        throw new Error("Empty Wishlist")
+    }
+})
 
 // @desc    Get top rated products
 // @route   GET /api/products/top
@@ -360,5 +392,6 @@ export {
     deletePackage,
     newPackageReview,
     getTopPackages,
-    addPackageToWishlist
+    addPackageToWishlist,
+    myWishlist
 }
