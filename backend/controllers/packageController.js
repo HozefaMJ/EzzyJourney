@@ -257,6 +257,45 @@ const deletePackage = asyncHandler(async(req,res) => {
     }
 })
 
+// @desc Create new package Review
+// @route POST /api/packages/:id/reviews
+// @access Private
+const newPackageReview = asyncHandler(async(req,res) => {
+    const {
+        comment,
+        rating
+    } = req.body;
+
+    const packages = await Package.findById(req.params.id);
+
+    if(packages){
+        const alreadyReviewed = packages.reviews.find(r => r.user.toString() == req.user._id.toString())
+
+        if(alreadyReviewed){
+            res.status(400);
+            throw new Error("Already Reviewed")
+        }
+
+        const review = {
+            name: req.user.name,
+            rating:Number(rating),
+            comment,
+            user: req.user._id
+        }
+
+        packages.reviews.push(review);
+
+        packages.numReviews = packages.reviews.length;
+
+        packages.rating = packages.reviews.reduce((acc,item) => item.rating + acc, 0) / packages.reviews.length;
+
+        await packages.save()
+        res.status(201).json({msg: "Review Added"})
+    } else {
+        res.status(404);
+        throw new Error("Package Not Found")
+    }
+})
 
 export {
     addPackage,
@@ -266,5 +305,6 @@ export {
     verifyPackageById,
     blockPackageById,
     togglePackageById,
-    deletePackage
+    deletePackage,
+    newPackageReview
 }

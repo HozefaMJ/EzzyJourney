@@ -22,21 +22,6 @@ const reviewSchema = mongoose.Schema({
     timestamps: true
 })
 
-
-const queriedSchema = mongoose.Schema({
-    name: {
-        type:String,
-        required: true
-    },
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'User'
-    },
-},{
-    timestamps: true
-})
-
 const wishlistSchema = mongoose.Schema({
     name: {
         type:String,
@@ -108,7 +93,11 @@ const packageSchema = mongoose.Schema({
         default: 0
     },
     wishlist: [wishlistSchema],
-    queried: [queriedSchema],
+    queried: [{
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'Query'
+    }],
     reviews: [reviewSchema],
     numReviews: {
         type: Number,

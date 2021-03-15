@@ -11,7 +11,8 @@ import {
     verifyPackageById,
     blockPackageById,
     togglePackageById,
-    deletePackage
+    deletePackage,
+    newPackageReview
 } from "../controllers/packageController.js";
 
 import {
@@ -36,6 +37,10 @@ router
 router
     .route("/active/:id")
     .put(protect,admin,togglePackageById)
+
+router
+    .route("/:id/reviews")
+    .post(protect,newPackageReview)
 
 router
     .route("/:id")
