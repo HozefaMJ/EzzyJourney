@@ -9,10 +9,12 @@ import Portal from "../models/portalModel.js";
 // @route POST /api/portal/
 // @access Public
 const createPortal = asyncHandler(async(req,res) => {
-    const {name,vision,mission,aboutus,contactPrimary,contactSecondary,address,createdAt} = req.body;
+    const {name,logo,coverImages,vision,mission,aboutus,contactPrimary,contactSecondary,address,createdAt} = req.body;
 
     const portal = await Portal.create({
         name,
+        logo,
+        coverImages,
         vision,
         mission,
         aboutus,
@@ -59,6 +61,8 @@ const updatePortalById = asyncHandler(async(req,res) => {
 
     if(portal){
         portal.name = req.body.name || portal.name,
+        portal.logo = req.body.logo || portal.logo,
+        portal.coverImages = req.body.coverImages || portal.coverImages,
         portal.mission = req.body.mission || portal.mission,
         portal.vision = req.body.vision || portal.vision,
         portal.aboutus = req.body.aboutus || portal.aboutus,
@@ -66,6 +70,8 @@ const updatePortalById = asyncHandler(async(req,res) => {
         portal.contactSecondary = req.body.contactSecondary || portal.contactSecondary,
         portal.address = req.body.address || portal.address,
         portal.createdAt = req.body.createdAt || portal.createdAt
+
+        
 
         const updatePortal = await portal.save()
 

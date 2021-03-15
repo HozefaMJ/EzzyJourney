@@ -9,12 +9,10 @@ const portalSchema = mongoose.Schema({
         type: String,
         name: String
     },
-    coverImages: [
-        {
+    coverImages: {
             type: String,
-            required: true
-        }
-    ],
+            name: String
+    },
     vision: {
         type: String,
     },

@@ -12,6 +12,7 @@ const addPackage = asyncHandler(async(req,res) => {
     const {packageCode,
            title,
            description,
+           packageImages,
            placesCovered,
            hotelNames,
            itinerary,
@@ -46,6 +47,7 @@ const addPackage = asyncHandler(async(req,res) => {
         packageCode,
         title,
         description,
+        packageImages,
         placesCovered,
         hotelNames,
         itinerary,
@@ -68,6 +70,7 @@ const addPackage = asyncHandler(async(req,res) => {
             packageCode: packages.packageCode,
             title: packages.title,
             description: packages.description,
+            packageImages: packages.packageImages,
             placesCovered: packages.placesCovered,
             hotelNames: packages.hotelNames,
             itinerary: packages.itinerary,
@@ -131,6 +134,7 @@ const updatePackage = asyncHandler(async(req,res) => {
         packages.packageCode = req.body.packageCode || packages.packageCode,
         packages.title = req.body.title || packages.title,
         packages.description = req.body.description || packages.description,
+        
         packages.placesCovered = req.body.placesCovered || packages.placesCovered,
         packages.hotelNames = req.body.hotelNames || packages.hotelNames,
         packages.itinerary = req.body.itinerary || packages.itinerary,
@@ -143,7 +147,7 @@ const updatePackage = asyncHandler(async(req,res) => {
         packages.price.adults = req.body.adultPrice || packages.price.adults,
         packages.price.childAbove6 = req.body.childAbove6 || packages.price.childAbove6,
         packages.price.childBelow6 = req.body.childBelow6 || packages.price.childBelow6,
-        
+
         // Always send booleans from frontend
         packages.isMeal = req.body.isMeal,
         packages.isFlights = req.body.isFlights,
@@ -151,6 +155,7 @@ const updatePackage = asyncHandler(async(req,res) => {
         packages.isTransportation = req.body.isTransportation,
         packages.isVisa = req.body.isVisa
         
+        packages.packageImages.push(req.body.packageImages)
 
         const updatedPackage = await packages.save();
 
