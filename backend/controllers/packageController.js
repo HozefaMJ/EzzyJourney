@@ -297,6 +297,17 @@ const newPackageReview = asyncHandler(async(req,res) => {
     }
 })
 
+
+// @desc    Get top rated products
+// @route   GET /api/products/top
+// @access  Public
+const getTopPackages = asyncHandler(async (req, res) => {
+    const packages = await Package.find({}).sort({ rating: -1 }).limit(3)
+  
+    res.json(packages)
+  })
+
+
 export {
     addPackage,
     getAllPackages,
@@ -306,5 +317,6 @@ export {
     blockPackageById,
     togglePackageById,
     deletePackage,
-    newPackageReview
+    newPackageReview,
+    getTopPackages
 }

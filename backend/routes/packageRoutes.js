@@ -12,7 +12,8 @@ import {
     blockPackageById,
     togglePackageById,
     deletePackage,
-    newPackageReview
+    newPackageReview,
+    getTopPackages
 } from "../controllers/packageController.js";
 
 import {
@@ -21,9 +22,11 @@ import {
     admin
 } from "../middleware/authMiddleware.js";
 
-router.post('/new',protect,employee,addPackage)
+router.post('/new',protect,employee,addPackage);
 
-router.get("/all",getAllPackages)
+router.get("/all",getAllPackages);
+
+router.get("/top",getTopPackages);
 
 router
     .route("/verify/:id")
