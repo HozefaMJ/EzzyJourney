@@ -371,6 +371,29 @@ const myWishlist = asyncHandler(async(req,res) => {
     }
 })
 
+// @desc Delete From Wishlist
+// @route DELETE /api/packages/myWishlist/:id
+// @access Private
+const removeFromWishlist = asyncHandler(async(req,res) => {
+    const user = await User.findById(req.user._id);
+
+    if(user){
+        const inWishlist = user.wishlist.find(r => r._id.toString() == req.params.id.toString())
+
+        if(inWishlist){
+            user.wishlist.pop(inWishlist);
+
+            await user.save();
+        } else {
+            res.status(404);
+            throw new Error("Not in wishlist")
+        }
+    } else {
+        res.status(404);
+        throw new Error("User Not Found");
+    }
+})
+
 // @desc    Get top rated products
 // @route   GET /api/products/top
 // @access  Public
@@ -393,5 +416,6 @@ export {
     newPackageReview,
     getTopPackages,
     addPackageToWishlist,
-    myWishlist
+    myWishlist,
+    removeFromWishlist
 }

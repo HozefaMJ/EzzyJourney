@@ -15,7 +15,8 @@ import {
     newPackageReview,
     getTopPackages,
     addPackageToWishlist,
-    myWishlist
+    myWishlist,
+    removeFromWishlist
 } from "../controllers/packageController.js";
 
 import {
@@ -31,6 +32,10 @@ router.get("/all",getAllPackages);
 router.get("/top",getTopPackages);
 
 router.get("/myWishlist",protect,myWishlist);
+
+router
+    .route('/myWishlist/:id')
+    .delete(protect,removeFromWishlist)
 
 router
     .route("/verify/:id")

@@ -27,6 +27,35 @@ const protect = expressAsyncHandler(async(req,res,next) => {
 
 })
 
+
+const anonymous = expressAsyncHandler(async(req,res,next) => {
+    let token
+
+    if(req.headers.authorization && req.headers.authorization.startsWith('Bearer')){
+        try {
+            token = req.headers.authorization.split(' ')[1]
+            const decoded = jwt.verify(token, process.env.JWT_SECRET)
+            
+            req.user = await User.findById(decoded.id).select('-password')
+
+            next()
+        } catch (error) {
+            console.error(error)
+            res.status(401)
+            throw new Error('Not Authorized Token Failed')
+        }
+    }
+
+    if(!token){
+        req.user = await User.findById("604f145d1a43091a78e14ce9").select('-password')
+
+        next()
+    }
+
+})
+
+
+
 const employee = (req,res,next) => {
     if(req.user && req.user.isEmployee){
         next()
@@ -45,4 +74,4 @@ const admin = (req,res,next) => {
     }
 } 
 
-export {protect, employee, admin}
+export {protect, anonymous, employee, admin}

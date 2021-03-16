@@ -14,7 +14,8 @@ import {
 import {
     protect,
     employee,
-    admin
+    admin,
+    anonymous
 } from "../middleware/authMiddleware.js"
 
 
@@ -29,7 +30,7 @@ router
 
 router
     .route("/:id/new")
-    .post(protect,newQuery)
+    .post(anonymous,newQuery)
 
 router
     .route('/:id/reverted')

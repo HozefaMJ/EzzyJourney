@@ -26,17 +26,11 @@ const newQuery = asyncHandler(async(req,res) => {
             childBelow6
         }
 
-        let userId = "604f145d1a43091a78e14ce9";
-
-        if(user){
-            userId = user._id
-        }
-
         // If user is logged in use user Id or anonymous id
         
 
         const query = await Query.create({
-            user: userId,
+            user: req.user._id,
             package: req.params.id,
             message,
             people: people
