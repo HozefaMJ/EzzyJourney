@@ -99,14 +99,23 @@ const addPackage = asyncHandler(async(req,res) => {
 // @route GET /api/package/all
 // @access Public
 const getAllPackages = asyncHandler(async(req,res) => {
-    const packages = await Package.find({});
 
-    if(packages){
-        res.json(packages)
-    } else {
-        res.status(404);
-        throw new Error("No Package has been created")
-    }
+    // For Pagination
+    const pageSize = 3
+    const page = Number(req.query.pageNumber) || 1
+    // Modified for search
+    // /api/products?keyword=${keyword}
+    const keyword = req.query.keyword ? {
+        name: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+
+    const count = await Package.countDocuments({...keyword})
+    const packages = await Package.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
+    res.json({packages,page,pages: Math.ceil(count/pageSize)})
 })
 
 // @desc Get Package by id
