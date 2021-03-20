@@ -55,7 +55,7 @@ export default function LivePreviewExample() {
                 href="#/"
                 onClick={(e) => e.preventDefault()}
                 className="font-weight-bold rounded-lg text-white px-3">
-                Apps
+                Packages
                 <span className="opacity-5 dropdown-arrow">
                   <FontAwesomeIcon icon={['fas', 'angle-down']} />
                 </span>
