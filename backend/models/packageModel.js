@@ -112,6 +112,10 @@ const packageSchema = mongoose.Schema({
         required: true,
         default: 0
     },
+    currency: {
+        type: String,
+        default: 'Rupees'
+    },
     price: {
         adults: {
             type: Number,
