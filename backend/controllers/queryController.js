@@ -59,7 +59,7 @@ const newQuery = asyncHandler(async(req,res) => {
 // @route GET /api/queries/all
 // @access Private Admin
 const allQueries = asyncHandler(async(req,res) => {
-    const queries = await Query.find({}).populate('user','name email').populate('package','title packageCode');
+    const queries = await Query.find({}).populate('user','name email contact').populate('package','title packageCode');
 
     if(queries){
         res.json(queries)
