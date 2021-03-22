@@ -45,6 +45,19 @@ const userSchema = mongoose.Schema({
             },
         }
     ],
+    coupons:[
+        {
+            name: {
+                type: String,
+                required: true
+            },
+            coupon: {
+                type: mongoose.Schema.Types.ObjectId,
+                required: true,
+                ref: 'Coupon'
+            }
+        }
+    ],
     isAdmin: {
         type: Boolean,
         required: true,

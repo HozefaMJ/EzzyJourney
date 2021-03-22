@@ -8,7 +8,8 @@ import {
     createCoupon,
     useCoupon,
     toggleCouponActive,
-    setCouponUsed
+    setCouponUsed,
+    availCoupon
 } from "../controllers/couponController.js";
 
 import {
@@ -28,6 +29,10 @@ router
 router
     .route("/:id/used")
     .put(protect,useCoupon)
+
+router
+    .route("/:id/avail")
+    .put(protect,admin,availCoupon)
 
 router
     .route("/:id/active")
