@@ -79,6 +79,10 @@ const packageSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    inclusions: {
+        type: String,
+        required: true
+    },
     exclusions: {
         type: String,
         required: true
