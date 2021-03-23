@@ -54,7 +54,14 @@ const anonymous = expressAsyncHandler(async(req,res,next) => {
 
 })
 
-
+const checkBlocked = (req,res,next) => {
+    if(req.user && req.user.isBlocked){
+        next()
+    } else {
+        res.status(401)
+        throw new Error('You have been blocked from the platform')
+    }
+}
 
 const employee = (req,res,next) => {
     if(req.user && req.user.isEmployee){
@@ -63,7 +70,7 @@ const employee = (req,res,next) => {
         res.status(401)
         throw new Error('Not Authorized as an Employee')
     }
-} 
+}
 
 const admin = (req,res,next) => {
     if(req.user && req.user.isAdmin){
@@ -74,4 +81,4 @@ const admin = (req,res,next) => {
     }
 } 
 
-export {protect, anonymous, employee, admin}
+export {protect, anonymous, employee, admin, checkBlocked}

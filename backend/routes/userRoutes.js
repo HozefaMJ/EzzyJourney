@@ -20,6 +20,7 @@ import {
 import {
     protect,
     employee,
+    checkBlocked,
     admin
 } from "../middleware/authMiddleware.js";
 
