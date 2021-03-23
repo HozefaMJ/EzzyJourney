@@ -7,7 +7,10 @@ import {
     allQueries,
     newQuery,
     allMyQueries,
-    respondQuery
+    respondQuery,
+    anonymousQuery,
+    anonymousRespondQuery,
+    allAnonymousQueries
 } from "../controllers/queryController.js";
 
 
@@ -25,6 +28,14 @@ router
     .get(protect,admin,allQueries)
 
 router
+    .route("/all/anonymous")
+    .get(protect,admin,allAnonymousQueries)
+
+router
+    .route("/anonymous")
+    .post(anonymous,anonymousQuery)
+
+router
     .route('/myqueries')
     .get(protect,allMyQueries)
 
@@ -35,5 +46,9 @@ router
 router
     .route('/:id/reverted')
     .put(protect,employee,respondQuery)
+
+router
+    .route('/:id/reverted/anonymous')
+    .put(protect,employee,anonymousRespondQuery)
 
 export default router;
