@@ -141,12 +141,11 @@ const useCoupon = asyncHandler(async(req,res) => {
                         user: couponUser._id
                     }
 
-                    const removeUserfromAvailable = {
-                        user: couponUser._id
-                    }
-        
+                
+                    //const removeFromCouponList = coupon.couponAvailableForUser.find(r => r.user.toString() === couponUser._id.toString())
+
                     coupon.couponUsedBy.push(couponUsedByUser);
-                    coupon.couponAvailableForUser.pull(removeUserfromAvailable);
+                    coupon.couponAvailableForUser.pull(alreadyAvailedToUser._id);
                     coupon.timesUsed = coupon.couponUsedBy.length;
         
                     await coupon.save();
