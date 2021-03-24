@@ -55,7 +55,7 @@ const anonymous = expressAsyncHandler(async(req,res,next) => {
 })
 
 const checkBlocked = (req,res,next) => {
-    if(req.user && req.user.isBlocked){
+    if(req.user && !req.user.isBlocked){
         next()
     } else {
         res.status(401)
