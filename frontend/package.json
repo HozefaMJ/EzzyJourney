@@ -1,16 +1,10 @@
 {
-  "name": "bamburgh-react-admin-dashboard-reactstrap-pro",
-  "version": "2.0.0",
-  "title": "Bamburgh React Admin Dashboard with Reactstrap PRO",
-  "homepage": "https://demo.uifort.com/bamburgh-react-admin-dashboard-reactstrap-pro",
-  "description": "This admin template is a complete frontend solution for easy-building applications or presentation websites. It&#39;s fully responsive and designed by professional UI&#x2F;UX designers and developers.",
+  "name": "ezzy-journeys",
+  "version": "0.0.1",
+  "title": "",
+  "description": "Portfolio + Business Website for Ezzy Jouneys a holistic travel website",
   "author": {
-    "name": "UiFort.com",
-    "url": "https://uifort.com"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/uifort/bamburgh-react-admin-dashboard-reactstrap-pro"
+    "name": "Hozefa Jaorawala"
   },
   "dependencies": {
     "react-dom": "16.13.1",

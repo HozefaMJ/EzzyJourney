@@ -261,10 +261,12 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <BrowserRouter basename="/bamburgh-react-admin-dashboard-reactstrap-pro/">
+        <BrowserRouter> {/*basename="/bamburgh-react-admin-dashboard-reactstrap-pro/"*/}
           <ScrollToTop>
             <Routes />
           </ScrollToTop>
+          
+          {/*
           <ToastContainer
             enableMultiContainer
             containerId={'A'}
@@ -280,6 +282,7 @@ class App extends Component {
             containerId={'C'}
             position={toast.POSITION.BOTTOM_CENTER}
           />
+          */}
         </BrowserRouter>
       </Provider>
     );
