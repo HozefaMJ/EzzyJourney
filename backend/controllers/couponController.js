@@ -128,6 +128,8 @@ const useCoupon = asyncHandler(async(req,res) => {
 
                     const alreadyUsedByUser = coupon.couponUsedBy.find(r => r.user.toString() === couponUser._id.toString())
         
+                    const usersCouponList = couponUser.coupons.find(r => r.coupon.toString() === coupon._id.toString())
+
                     if(alreadyUsedByUser) {
                         res.status(400);
                         throw new Error("Already Used")
@@ -144,13 +146,19 @@ const useCoupon = asyncHandler(async(req,res) => {
                 
                     //const removeFromCouponList = coupon.couponAvailableForUser.find(r => r.user.toString() === couponUser._id.toString())
 
+
+
                     coupon.couponUsedBy.push(couponUsedByUser);
                     coupon.couponAvailableForUser.pull(alreadyAvailedToUser._id);
                     coupon.timesUsed = coupon.couponUsedBy.length;
         
+                    couponUser.coupons.pull(usersCouponList._id);
+
                     await coupon.save();
-        
+                    await couponUser.save();
+
                     res.status(201).json({msg:"Coupon Used for User"})
+                    
                 } else if(!coupon.isReuseable) {
                     if(!coupon.isUsed) {
                         coupon.isUsed = true;
