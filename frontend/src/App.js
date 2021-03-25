@@ -7,6 +7,18 @@ import ScrollToTop from './utils/ScrollToTop';
 import { ToastContainer, toast } from 'react-toastify';
 import './assets/base.scss';
 
+import {
+  Row,
+  Col,
+  Card,
+  Container,
+  Badge,
+  UncontrolledTooltip,
+  Button
+} from 'reactstrap';
+
+import Header from "./components/Header";
+
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
   fab,
@@ -262,6 +274,11 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter> {/*basename="/bamburgh-react-admin-dashboard-reactstrap-pro/"*/}
+          {/*
+          <Container className="pt-3">
+            <Header />
+          </Container>
+          */}
           <ScrollToTop>
             <Routes />
           </ScrollToTop>

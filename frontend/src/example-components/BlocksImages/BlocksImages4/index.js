@@ -13,7 +13,7 @@ export default function LivePreviewExample() {
             <img alt="..." className="card-img-top" src={stock1} />
             <CardBody>
               <h5 className="card-title font-weight-bold font-size-xxl">
-                Bamburgh React Admin Dashboard with Reactstrap PRO
+                Hozefa React Admin Dashboard with Reactstrap PRO
               </h5>
               <p className="card-text">
                 This admin template is a complete frontend solution for

@@ -25,8 +25,8 @@ export default function Header() {
 
   return (
     <>
-      <div className="header-nav-wrapper header-nav-wrapper-lg rounded navbar-light">
-        <div className="app-nav-logo">
+      <div className=" header-nav-wrapper header-nav-wrapper-lg rounded navbar-dark m-3">
+        <div className="app-nav-logo ml-4">
           <Link 
             to="/DashboardMonitoring"
             className="app-nav-logo app-nav-logo--dark"

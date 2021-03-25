@@ -11,27 +11,43 @@ import {
   Button
 } from 'reactstrap';
 
-import particles2 from '../assets/images/hero-bg/particles-2.svg';
-import illustration1 from '../assets/images/illustrations/pack1/time.svg';
+import particles2 from '../assets/images/hero-bg/particles-1.svg';
+import illustration1 from '../assets/images/illustrations/pack1/analysis.svg';
 
 //import MarketingHeaders6 from '../../MarketingHeaders/MarketingHeaders6';
 
 //import MarketingHeaders6 from '../example-components/MarketingHeaders/MarketingHeaders6';
 
 import Header from "../components/Header";
+import HeroCarousels from "../components/carousels/HeroCarousels";
+import Footer from 'components/Footer';
+import PackageCards from 'components/Cards/PackageCard';
 
-export default function LivePreviewExample() {
+export default function HomeScreen() {
   return (
     <>
-      <div className="hero-wrapper bg-composed-wrapper bg-white">
-        <Container className="pt-3">
-          <Header />
-        </Container>
-        <div className="hero-wrapper--content">
+      <Header />
+       {/**/} 
+
+          {/*
           <div
             className="bg-composed-wrapper--image bg-composed-filter-rm opacity-7"
             style={{ backgroundImage: 'url(' + particles2 + ')' }}
           />
+          */}
+          <div className="bg-composed-wrapper--content">     
+                <HeroCarousels/>
+          </div>
+        
+        <div className="bg-composed-wrapper--content">
+          <PackageCards/>
+        </div>
+        <Footer/>
+    </>
+  );
+}
+
+{/*
           <div className="bg-composed-wrapper--content">
             <div className="py-3 py-xl-5">
               <Container className="text-black py-5">
@@ -111,74 +127,4 @@ export default function LivePreviewExample() {
               </Container>
             </div>
           </div>
-        </div>
-        <div className="hero-footer py-3 py-xl-5">
-          <Container>
-            <Row>
-              <Col md="6" xl="4">
-                <Card className="card-box-hover-rise card-box-hover card-box-alt card-border-top border-success mb-5 pb-4 bg-secondary shadow-xxl">
-                  <h3 className="font-size-lg font-weight-bold mt-5 mb-4">
-                    Lightweight
-                  </h3>
-                  <p className="text-dark px-4 mb-4">
-                    Browse through the live previews to see just how powerful
-                    this admin template really is!
-                  </p>
-                  <Button
-                    tag="a"
-                    href="#/"
-                    onClick={(e) => e.preventDefault()}
-                    color="link"
-                    className="btn-link-success mb-2 p-0"
-                    title="Find out more">
-                    <span>Find out more</span>
-                  </Button>
-                </Card>
-              </Col>
-              <Col md="6" xl="4">
-                <Card className="card-box-hover-rise card-box-hover card-box-alt card-border-top border-first mb-5 pb-4 bg-secondary shadow-xxl">
-                  <h3 className="font-size-lg font-weight-bold mt-5 mb-4">
-                    Simple to use
-                  </h3>
-                  <p className="text-dark px-4 mb-4">
-                    Browse through the live previews to see just how powerful
-                    this admin template really is!
-                  </p>
-                  <Button
-                    tag="a"
-                    href="#/"
-                    onClick={(e) => e.preventDefault()}
-                    color="link"
-                    className="btn-link-first mb-2 p-0"
-                    title="Find out more">
-                    <span>Find out more</span>
-                  </Button>
-                </Card>
-              </Col>
-              <Col md="6" xl="4" className="d-none d-xl-block">
-                <Card className="card-box-hover-rise card-box-hover card-box-alt card-border-top border-warning mb-5 pb-4 bg-secondary shadow-xxl">
-                  <h3 className="font-size-lg font-weight-bold mt-5 mb-4">
-                    Starter Templates
-                  </h3>
-                  <p className="text-dark px-4 mb-4">
-                    Browse through the live previews to see just how powerful
-                    this admin template really is!
-                  </p>
-                  <Button
-                    tag="a"
-                    href="#/"
-                    onClick={(e) => e.preventDefault()}
-                    color="link"
-                    className="btn-link-warning mb-2 p-0"
-                    title="Find out more">
-                    <span>Find out more</span>
-                  </Button>
-                </Card>
-              </Col>
-            </Row>
-          </Container>
-        </div>
-      </div>
-    </>
-  );
-}
+*/}

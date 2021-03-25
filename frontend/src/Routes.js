@@ -197,6 +197,7 @@ const PageInvoice = lazy(() => import('./example-pages/PageInvoice'));
 
 // All Screens
 const Home = lazy(()=> import('./screens/HomeScreen'));
+const Home1 = lazy(() => import('./screens/HomeScreen1'));
 
 const Routes = () => {
   const location = useLocation();

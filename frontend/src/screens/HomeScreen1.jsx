@@ -3,11 +3,14 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Container, Badge, Button } from 'reactstrap';
 
-import stock6 from '../../../assets/images/stock-photos/stock-6.jpg';
+import stock6 from '../assets/images/stock-photos/stock-6.jpg';
 
-import MarketingHeaders4 from '../../MarketingHeaders/MarketingHeaders4';
 
-export default function LivePreviewExample() {
+import MarketingHeaders4 from '../example-components/MarketingHeaders/MarketingHeaders4';
+
+
+
+export default function HomeScreen1() {
   return (
     <>
       <div className="hero-wrapper bg-composed-wrapper bg-serious-blue">
