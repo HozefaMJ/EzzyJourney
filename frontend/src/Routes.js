@@ -198,6 +198,8 @@ const PageInvoice = lazy(() => import('./example-pages/PageInvoice'));
 // All Screens
 const Home = lazy(()=> import('./screens/HomeScreen'));
 const Home1 = lazy(() => import('./screens/HomeScreen1'));
+const Login = lazy(() => import('./screens/LoginScreen'));
+const Register = lazy(() => import('./screens/RegisterScreen'));
 
 const Routes = () => {
   const location = useLocation();
@@ -621,6 +623,8 @@ const Routes = () => {
 
           <Route
             path={[
+              '/Login',
+              '/Register',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -645,6 +649,8 @@ const Routes = () => {
                   exit="out"
                   variants={pageVariants}
                   transition={pageTransition}>
+                  <Route path="/Login" component={Login} />
+                  <Route path="/Register" component={Register} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route
