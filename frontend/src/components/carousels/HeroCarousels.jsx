@@ -99,12 +99,12 @@ export default function HeroCarousels() {
               </Card>
             </div>
             <div>
-              <Card className="shadow-none rounded-0 overflow-hidden">
+            <Card className="shadow-none rounded-0 overflow-hidden">
                 <div className="card-img-wrapper rounded">
                   <a
                     href="#/"
                     onClick={(e) => e.preventDefault()}
-                    className="img-wrapper-overlay p-4 p-xl-5 img-wrapper-overlay--visible rounded">
+                    className="img-wrapper-overlay p-1 p-xl-5 img-wrapper-overlay--visible rounded">
                     <div className="overlay-btn-wrapper card-body text-white text-center">
                       <h5 className="px-2 font-weight-bold display-4 mb-4">
                         Bamburgh React Admin Dashboard with Reactstrap PRO
@@ -118,18 +118,15 @@ export default function HeroCarousels() {
                       <div className="mt-4">
                         <div className="avatar-icon-wrapper mx-auto mb-2">
                           <div className="avatar-icon shadow-sm-dark">
-                            <img alt="..." src={avatar7} />
+                            <img alt="..." src={avatar6} />
                           </div>
                         </div>
-                        <div>Miranda Lawson</div>
+                        <div>Dalia Finney</div>
                       </div>
                     </div>
-                    <div className="card-badges">
-                      <Badge
-                        pill
-                        color="neutral-success"
-                        className="text-success">
-                        Marketing
+                    <div className="card-badges card-badges-top">
+                      <Badge pill color="danger">
+                        Development
                       </Badge>
                     </div>
                   </a>

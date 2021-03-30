@@ -171,6 +171,11 @@
   background-image: linear-gradient( 135deg, #3B2667 10%, #BC78EC 100%) !important;;
 }
 
+.bg-transparent {
+  background-image: linear-gradient( 135deg, #ffff 0%, #fff 0%) !important;;
+  opacity: 100%;
+}
+
 // Composed backgrounds
 
 .bg-composed-img-1 {

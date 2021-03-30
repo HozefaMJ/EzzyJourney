@@ -25,7 +25,7 @@ export default function Header() {
 
   return (
     <>
-      <div className=" header-nav-wrapper header-nav-wrapper-lg rounded navbar-dark m-3">
+      <div className=" header-nav-wrapper header-nav-wrapper-lg rounded navbar-dark m-3" style={{zIndex:100}}>
         <div className="app-nav-logo ml-4">
           <Link 
             to="/DashboardMonitoring"

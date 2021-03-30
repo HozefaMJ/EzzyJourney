@@ -38,7 +38,7 @@ export default function LivePreviewExample() {
                     className="d-flex align-items-center pr-0 pr-xl-3">
                     <div className="text-center text-lg-left">
                       <h2 className="display-3 font-weight-bold">
-                        Bamburgh React Admin Dashboard with Reactstrap PRO
+                        Dexter React Admin Dashboard with Reactstrap PRO
                       </h2>
                       <p className="font-size-xl py-3 text-white-50">
                         This admin template is a complete frontend solution for

@@ -200,6 +200,7 @@ const Home = lazy(()=> import('./screens/HomeScreen'));
 const Home1 = lazy(() => import('./screens/HomeScreen1'));
 const Login = lazy(() => import('./screens/LoginScreen'));
 const Register = lazy(() => import('./screens/RegisterScreen'));
+const Package = lazy(() => import('./screens/PackageScreen'));
 
 const Routes = () => {
   const location = useLocation();
@@ -274,7 +275,7 @@ const Routes = () => {
                   exit="out"
                   variants={pageVariants}
                   transition={pageTransition}>
-                  <Route path="/Home" component={Home} />
+                  <Route path="/Home" component={Home1} />
                 </motion.div>
               </Switch>
             </PresentationLayout>
@@ -625,6 +626,7 @@ const Routes = () => {
             path={[
               '/Login',
               '/Register',
+              '/Package',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -651,6 +653,7 @@ const Routes = () => {
                   transition={pageTransition}>
                   <Route path="/Login" component={Login} />
                   <Route path="/Register" component={Register} />
+                  <Route path="/Package" component={Package} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route
