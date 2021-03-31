@@ -14,11 +14,100 @@ import Footer from "../components/Footer";
 import PackageCards from "components/Cards/PackageCard";
 import HeroCarousels from 'components/carousels/HeroCarousels';
 import QueryModalForm from "components/forms/QueryModalForm";
+import PackageCard from 'components/Cards/PackageCard';
 
 export default function HomeScreen1() {
   return (
     <>
       <Header1/>
+        <Container>
+          <Row>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={3} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+            <Col sm={12} md={6} lg={4} xl={3}>
+              <PackageCard destination="Mystical Ladakh"/>
+            </Col>
+          </Row>
+        </Container>
       <Footer/>
     </>
   );

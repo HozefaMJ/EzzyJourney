@@ -47,6 +47,7 @@ $green:   #1bc943;
 $teal:    #18e1a5;
 $cyan: #11c5db;
 $magenta: #ff00ff;
+$gold: #FFD700;
 
 $colors: ();
 // stylelint-disable-next-line scss/dollar-variable-default
@@ -116,6 +117,7 @@ $theme-colors: map-merge(
         "first":      $blue,
         "second":     $second,
         "magenta":    $magenta,
+        "gold": $gold
     ),
     $theme-colors
 );

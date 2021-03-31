@@ -73,7 +73,7 @@ export default function LivePreviewExample() {
                 <div className="p-3 bg-secondary rounded-bottom p-xl-4">
                   <img src={logo1} alt="..." style={{ height: 25 }} />
                   <p className="text-second opacity-8 mt-4 mb-0">
-                    350+ custom-made, beautiful components, widgets, pages,
+                    Hozefa scustom-made, beautiful components, widgets, pages,
                     dashboards and applications.
                   </p>
                 </div>

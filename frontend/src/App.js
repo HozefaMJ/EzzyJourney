@@ -276,7 +276,10 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter> {/*basename="/bamburgh-react-admin-dashboard-reactstrap-pro/"*/}
+          {/*
           <Header1/>
+          <Footer/>
+          */}
           <ScrollToTop>
             <Routes />
           </ScrollToTop>
@@ -298,7 +301,7 @@ class App extends Component {
             position={toast.POSITION.BOTTOM_CENTER}
           />
           */}
-          <Footer/>
+          
         </BrowserRouter>
       </Provider>
     );

@@ -155,34 +155,6 @@ export default function Header1() {
                 />
               </div>
             </div>
-            <div className="py-3 text-center text-white py-xl-5">
-              <div className="py-2" />
-              <Container className="py-3 py-xl-5">
-                <Row>
-                  <Col lg="10" xl="8" className="mx-auto">
-                    <div className="font-size-sm d-inline-flex bg-white-10 px-4 rounded-lg text-white py-2 text-uppercase">
-                      Examples
-                    </div>
-                    <h3 className="display-3 font-weight-bold my-4 text-uppercase">
-                      How can we help?
-                    </h3>
-                    <p className="text-white-50 line-height-2 font-size-xxl px-3 px-xl-5 mb-0">
-                      Browse through the live previews to see just how powerful
-                      this admin template really is!
-                    </p>
-                  </Col>
-                </Row>
-              </Container>
-              <div className="py-5" />
-            </div>
-            <div className="shape-container-top-2">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-                <path
-                  fill="var(--light)"
-                  fillOpacity="1"
-                  d="M0,64L120,58.7C240,53,480,43,720,48C960,53,1200,75,1320,85.3L1440,96L1440,320L1320,320C1200,320,960,320,720,320C480,320,240,320,120,320L0,320Z"></path>
-              </svg>
-            </div>
           </div>
         </div>
       </div>
