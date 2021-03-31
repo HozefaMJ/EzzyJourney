@@ -21,6 +21,7 @@ export default function HomeScreen1() {
       <Header1/>
       <HeroCarousels/>
         <Container>
+          <h2 className="mt-5">Latest Packages:</h2>
           <Row>
             <Col sm={12} md={6} lg={4} xl={3}>
               <PackageCard destination="Mystical Ladakh"/>
