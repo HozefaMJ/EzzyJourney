@@ -18,6 +18,7 @@ import {
 } from 'reactstrap';
 
 import Header from "./components/Header";
+import Header1 from "./components/Header1";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
@@ -144,6 +145,7 @@ import {
   faSignOutAlt,
   faLink
 } from '@fortawesome/free-solid-svg-icons';
+import Footer from 'components/Footer';
 library.add(
   far,
   faSquare,
@@ -274,11 +276,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <BrowserRouter> {/*basename="/bamburgh-react-admin-dashboard-reactstrap-pro/"*/}
-          {/*
-          <Container className="pt-3">
-            <Header />
-          </Container>
-          */}
+          <Header1/>
           <ScrollToTop>
             <Routes />
           </ScrollToTop>
@@ -300,6 +298,7 @@ class App extends Component {
             position={toast.POSITION.BOTTOM_CENTER}
           />
           */}
+          <Footer/>
         </BrowserRouter>
       </Provider>
     );

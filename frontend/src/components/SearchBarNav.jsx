@@ -13,7 +13,7 @@ export default function SearchBarNav() {
   return (
     <>
       <div
-        className={clsx('search-wrapper search-wrapper--alternate', {
+        className={clsx('search-wrapper search-wrapper--alternate mt-1', {
           'is-active': searchStatus6
         })}>
         <span className="icon-wrapper text-black">

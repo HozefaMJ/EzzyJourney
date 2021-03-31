@@ -15,7 +15,7 @@ import {
 
 import {Link} from "react-router-dom";
 
-export default function QueryModalForm() {
+export default function QueryModalForm({buttonColor}) {
   const [modal5, setModal5] = useState(false);
 
   const toggle5 = () => setModal5(!modal5);
@@ -23,8 +23,8 @@ export default function QueryModalForm() {
   return (
     <>
       <div className="d-flex align-items-center justify-content-center flex-wrap">
-        <Button size="lg" className="btn-pill shadow-second-sm" color="info" className="m-2" onClick={toggle5}>
-            <span className="btn-wrapper--label">Dream Vacation Just a Query Away!</span>
+        <Button size="lg" className="btn-pill shadow-second-sm" color={buttonColor} className="m-2" onClick={toggle5}>
+            <span className="btn-wrapper--label">Your Dream Vacation Just a Query Away!</span>
             <span className="btn-wrapper--icon">
                       <FontAwesomeIcon icon={['fas', 'arrow-right']} />
             </span>
