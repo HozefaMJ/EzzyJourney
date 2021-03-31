@@ -54,16 +54,15 @@ export default function HeroCarousels() {
   return (
     <>
       <Row className="align-items-center">
-        <Col xl="12">
+        <Col xl="12" >
           <Slider
-            className="rounded-lg overflow-hidden mb-2 mb-lg-0 slider-dots-light"
+            className="rounded-lg overflow-hidden slider-dots-light"
             {...widgetsCarousels1A}>
             <div>
               <Card className="shadow-none rounded-0 overflow-hidden">
                 <div className="card-img-wrapper rounded">
                   <a
                     href="#/"
-                    onClick={(e) => e.preventDefault()}
                     className="img-wrapper-overlay p-1 p-xl-5 img-wrapper-overlay--visible rounded">
                     <div className="overlay-btn-wrapper card-body text-white text-center">
                       <h5 className="px-2 font-weight-bold display-4 mb-4">
@@ -99,11 +98,10 @@ export default function HeroCarousels() {
               </Card>
             </div>
             <div>
-            <Card className="shadow-none rounded-0 overflow-hidden">
+              <Card className="shadow-none rounded-0 overflow-hidden">
                 <div className="card-img-wrapper rounded">
                   <a
                     href="#/"
-                    onClick={(e) => e.preventDefault()}
                     className="img-wrapper-overlay p-1 p-xl-5 img-wrapper-overlay--visible rounded">
                     <div className="overlay-btn-wrapper card-body text-white text-center">
                       <h5 className="px-2 font-weight-bold display-4 mb-4">
@@ -131,13 +129,14 @@ export default function HeroCarousels() {
                     </div>
                   </a>
                   <img
-                    src={stock2}
+                    src={stock1}
                     className="card-overlay-image img-fit-container rounded"
                     alt="..."
                   />
                 </div>
               </Card>
             </div>
+            
           </Slider>
         </Col>
       </Row>

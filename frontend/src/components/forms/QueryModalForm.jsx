@@ -26,7 +26,7 @@ export default function QueryModalForm({buttonColor}) {
         <Button size="lg" className="btn-pill shadow-second-sm" color={buttonColor} className="m-2" onClick={toggle5}>
             <span className="btn-wrapper--label">Your Dream Vacation Just a Query Away!</span>
             <span className="btn-wrapper--icon">
-                      <FontAwesomeIcon icon={['fas', 'arrow-right']} />
+                      <FontAwesomeIcon icon={['fas', 'map-marked-alt']} />
             </span>
         </Button>
         <Modal zIndex={2000} centered isOpen={modal5} toggle={toggle5}>

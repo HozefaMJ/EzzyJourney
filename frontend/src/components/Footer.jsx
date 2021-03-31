@@ -121,7 +121,7 @@ export default function Footer() {
               </a>
               <a
                 className="text-google hover-scale-sm"
-                href="mailto:hozefa24imp@gmail.com?subject=I came here from Saucery">
+                href="mailto:hozefa24imp@gmail.com?subject=I came here from Ezzy Jounrneys">
                 <FontAwesomeIcon
                     icon={['fab', 'google']}
                     className="font-size-lg"

@@ -35,7 +35,7 @@ export default function Header1() {
 
   return (
     <>
-      <div className="hero-wrapper overflow-hidden bg-composed-wrapper bg-second mb-5">
+      <div className="hero-wrapper overflow-hidden bg-composed-wrapper bg-second mb-2">
         <div className="hero-wrapper--content">
           <div className="bg-composed-wrapper--bg bg-second opacity-4" />
           <div
