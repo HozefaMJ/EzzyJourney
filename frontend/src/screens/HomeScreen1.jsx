@@ -12,6 +12,7 @@ import Footer from "../components/Footer";
 
 import PackageCards from "components/Cards/PackageCard";
 import HeroCarousels from 'components/carousels/HeroCarousels';
+import QueryModalForm from "components/forms/QueryModalForm";
 
 export default function HomeScreen1() {
   return (
@@ -45,27 +46,22 @@ export default function HomeScreen1() {
                   designers and developers.
                 </p>
                 <div className="py-4 mb-4">
+
+                  <QueryModalForm/>
+                  {/*
                   <Button
                     tag="a"
                     href="#/"
                     onClick={(e) => e.preventDefault()}
                     size="lg"
                     className="btn-pill shadow-second-sm"
-                    color="first">
-                    <span className="btn-wrapper--label">Browse gallery</span>
+                    color="warning">
+                    <span className="btn-wrapper--label">Send Us Query</span>
                     <span className="btn-wrapper--icon">
                       <FontAwesomeIcon icon={['fas', 'arrow-right']} />
                     </span>
                   </Button>
-                  <Button
-                    tag="a"
-                    href="#/"
-                    onClick={(e) => e.preventDefault()}
-                    size="lg"
-                    color="link"
-                    className="bg-white-10 text-white btn-pill ml-3">
-                    <span>Documentation</span>
-                  </Button>
+                  */}
                 </div>
                 <div className="mt-5 mb-5 ">
                   <HeroCarousels/>

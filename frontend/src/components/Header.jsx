@@ -7,7 +7,7 @@ import {Link} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Collapse, Nav, NavItem, Button } from 'reactstrap';
 import { NavLink as NavLinkStrap } from 'reactstrap';
-import projectLogo from '../assets/images/react.svg';
+import projectLogo from '../assets/images/ezzy_logo.png';
 
 import {
   Bell,
