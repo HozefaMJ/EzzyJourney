@@ -202,6 +202,7 @@ const Login = lazy(() => import('./screens/LoginScreen'));
 const Register = lazy(() => import('./screens/RegisterScreen'));
 const Package = lazy(() => import('./screens/PackageScreen'));
 const AllPackages = lazy(() => import('./screens/AllPackagesScreen'));
+const Profile = lazy(() => import('./screens/UserProfileScreen'));
 
 const Routes = () => {
   const location = useLocation();
@@ -629,6 +630,7 @@ const Routes = () => {
               '/Register',
               '/Package',
               '/AllPackages',
+              '/Profile',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -657,6 +659,7 @@ const Routes = () => {
                   <Route path="/Register" component={Register} />
                   <Route path="/Package" component={Package} />
                   <Route path="/AllPackages" component={AllPackages} />
+                  <Route path="/Profile" component={Profile} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route

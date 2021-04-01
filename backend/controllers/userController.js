@@ -108,9 +108,10 @@ const updateUserProfile = asyncHandler(async(req,res) => {
         user.email = req.body.email || user.email,
         user.contact = req.body.contact || user.contact,
         user.dob = req.body.dob || user.dob
+        user.address = req.body.address || user.address
         
         if(req.body.password) {
-            user.address = req.body.address || user.address
+            user.password = req.body.password || user.password
         }
 
         const updatedUser = await user.save()
@@ -121,6 +122,7 @@ const updateUserProfile = asyncHandler(async(req,res) => {
             email: updatedUser.email,
             contact: updatedUser.contact,
             dob: updatedUser.dob,
+            address: updatedUser.address,
             isAdmin: updatedUser.isAdmin,
             isEmployee: updatedUser.isEmployee,
             isBlocked: updatedUser.isBlocked,
