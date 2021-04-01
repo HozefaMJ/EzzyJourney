@@ -3,6 +3,8 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Card } from 'reactstrap';
 
+import {Link} from "react-router-dom";
+
 import Slider from 'react-slick';
 import logo1 from '../../assets/images/stock-logos/netflix.svg';
 import logo2 from '../../assets/images/stock-logos/airbnb.svg';
@@ -21,9 +23,8 @@ export default function PackageCard({destination,isFood,isHotel,isFlight,isTrans
 return (
     <>
         <div className="py-5">
-            <div>
-              <a
-                href="/Package"
+              <Link
+                to="/Package"
                 onClick={(e) => e.preventDefault()}
                 className="card m-1 shadow-sm-dark card-box-hover-rise"
                 style={{minWidth:"auto",maxWidth:"fill-content"}}>
@@ -64,9 +65,8 @@ return (
                     <LargeRating/>
                   </div>
                 </div>
-              </a>
+              </Link>
             </div>
-        </div>
     </>
   );
 }

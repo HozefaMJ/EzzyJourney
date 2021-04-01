@@ -200,7 +200,8 @@ const Home = lazy(()=> import('./screens/HomeScreen'));
 const Home1 = lazy(() => import('./screens/HomeScreen1'));
 const Login = lazy(() => import('./screens/LoginScreen'));
 const Register = lazy(() => import('./screens/RegisterScreen'));
-const AllPackages = lazy(() => import('./screens/PackageScreen'));
+const Package = lazy(() => import('./screens/PackageScreen'));
+const AllPackages = lazy(() => import('./screens/AllPackagesScreen'));
 
 const Routes = () => {
   const location = useLocation();
@@ -627,6 +628,7 @@ const Routes = () => {
               '/Login',
               '/Register',
               '/Package',
+              '/AllPackages',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -653,7 +655,8 @@ const Routes = () => {
                   transition={pageTransition}>
                   <Route path="/Login" component={Login} />
                   <Route path="/Register" component={Register} />
-                  <Route path="/Package" component={AllPackages} />
+                  <Route path="/Package" component={Package} />
+                  <Route path="/AllPackages" component={AllPackages} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route
