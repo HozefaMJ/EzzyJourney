@@ -626,7 +626,7 @@ const Routes = () => {
             path={[
               '/Login',
               '/Register',
-              '/AllPackages',
+              '/Package',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -653,7 +653,7 @@ const Routes = () => {
                   transition={pageTransition}>
                   <Route path="/Login" component={Login} />
                   <Route path="/Register" component={Register} />
-                  <Route path="/AllPackages" component={AllPackages} />
+                  <Route path="/Package" component={AllPackages} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route

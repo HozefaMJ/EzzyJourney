@@ -15,7 +15,7 @@ export default function LivePreviewExample() {
           </Badge>
           <FontAwesomeIcon icon={['far', 'bell']} />
           <Badge color="warning" className="ml-3">
-            <b>23</b> New
+            <b>1996</b> New
           </Badge>
         </Button>
         <Button
