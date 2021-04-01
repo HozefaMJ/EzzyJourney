@@ -25,7 +25,6 @@ return (
         <div className="py-5">
               <Link
                 to="/Package"
-                onClick={(e) => e.preventDefault()}
                 className="card m-1 shadow-sm-dark card-box-hover-rise"
                 style={{minWidth:"auto",maxWidth:"fill-content"}}>
                 <img src={stock2} className="card-img-top" alt="..." style={{ maxWidth: '100%' }} />
