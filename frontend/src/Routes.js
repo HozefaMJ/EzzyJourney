@@ -203,6 +203,7 @@ const Register = lazy(() => import('./screens/RegisterScreen'));
 const Package = lazy(() => import('./screens/PackageScreen'));
 const AllPackages = lazy(() => import('./screens/AllPackagesScreen'));
 const Profile = lazy(() => import('./screens/UserProfileScreen'));
+const AdminPanel = lazy(() => import('./screens/AdminPanelScreen'));
 
 const Routes = () => {
   const location = useLocation();
@@ -631,6 +632,7 @@ const Routes = () => {
               '/Package',
               '/AllPackages',
               '/Profile',
+              '/AdminPanel',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -660,6 +662,7 @@ const Routes = () => {
                   <Route path="/Package" component={Package} />
                   <Route path="/AllPackages" component={AllPackages} />
                   <Route path="/Profile" component={Profile} />
+                  <Route path="/AdminPanel" component={AdminPanel} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route

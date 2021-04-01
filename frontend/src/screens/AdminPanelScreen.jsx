@@ -16,6 +16,7 @@ import HeroCarousels from 'components/carousels/HeroCarousels';
 import StickyWhatsappButton from 'components/Buttons/StickyWhatsapp';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import UserProfileTab from 'components/Tabs/UserProfileTab';
+import AdminPanelTab from 'components/Tabs/AdminPanelTab';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
 export default function HomeScreen1() {
@@ -23,8 +24,7 @@ export default function HomeScreen1() {
     <>
       <Header1/>
         <Container>
-            <RightIconLink Name="Admin Panel" link="/AdminPanel" icon="user-cog"/>
-            <UserProfileTab/>
+            <AdminPanelTab/>
         </Container>
       <Footer1/>
     </>
