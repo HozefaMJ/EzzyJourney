@@ -128,7 +128,7 @@ export default function Package() {
             />
           </div>
         </div>
-        <div>
+        <div id="reviews">
           <Reviews/>
         </div>
       </Container>
