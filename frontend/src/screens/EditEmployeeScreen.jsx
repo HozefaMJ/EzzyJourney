@@ -31,7 +31,7 @@ import HeroCarousels from 'components/carousels/HeroCarousels';
 import StickyWhatsappButton from 'components/Buttons/StickyWhatsapp';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
-export default function EditUser() {
+export default function EditEmployee() {
   return (
     <>
       <Header1/>
@@ -41,7 +41,7 @@ export default function EditUser() {
                     <Card className="card-box mb-5">
                         <CardBody>
                         <CardTitle className="font-weight-bold font-size-lg mb-4">
-                            Edit User
+                            Edit Employee
                         </CardTitle>
                         <Form>
                             <FormGroup>

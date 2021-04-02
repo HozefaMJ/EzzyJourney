@@ -31,7 +31,7 @@ import HeroCarousels from 'components/carousels/HeroCarousels';
 import StickyWhatsappButton from 'components/Buttons/StickyWhatsapp';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
-export default function EditUser() {
+export default function AddEmployees() {
   return (
     <>
       <Header1/>
@@ -41,7 +41,7 @@ export default function EditUser() {
                     <Card className="card-box mb-5">
                         <CardBody>
                         <CardTitle className="font-weight-bold font-size-lg mb-4">
-                            Edit User
+                            Add Employee
                         </CardTitle>
                         <Form>
                             <FormGroup>
@@ -64,24 +64,9 @@ export default function EditUser() {
                                     value="hozefa24imp@gmail.com"
                                 />
                             </FormGroup>
-                            <FormGroup check className="mb-2">
-                                <Label check>
-                                    <Input name="isAdmin" type="checkbox" /> Update to Admin
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check className="mb-2">
-                                <Label check>
-                                    <Input name="isEmployee" type="checkbox" /> Update to Employee
-                                </Label>
-                            </FormGroup>
-                            <FormGroup check className="mb-2">
-                                <Label check>
-                                    <Input name="isBlocked" type="checkbox" /> Block to User
-                                </Label>
-                            </FormGroup>
-
+                            
                             <Button color="primary" className="mt-1">
-                            Submit
+                            Add
                             </Button>
                         </Form>
                         </CardBody>

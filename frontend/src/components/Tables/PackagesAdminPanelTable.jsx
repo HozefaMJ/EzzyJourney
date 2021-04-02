@@ -23,7 +23,7 @@ import RightIconLink from 'components/Buttons/RightIconLink';
 export default function PackagesAdminPanelTable() {
   return (
     <>
-      <Card className="mb-5 mt-1">
+      <Card className="mb-5 mt-4">
             <div className="card-header pr-2 d-flex justify-content-between">
                 <div className="card-header--title m-4">All Packages</div>
                 <div className="card-header--actions">

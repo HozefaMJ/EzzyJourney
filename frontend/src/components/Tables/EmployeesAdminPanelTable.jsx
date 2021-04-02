@@ -23,7 +23,7 @@ import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 export default function EmployeesAdminPanelTable() {
   return (
     <>
-      <Card className="card-box mb-5">
+      <Card className="card-box mb-5 mt-4">
         <div className="card-header pr-2">
           <div className="card-header--title">All Employees</div>
           <div className="card-header--actions">
@@ -157,7 +157,7 @@ export default function EmployeesAdminPanelTable() {
             </Table>
           </div>
         </CardBody>
-        <div className="card-footer d-flex justify-content-left">
+        <div className="card-footer d-flex justify-content-center">
             <AllPackagesPagination/>
         </div>
       </Card>
