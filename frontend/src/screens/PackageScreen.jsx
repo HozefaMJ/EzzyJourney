@@ -14,12 +14,14 @@ import PackageTitleCard from 'components/Cards/PackageTitleCard';
 import ServiceIconCard from 'components/Cards/ServiceIconCard';
 import PlacesCoveredCard from 'components/Cards/PlacesCoveredCard';
 import PackageDescriptionCard from 'components/Cards/PackageDescriptionCard.';
+import Reviews from 'components/Ratings/Reviews';
+import AllReviews from 'components/Ratings/AllReviews';
 
 export default function Package() {
   return (
     <>
       <Header1/>
-      <PackageTitleCard title="Ladakh Dreams" count={135}/>
+      <PackageTitleCard title="Ladakh Dreams" count={135} rating={4} reviewCount={6}/>
       <HeroPackageCarousels/>
       <Container>
         <div>
@@ -125,6 +127,9 @@ export default function Package() {
             After Breakfast –You will be transferred to the Railway Station or Airport for your onward Journey."
             />
           </div>
+        </div>
+        <div>
+          <Reviews/>
         </div>
       </Container>
       <Footer1/>

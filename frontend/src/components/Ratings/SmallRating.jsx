@@ -6,7 +6,7 @@ import Rating from 'react-rating';
 export default function SmallRating() {
   return (
     <>
-      <div className="d-flex align-items-center justify-content-center flex-wrap">
+      <div className="d-flex align-items-left justify-content-left flex-wrap">
         <Rating
           initialRating={2}
           stop={5}
