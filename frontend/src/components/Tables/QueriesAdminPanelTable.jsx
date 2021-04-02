@@ -34,7 +34,7 @@ export default function QueriesAdminPanelTable() {
                   <th style={{ width: '30%' }}>User</th>
                   <th style={{ width: '30%' }}>Package</th>
                   <th className="text-center">Status</th>
-                  <th className="text-center">Actions</th>
+                  <th className="text-center">Responded</th>
                 </tr>
               </thead>
               <tbody>
