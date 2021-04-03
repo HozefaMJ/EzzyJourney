@@ -9,7 +9,7 @@ import QueryModalForm from './forms/QueryModalForm';
 export default function Footer1() {
   return (
     <>
-      <div className="bg-vicious-stance font-size-sm">
+      <div className="bg-ezzy font-size-sm">
         <Container className="py-5">
           <div className="app-nav-logo d-flex w-100 pb-5 justify-content-center">
             <a

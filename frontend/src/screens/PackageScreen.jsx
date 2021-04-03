@@ -16,13 +16,15 @@ import PlacesCoveredCard from 'components/Cards/PlacesCoveredCard';
 import PackageDescriptionCard from 'components/Cards/PackageDescriptionCard.';
 import Reviews from 'components/Ratings/Reviews';
 import AllReviews from 'components/Ratings/AllReviews';
+import SliderEzzy from 'components/Sliders/SliderEzzy';
 
 export default function Package() {
   return (
     <>
       <Header1/>
       <PackageTitleCard title="Ladakh Dreams" count={135} rating={4} reviewCount={6}/>
-      <HeroPackageCarousels/>
+      {/*<HeroPackageCarousels/>*/}
+      <SliderEzzy/>
       <Container>
         <div>
           <div>

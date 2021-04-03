@@ -52,7 +52,7 @@ export default function Header1() {
                       src={projectLogo}
                     />
                   </div>
-                  <div className="text-white ml-3 mt-3 font-size-lg">
+                  <div className="text-secondary ml-3 mt-3 font-size-lg">
                     <h4>Ezzy Journeys</h4>
                   </div>
                 </a>

@@ -9,7 +9,7 @@ import SmallRating from 'components/Ratings/SmallRating';
 export default function PackageTitleCard({title,count,rating,reviewCount}) {
   return (
     <>
-        <Card className="card-box mb-5 mt-3">
+        <Card className="card-box mb-0 mt-0">
             <Row className="p-4 m-4 text-center">
                 <Col lg="8">
                     <div className="display-3 m-2 font-weight-bold">
