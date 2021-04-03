@@ -15,12 +15,14 @@ import PackageCard from 'components/Cards/PackageCard';
 import HeroCarousels from 'components/carousels/HeroCarousels';
 import StickyWhatsappButton from 'components/Buttons/StickyWhatsapp';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
+import SliderEzzy from 'components/Sliders/SliderEzzy';
 
 export default function HomeScreen1() {
   return (
     <>
       <Header1/>
-      <HeroCarousels/>
+      {/*<HeroCarousels/>*/}
+      <SliderEzzy/>
         <Container>
           <h2 className="mt-5">Latest Packages:</h2>
           <Row>

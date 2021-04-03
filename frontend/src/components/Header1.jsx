@@ -28,6 +28,7 @@ import hero5 from '../assets/images/hero-bg/hero-5.jpg';
 import particles3 from '../assets/images/hero-bg/particles-3.svg';
 
 import SearchBarNav from "components/SearchBarNav";
+import WordOutlineButton from './Buttons/WordOutineButton';
 
 export default function Header1() {
   const [collapse, setCollapse] = useState(false);
@@ -35,19 +36,11 @@ export default function Header1() {
 
   return (
     <>
-      <div className="hero-wrapper overflow-hidden bg-composed-wrapper bg-second mb-2">
+      <div className="hero-wrapper overflow-hidden bg-composed-wrapper bg-second mb-0">
         <div className="hero-wrapper--content">
           <div className="bg-composed-wrapper--bg bg-second opacity-4" />
-          <div
-            className="bg-composed-wrapper--image bg-composed-filter-rm"
-            style={{ backgroundImage: 'url(' + hero5 + ')' }}
-          />
-          <div
-            className="bg-composed-wrapper--image opacity-6"
-            style={{ backgroundImage: 'url(' + particles3 + ')' }}
-          />
           <div className="bg-composed-wrapper--content">
-            <div className="header-nav-wrapper bg-white px-4 shadow-lg header-nav-wrapper-lg navbar-light">
+            <div className="header-nav-wrapper bg-ezzy px-4 shadow-lg header-nav-wrapper-lg navbar-light">
               <div className="app-nav-logo">
                 <a
                   href="/DashboardMonitoring"
@@ -59,8 +52,8 @@ export default function Header1() {
                       src={projectLogo}
                     />
                   </div>
-                  <div className="text-second ml-3 font-size-lg">
-                    <b>Ezzy Journeys</b>
+                  <div className="text-white ml-3 mt-3 font-size-lg">
+                    <h4>Ezzy Journeys</h4>
                   </div>
                 </a>
               </div>
@@ -68,9 +61,9 @@ export default function Header1() {
                 <ul className="d-flex nav nav-neutral-first justify-content-center">
                   <li>
                     <a
-                      className="font-size-lg text-second rounded"
+                      className="font-size-lg text-white rounded"
                       href="/AllPackages">
-                      Packages
+                      <b>Packages</b>
                       <span className="opacity-5 dropdown-arrow">
                         <FontAwesomeIcon icon={['fas', 'angle-right']} />
                       </span>
@@ -83,16 +76,10 @@ export default function Header1() {
               </div>
               <div className="header-nav-actions flex-grow-0 flex-lg-grow-1">
                 <span className="d-none d-lg-block">
-                  <Button
-                    tag="a"
-                    href="/Profile"
-                    className="rounded-lg m-2"
-                    color="first">
-                    <span className="btn-wrapper--label">Hozefa J</span>
-                    <span className="btn-wrapper-icon ml-1">
-                        <FontAwesomeIcon icon={['far', 'user-circle']} />
-                    </span>
-                  </Button>
+                  
+                  <WordOutlineButton route="/Profile" buttonName="Hozefa Jaorawala"/>
+                  <WordOutlineButton route="/Login" buttonName="Login"/>
+
                 </span>
                 <span className="d-block d-lg-none">
                   <button

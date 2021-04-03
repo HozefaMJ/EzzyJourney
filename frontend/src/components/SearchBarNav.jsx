@@ -16,15 +16,16 @@ export default function SearchBarNav() {
         className={clsx('search-wrapper search-wrapper--alternate mt-1', {
           'is-active': searchStatus6
         })}>
-        <span className="icon-wrapper text-black">
+        <span className="icon-wrapper text-light">
           <FontAwesomeIcon icon={['fas', 'search']} />
         </span>
         <Input
           type="search"
+          color="light"
           onFocus={toggleSearch6}
           onBlur={toggleSearch6}
           placeholder="Search Packages"
-          className="rounded-pill"
+          className="rounded-pill text-light"
         />
       </div>
     </>
