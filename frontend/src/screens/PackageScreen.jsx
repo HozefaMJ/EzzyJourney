@@ -17,6 +17,7 @@ import PackageDescriptionCard from 'components/Cards/PackageDescriptionCard.';
 import Reviews from 'components/Ratings/Reviews';
 import AllReviews from 'components/Ratings/AllReviews';
 import SliderEzzy from 'components/Sliders/SliderEzzy';
+import SliderPackage from 'components/Sliders/SliderPackage/SliderPackage';
 
 export default function Package() {
   return (
@@ -24,7 +25,7 @@ export default function Package() {
       <Header1/>
       <PackageTitleCard title="Ladakh Dreams" count={135} rating={4} reviewCount={6}/>
       {/*<HeroPackageCarousels/>*/}
-      <SliderEzzy/>
+      <SliderPackage/>
       <Container>
         <div>
           <div>

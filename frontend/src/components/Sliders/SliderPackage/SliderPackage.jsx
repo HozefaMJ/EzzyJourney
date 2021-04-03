@@ -1,20 +1,20 @@
 import React,{useState} from 'react';
 
-import "../../assets/slider-ezzy.scss";
+import "../../../assets/slider-ezzy.scss";
 
-import ImgComp from "./ImgComp";
+import ImgCompPackage from "./ImgCompPackage";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import I1 from "assets/images/hero-bg/hero-leh.jpg";
-import I2 from "assets/images/hero-bg/hero-leh-2.jpg";
-import I3 from "assets/images/hero-bg/hero-3.jpg";
-import I4 from "assets/images/hero-bg/hero-4.jpg";
-import I5 from "assets/images/hero-bg/hero-5.jpg";
+import I1 from "../../../assets/images/hero-bg/hero-leh.jpg";
+import I2 from "../../../assets/images/hero-bg/hero-leh-2.jpg";
+import I3 from "../../../assets/images/hero-bg/hero-3.jpg";
+import I4 from "../../../assets/images/hero-bg/hero-4.jpg";
+import I5 from "../../../assets/images/hero-bg/hero-5.jpg";
 
-export default function SliderEzzy(){
+export default function SliderPackage(){
 
-    let sliderArr = [<ImgComp src={I1} route="/Package" packageName="North & Lights"/>,<ImgComp src={I2} route="/Package" packageName="Ladakh Dreams"/>,<ImgComp src={I3} route="/Package" packageName="London Nights"/>,<ImgComp route="/Package" src={I4} packageName="Paris & Love"/>,<ImgComp src={I5} route="/Package" packageName="Great Barrier Reef"/>];
+    let sliderArr = [<ImgCompPackage src={I1}/>,<ImgCompPackage src={I2}/>,<ImgCompPackage src={I3}/>,<ImgCompPackage src={I4}/>,<ImgCompPackage src={I5}/>];
 
     const [x,setX] = useState(0)
 

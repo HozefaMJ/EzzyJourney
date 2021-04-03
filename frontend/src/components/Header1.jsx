@@ -44,9 +44,9 @@ export default function Header1() {
               <div className="app-nav-logo">
                 <a
                   href="/DashboardMonitoring"
-                  title="Bamburgh React Admin Dashboard with Reactstrap PRO"
+                  title="Ezzy Jouneys"
                   className="app-nav-logo app-nav-logo--dark">
-                  <div className="app-nav-logo--icon rounded-sm bg-white border-0">
+                  <div className="app-nav-logo--icon rounded-sm bg-light border-0">
                     <img
                       alt="Bamburgh React Admin Dashboard with Reactstrap PRO"
                       src={projectLogo}
