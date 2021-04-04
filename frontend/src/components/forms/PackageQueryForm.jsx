@@ -23,7 +23,7 @@ export default function PackageQueryForm({buttonColor}) {
   return (
     <>
       <div className="d-flex align-items-center justify-content-center flex-wrap">
-        <Button size="md" className="btn-pill shadow-second-sm" color={buttonColor} className="" onClick={toggle5}>
+        <Button size="md" className="rounded shadow-second-sm" color={buttonColor} className="" onClick={toggle5}>
             <span className="btn-wrapper--label">Let's Book!</span>
             <span className="btn-wrapper--icon">
                       <FontAwesomeIcon icon={['fas', 'bookmark']} />
@@ -32,7 +32,7 @@ export default function PackageQueryForm({buttonColor}) {
         <Modal zIndex={2000} centered isOpen={modal5} toggle={toggle5}>
           <div>
             <Card className="bg-secondary shadow-none border-0">
-              <div className="card-header d-block bg-info pt-4 pb-1">
+              <div className="card-header d-block bg-ezzy pt-4 pb-1">
                 <div className="text-white text-center mb-1">
                   <h4>Package Query</h4>
                   <p>Please enter the required detail</p>
@@ -81,7 +81,7 @@ export default function PackageQueryForm({buttonColor}) {
                     </div>
                   </FormGroup>
                   <div className="text-center">
-                    <Button color="second" className="mt-4">
+                    <Button color="ezzyColor" className="btn-pill mt-4">
                       Let's Go!!!
                     </Button>
                   </div>

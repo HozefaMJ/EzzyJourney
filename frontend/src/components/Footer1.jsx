@@ -29,7 +29,7 @@ export default function Footer1() {
           </div>
           <div className="pt-4">
             <Row className="text-center no-gutters w-100">
-              <Col md="4" xl="3">
+              <Col md="5" xl="4">
                 <div className="my-4 my-xl-0">
                   <h6 className="text-white font-weight-bold mb-3 text-uppercase">
                     Services
@@ -59,7 +59,7 @@ export default function Footer1() {
                   </Nav>
                 </div>
               </Col>
-              <Col md="4" xl="3">
+              <Col md="5" xl="4">
                 <div className="my-4 my-xl-0">
                   <h6 className="text-white font-weight-bold mb-3 text-uppercase pl-2">
                     Social Connections
@@ -90,6 +90,7 @@ export default function Footer1() {
                         />
                       </NavLinkStrap>
                     </NavItem>
+                    {/*
                     <NavItem>
                       <NavLinkStrap
                         className="text-white-50"
@@ -101,6 +102,7 @@ export default function Footer1() {
                         />
                       </NavLinkStrap>
                     </NavItem>
+                    */}
                     <NavItem>
                       <NavLinkStrap
                         className="text-white-50"
@@ -123,11 +125,22 @@ export default function Footer1() {
                         />
                       </NavLinkStrap>
                     </NavItem>
+                    <NavItem>
+                      <NavLinkStrap
+                        className="text-white-50"
+                        target='_blank'
+                        href="http://linkedin.com/">
+                        <FontAwesomeIcon
+                          icon={['fab', 'linkedin']}
+                          className="font-size-lg"
+                        />
+                      </NavLinkStrap>
+                    </NavItem>
                   </Nav>
                 </div>
               </Col>
-              <Col md="4" xl="3">
-                <QueryModalForm buttonColor="info"/>
+              <Col md="2" xl="4">
+                <QueryModalForm buttonColor="secondary"/>
               </Col>
             </Row>
             <div className="divider mb-4 mt-5 bg-white opacity-2" />

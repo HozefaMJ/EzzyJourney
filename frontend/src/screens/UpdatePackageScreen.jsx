@@ -40,7 +40,7 @@ export default function UpdatePackages() {
         <Container>
             <Row>
                 <Col md="12">
-                    <Card className="card-box mb-5">
+                    <Card className="card-box mt-5 mb-5">
                         <CardBody>
                         <CardTitle className="font-weight-bold font-size-xl mb-4">
                             Add Package
@@ -200,7 +200,7 @@ export default function UpdatePackages() {
                                     You can only add .jpg/.jpeg/.png (Images Only)
                                 </FormText>
                             </FormGroup>
-                            <Button color="primary" className="mt-1">
+                            <Button color="ezzyColor" className="mt-1">
                             Update Package
                             </Button>
                         </Form>

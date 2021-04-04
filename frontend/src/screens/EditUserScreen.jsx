@@ -38,7 +38,7 @@ export default function EditUser() {
         <Container>
             <Row>
                 <Col md="12">
-                    <Card className="card-box mb-5">
+                    <Card className="card-box mt-5 mb-5">
                         <CardBody>
                         <CardTitle className="font-weight-bold font-size-lg mb-4">
                             Edit User
@@ -80,7 +80,7 @@ export default function EditUser() {
                                 </Label>
                             </FormGroup>
 
-                            <Button color="primary" className="mt-1">
+                            <Button color="ezzyColor" className="mt-1">
                             Submit
                             </Button>
                         </Form>

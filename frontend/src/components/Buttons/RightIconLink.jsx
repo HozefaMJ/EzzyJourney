@@ -8,7 +8,7 @@ export default function RightIconLink({link,Name,icon}) {
   return (
     <>
         <Link to={link}>
-            <Button color="second" className="m-2">
+            <Button outline color="ezzyColor" className="btn-pill m-2">
                 <span className="btn-wrapper--label">{Name}</span>
                 <span className="btn-wrapper--icon">
                     <FontAwesomeIcon icon={['fas', `${icon}`]} />

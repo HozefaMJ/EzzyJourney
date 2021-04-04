@@ -22,8 +22,8 @@ export default function QueryModalForm({buttonColor}) {
 
   return (
     <>
-      <div className="d-flex align-items-center justify-content-center flex-wrap">
-        <Button size="lg" className="btn-pill shadow-second-sm" color={buttonColor} className="m-2" onClick={toggle5}>
+      <div className="d-flex align-items-center justify-content-center">
+        <Button size="xl" outline className="btn-pill shadow-second-sm" color={buttonColor} onClick={toggle5}>
             <span className="btn-wrapper--label">Your Dream Vacation Just a Query Away!</span>
             <span className="btn-wrapper--icon">
                       <FontAwesomeIcon icon={['fas', 'map-marked-alt']} />
@@ -39,7 +39,7 @@ export default function QueryModalForm({buttonColor}) {
                 </div>
                 <div className="text-center">
                   <Link to="/Register">
-                    <Button color="twitter" className="ml-2 hover-scale-sm">
+                    <Button color="ezzyColor" className="ml-2 hover-scale-sm">
                     <span className="btn-wrapper--label">SignUp</span>
                       <span className="btn-wrapper--icon">
                         <FontAwesomeIcon icon={['fas', 'arrow-right']} />
@@ -48,7 +48,7 @@ export default function QueryModalForm({buttonColor}) {
                   </Link>
                 </div>
               </div>
-              <div className="card-body px-lg-5 py-lg-5">
+              <div className="card-body px-lg-5 py-lg-3">
                 <div>
                   <div className="form-group mb-3">
                     <div className="input-group input-group-alternative">
@@ -151,7 +151,7 @@ export default function QueryModalForm({buttonColor}) {
                     </div>
                   </FormGroup>
                   <div className="text-center">
-                    <Button color="second" className="mt-4">
+                    <Button color="ezzyColor" className="mt-4">
                       Let's Go!!!
                     </Button>
                   </div>
