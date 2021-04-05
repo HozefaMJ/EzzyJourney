@@ -28,7 +28,7 @@ export default function ContactUs() {
                         </CardTitle>
                         <div className="divider"/>
                         <Row>
-                            <Col md="5" xl="4">
+                            <Col md="5" xl="6">
                             <div className="my-4 ">
                             <h6 className="text-dark font-weight-bold mb-3 text-uppercase pl-2">
                                 Email:
@@ -123,8 +123,11 @@ export default function ContactUs() {
                         </Nav>
                         </div>
                             </Col>
-                            <Col md="5" xl="4">
-                            <img style={{width:'100%'}} src={projectLogo} alt=""/>
+                            <Col md="5" xl="6">
+                                <div className="mt-4">
+                                    <QueryModalForm buttonColor="ezzyColor"/>
+                                    <img style={{width:'100%'}} src={projectLogo} alt=""/>
+                                </div>
                             </Col>
                         </Row>
                         </CardBody>
