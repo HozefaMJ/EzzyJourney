@@ -83,7 +83,7 @@ export default function QueriesAdminPanelTable() {
                   <td className="text-center">
                     <div>
                       <Button
-                        color="primary"
+                        color="ezzyColor"
                         size="sm"
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
                         <FontAwesomeIcon
@@ -139,7 +139,7 @@ export default function QueriesAdminPanelTable() {
                   <td className="text-center">
                     <div>
                       <Button
-                        color="primary"
+                        color="ezzyColor"
                         size="sm"
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
                         <FontAwesomeIcon
@@ -195,7 +195,7 @@ export default function QueriesAdminPanelTable() {
                   <td className="text-center">
                     <div>
                       <Button
-                        color="primary"
+                        color="ezzyColor"
                         size="sm"
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
                         <FontAwesomeIcon
