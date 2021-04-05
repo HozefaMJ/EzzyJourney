@@ -34,6 +34,12 @@ const portalSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    privayPolicy: {
+        type: String
+    },
+    termsConditions: {
+        type: String
+    },
     createdAt: {
         type: Date,
     },

@@ -22,8 +22,10 @@ export default function Footer1() {
                   src={projectLogo}
                 />
               </div>
-              <div className="text-white ml-2 mt-2">
-                <b>Ezzy Journeys</b>
+              <div className="text-white ml-2 mt-1">
+                <h3>
+                  Ezzy Journeys
+                </h3>
               </div>
             </a>
           </div>
