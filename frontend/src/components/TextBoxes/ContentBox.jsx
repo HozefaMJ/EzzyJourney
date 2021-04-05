@@ -6,7 +6,9 @@ export default function ContentBox({content}){
     return(
         <>
         <Container>
-            <p>{content}</p>
+            <div className="mt-4">
+                <p>{content}</p>
+            </div>
         </Container>
         </>
     )

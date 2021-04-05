@@ -6,16 +6,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Card, TabContent, TabPane, Nav, NavItem,Container } from 'reactstrap';
 import { NavLink as NavLinkStrap } from 'reactstrap';
 
-import ContentBox from "../components/TextBoxes/ContentBox";
+import UpdateContentBox from "../components/TextBoxes/UpdateContentBox";
 
 
 import Header1 from "../components/Header1";
 import Footer1 from "../components/Footer1";
 
-
-import RightIconLink from 'components/Buttons/RightIconLink';
-
-export default function TermsAndPolicy() {
+export default function UpdateTermsAndPolicy() {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = (tab) => {
@@ -25,9 +22,6 @@ export default function TermsAndPolicy() {
     <>
     <Header1/>
       <Container>
-          <div>
-            <RightIconLink Name="Update Terms & Policies" link="/UpdatePrivacyPolicy" icon="plus"/>
-          </div>
       <Row>
         <Col lg="12">
           <Card className="shadow-xxl p-3 mt-5 mb-5">
@@ -39,7 +33,7 @@ export default function TermsAndPolicy() {
                     onClick={() => {
                       toggle('1');
                     }}>
-                    <span className="font-size-md font-weight-bold">Terms & Conditions</span>
+                    <span className="font-size-md font-weight-bold">Update Terms & Conditions</span>
                     <div className="divider" />
                   </NavLinkStrap>
                 </NavItem>
@@ -50,7 +44,7 @@ export default function TermsAndPolicy() {
                       toggle('2');
                     }}>
                     <span className="font-size-md font-weight-bold">
-                      Privacy Policy
+                      Update Privacy Policy
                     </span>
                     <div className="divider" />
                   </NavLinkStrap>
@@ -59,7 +53,7 @@ export default function TermsAndPolicy() {
             </div>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                   <ContentBox content="The Website Owner, including subsidiaries and affiliates (“Website” or “Website Owner” or “we” or “us” or “our”) provides the information contained on the website or any of the pages comprising the website (“website”) to visitors (“visitors”) (cumulatively referred to as “you” or “your” hereinafter) subject to the terms and conditions set out in these website terms and conditions, the privacy policy and any other relevant terms and conditions, policies and notices which may be applicable to a specific section or module of the website.
+                   <UpdateContentBox contentName="Terms&Conditions" content="The Website Owner, including subsidiaries and affiliates (“Website” or “Website Owner” or “we” or “us” or “our”) provides the information contained on the website or any of the pages comprising the website (“website”) to visitors (“visitors”) (cumulatively referred to as “you” or “your” hereinafter) subject to the terms and conditions set out in these website terms and conditions, the privacy policy and any other relevant terms and conditions, policies and notices which may be applicable to a specific section or module of the website.
 
 
 
@@ -84,7 +78,7 @@ Neither we nor any third parties provide any warranty or guarantee as to the acc
 "/> 
               </TabPane>
               <TabPane tabId="2">
-                <ContentBox content="We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, and then you can be assured that it will only be used in accordance with this privacy statement.
+                <UpdateContentBox contentName="Privacy Policy" content="We are committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, and then you can be assured that it will only be used in accordance with this privacy statement.
 
 
 

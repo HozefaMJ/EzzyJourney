@@ -43,7 +43,7 @@ export default function UpdatePackages() {
                     <Card className="card-box mt-5 mb-5">
                         <CardBody>
                         <CardTitle className="font-weight-bold font-size-xl mb-4">
-                            Add Package
+                            Update Package
                         </CardTitle>
                         <Form>
                             <FormGroup>

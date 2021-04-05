@@ -210,6 +210,7 @@ const AddEmployees = lazy(() => import('./screens/AddEmployees'));
 const AddPackages = lazy(() => import('./screens/AddPackageScreen'));
 const UpdatePackages = lazy(() => import('./screens/UpdatePackageScreen'));
 const TermsAndPolicy = lazy(() => import('./screens/TermAndServicesScreen'));
+const UpdateTermsAndPolicy = lazy(() => import('./screens/UpdateTerm&Services'));
 
 const Routes = () => {
   const location = useLocation();
@@ -646,6 +647,8 @@ const Routes = () => {
               '/EditPackage',
               '/Terms&Conditions',
               '/PrivacyPolicy',
+              '/UpdateTerms&Conditions',
+              '/UpdatePrivacyPolicy',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -683,6 +686,8 @@ const Routes = () => {
                   <Route path="/EditPackage" component={UpdatePackages} />
                   <Route path="/Terms&Conditions" component={TermsAndPolicy} />
                   <Route path="/PrivacyPolicy" component={TermsAndPolicy} />
+                  <Route path="//UpdateTerms&Conditions" component={UpdateTermsAndPolicy} />
+                  <Route path="/UpdatePrivacyPolicy" component={UpdateTermsAndPolicy} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route
