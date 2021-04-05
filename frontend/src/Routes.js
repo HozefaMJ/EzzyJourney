@@ -214,6 +214,7 @@ const UpdateTermsAndPolicy = lazy(() => import('./screens/UpdateTerm&Services'))
 const AboutUs = lazy(() => import('./screens/AboutUsScreen'));
 const UpdateAboutUs = lazy(() => import('./screens/UpdateAboutUsScreen'));
 const ContactUs = lazy(() => import('./screens/ContactUsScreen'));
+const UpdateContactUs = lazy(() => import('./screens/UpdateContactUsScreen'));
 
 const Routes = () => {
   const location = useLocation();
@@ -655,6 +656,7 @@ const Routes = () => {
               '/AboutUs',
               '/UpdateAboutUs',
               '/Contactus',
+              '/UpdateContactus',
               '/PageLoginBasic',
               '/PageLoginCover',
               '/PageLoginIllustration',
@@ -697,6 +699,7 @@ const Routes = () => {
                   <Route path="/AboutUs" component={AboutUs} />
                   <Route path="/UpdateAboutUs" component={UpdateAboutUs} />
                   <Route path="/Contactus" component={ContactUs} />
+                  <Route path="/UpdateContactus" component={UpdateContactUs} />
                   <Route path="/PageLoginBasic" component={PageLoginBasic} />
                   <Route path="/PageLoginCover" component={PageLoginCover} />
                   <Route

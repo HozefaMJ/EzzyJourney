@@ -10,6 +10,7 @@ import { Row, Col, Container, Nav, NavItem,Card,CardBody,CardTitle } from 'react
 import { NavLink as NavLinkStrap } from 'reactstrap';
 import projectLogo from '../assets/images/ezzy_logo.png';
 import QueryModalForm from '../components/forms/QueryModalForm';
+import RightIconLink from 'components/Buttons/RightIconLink';
 
 
 
@@ -18,7 +19,9 @@ export default function ContactUs() {
     <>
       <Header1/>
       <Container>
-       
+       <div className="mt-3">
+           <RightIconLink Name="Update Contacts" link="/UpdateContactus" icon="plus"/>
+       </div>
             <div>
                 <div>
                     <Card className="card-box mb-5 mt-3">

@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Container, Button,Card, CardTitle, CardBody } from 'reactstrap';
 
 import I2 from "../assets/images/hero-bg/hero-leh-2.jpg";
+import RightIconLink from 'components/Buttons/RightIconLink';
 
 
 export default function AboutUsScreen() {
@@ -17,6 +18,9 @@ export default function AboutUsScreen() {
       <Header1/>
       <ImgCompPackage src={I2}/>
       <Container>
+        <div className="mt-3">
+          <RightIconLink Name="Update About Us" link="/UpdateAboutus" icon="plus"/>
+        </div>
         <div>
           <div>
               <Card className="card-box mb-5 mt-3">
