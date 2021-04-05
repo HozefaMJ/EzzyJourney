@@ -154,15 +154,15 @@ export default function Footer1() {
                 <NavItem>
                   <NavLinkStrap
                     className="text-white-50"
-                    href="/Privacy">
+                    href="/PrivacyPolicy">
                     Privacy Policy
                   </NavLinkStrap>
                 </NavItem>
                 <NavItem>
                   <NavLinkStrap
                     className="text-white-50"
-                    href="/TermsAndServices">
-                    Terms of Service
+                    href="/Terms&Conditions">
+                    Terms of Conditions
                   </NavLinkStrap>
                 </NavItem>
               </Nav>
