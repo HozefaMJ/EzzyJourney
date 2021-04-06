@@ -3,12 +3,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import Rating from 'react-rating';
-export default function LivePreviewExample() {
+export default function LargeRating({rating,unClickable}) {
   return (
     <>
-      <div className="d-flex align-items-left justify-content-left flex-wrap">
+      <div className="d-flex align-items-left justify-content-left flex-wrap" style={{pointerEvents: unClickable ? 'none' : ' '}}>
         <Rating
-          initialRating={2}
+          initialRating={rating}
           stop={5}
           emptySymbol={
             <span className="text-black-50 opacity-3">

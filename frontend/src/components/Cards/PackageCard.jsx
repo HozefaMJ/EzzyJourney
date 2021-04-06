@@ -18,7 +18,8 @@ import stock4 from '../../assets/images/stock-photos/stock-4.jpg';
 import LargeRating from 'components/Ratings/LargeRating';
 
 
-export default function PackageCard({destination,isFood,isHotel,isFlight,isTransportation,isVisa}) {
+
+export default function PackageCard({title,isFood,isHotel,isFlight,isTransportation,isVisa,rating}) {
 
 return (
     <>
@@ -29,39 +30,39 @@ return (
                 style={{minWidth:"auto",maxWidth:"fill-content"}}>
                 <img src={stock2} className="card-img-top" alt="..." style={{ maxWidth: '100%' }} />
                 <div className="p-3 bg-secondary rounded-bottom p-xl-4">
-                  <h3 className="text-primary m-2">{destination}</h3>
-                  <div className="d-flex justify-content-around mt-4">
-                    <FontAwesomeIcon
+                  <h3 className="text-primary m-2">{title}</h3>
+                  <div className="d-flex justify-content-around mt-3 mb-3">
+                    {isFood ? (<FontAwesomeIcon
                       icon={['fas', 'utensils']}
                       className="font-size-lg"
                       color="second"
-                    />
-                    <FontAwesomeIcon
+                    />):<></>}
+                    {isFlight ? (<FontAwesomeIcon
                       icon={['fas', 'plane']}
                       className="font-size-lg"
                       color="second"
-                    />
-                    <FontAwesomeIcon
+                    />): <></>}
+                    {isTransportation ? (<FontAwesomeIcon
                       icon={['fas', 'car']}
                       className="font-size-lg"
                       color="second"
-                    />
-                    <FontAwesomeIcon
+                    />) : <></>}
+                    {isVisa ? (<FontAwesomeIcon
                       icon={['fab', 'cc-visa']}
                       className="font-size-lg"
                       color="second"
-                    />
-                    <FontAwesomeIcon
+                    />) : <></>}
+                    {isHotel ? (<FontAwesomeIcon
                       icon={['fas', 'hotel']}
                       className="font-size-lg"
                       color="second"
-                    />
+                    />):<></>}
                   </div>
                   <p className="text-second-50 opacity-6 mt-2 mb-0">
                     A vacation just like a movie dreamy and memorable
                   </p>
                   <div className="m-1">
-                    <LargeRating/>
+                    <LargeRating rating={rating} unClickable={true}/>
                   </div>
                 </div>
               </Link>

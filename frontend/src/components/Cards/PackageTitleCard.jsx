@@ -18,7 +18,7 @@ export default function PackageTitleCard({title,count,rating,reviewCount}) {
                         </h2>
                     </div>
                     <div className="m-2 d-flex align-items-center justify-content-center font-weight-bold">
-                        <SmallRating rating={rating}/>
+                        <SmallRating rating={rating} unClickable={true}/>
                         <a href="#reviews" onClick={(e) => e.preventDefault()}>
                             <b className="ml-3">{reviewCount} Reviews</b>
                         </a>
