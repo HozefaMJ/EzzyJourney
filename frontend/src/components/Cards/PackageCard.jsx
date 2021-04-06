@@ -19,7 +19,7 @@ import LargeRating from 'components/Ratings/LargeRating';
 
 
 
-export default function PackageCard({title,isFood,isHotel,isFlight,isTransportation,isVisa,rating}) {
+export default function PackageCard({packageImage,title,isFood,isHotel,isFlight,isTransportation,isVisa,rating}) {
 
 return (
     <>
@@ -28,9 +28,9 @@ return (
                 to="/Package"
                 className="card m-1 shadow-sm-dark card-box-hover-rise"
                 style={{minWidth:"auto",maxWidth:"fill-content"}}>
-                <img src={stock2} className="card-img-top" alt="..." style={{ maxWidth: '100%' }} />
+                <img src={packageImage} className="card-img-top" alt="..." style={{ maxWidth: '100%' }} />
                 <div className="p-3 bg-secondary rounded-bottom p-xl-4">
-                  <h3 className="text-primary m-2">{title}</h3>
+                  <h4 className="text-primary m-2">{title}</h4>
                   <div className="d-flex justify-content-around mt-3 mb-3">
                     {isFood ? (<FontAwesomeIcon
                       icon={['fas', 'utensils']}
