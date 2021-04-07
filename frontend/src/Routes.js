@@ -683,7 +683,7 @@ const Routes = () => {
                   transition={pageTransition}>
                   <Route path="/Login" component={Login} />
                   <Route path="/Register" component={Register} />
-                  <Route path="/Package" component={Package} />
+                  <Route path="/Package/:id" component={Package} />
                   <Route path="/AllPackages" component={AllPackages} />
                   <Route path="/Profile" component={Profile} />
                   <Route path="/AdminPanel" component={AdminPanel} />

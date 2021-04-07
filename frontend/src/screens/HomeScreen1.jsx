@@ -22,12 +22,11 @@ export default function HomeScreen1() {
         <Container>
           <h2 className="mt-5">Latest Packages:</h2>
           <Row>
-            <Col sm={12} md={6} lg={4} xl={3}>
-              <PackageCard packageImage={stock3} title="Mystical Ladakh" isFood={true} isHotel={true} isFlight={false} isTransportation={false} isVisa={false} rating={3}/>
-            </Col>
-            <Col sm={12} md={6} lg={4} xl={3}>
-              <PackageCard packageImage={stock5} title="Amazing Amazon" isFood={true} isHotel={true} isFlight={false} isTransportation={false} isVisa={false} rating={3}/>
-            </Col>
+            {packages.map(packagei => (
+              <Col key={packagei._id} sm={12} md={10} lg={6} xl={3}>
+                <PackageCard packagei={packagei}/>
+              </Col>
+            ))}
           </Row>
           <Row>
             <Col lg={12}>
