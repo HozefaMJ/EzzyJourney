@@ -6,6 +6,10 @@ import asyncHandler from "express-async-handler";
 import Package from "../models/packageModel.js";
 import User from "../models/userModel.js";
 
+
+// Dummy
+import packages from "../data/packages.js";
+
 // @desc Add Package
 // @route POST /api/package/new
 // @access Private
@@ -122,6 +126,23 @@ const getAllPackages = asyncHandler(async(req,res) => {
     const count = await Package.countDocuments({...keyword})
     const packages = await Package.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
     res.json({packages,page,pages: Math.ceil(count/pageSize)})
+})
+
+// @desc Get All Packages
+// @route GET /api/package/
+// @access Public
+const dummyAll = asyncHandler(async(req,res) => {
+    res.json(packages);
+})
+
+// @desc Get Package by id
+// @route GET /api/package/dummy/:id
+// @access public
+const dummyById = asyncHandler(async(req,res) => {
+    const packagei = packages.find(p => p._id === req.params.id);
+
+    res.json(packagei)
+    
 })
 
 // @desc Get Package by id
@@ -436,5 +457,7 @@ export {
     getTopPackages,
     addPackageToWishlist,
     myWishlist,
-    removeFromWishlist
+    removeFromWishlist,
+    dummyAll,
+    dummyById
 }

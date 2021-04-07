@@ -3,8 +3,8 @@ import React from 'react';
 import { CardBody, Card, CardHeader } from 'reactstrap';
 
 import CountUp from 'react-countup';
-import { Clipboard, Grid, Info, Layers, Plus, Minus, MapPin } from 'react-feather';
-export default function PackageDescriptionCard({places,itinerary,inclusions,exclusions,description,days}) {
+import { Clipboard, Grid, Info, Layers, Plus, Minus, MapPin, Home } from 'react-feather';
+export default function PackageDescriptionCard({places,hotels,itinerary,inclusions,exclusions,description,days}) {
   return (
     <>
       <Card className="card-box mb-5">
@@ -25,6 +25,17 @@ export default function PackageDescriptionCard({places,itinerary,inclusions,excl
                 </div>
                 
                 <div className="text-black-50">{places}</div>
+              </div>
+            </div>
+            <div className="divider my-3" />
+        <div className="d-flex">
+              <div>
+                <div className="d-flex">
+                    <Home className="h1 d-block mr-3 text-primary" />
+                    <h4>Hotels:</h4>
+                </div>
+                
+                <div className="text-black-50">{hotels}</div>
               </div>
             </div>
         <div className="divider my-3" />

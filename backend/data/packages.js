@@ -17,7 +17,7 @@ const packages = [
         isTransportation:true,
         isVisa:false,
         packageCode:"Goa101",
-        title:"Goa Beach Saga",
+        title:"Amazing Austrailia",
         description:"It's that goa is state of beaches and sea. So let's explore all the ex...",
         itinerary:"A long long thing in which i am not interested in but who cares lets h...",
         termsConditions:"Paisa doge to hi leke jaaunga, paise ke bina not allowed",

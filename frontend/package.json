@@ -2,6 +2,7 @@
   "name": "ezzy-journeys",
   "version": "0.0.1",
   "title": "",
+  "proxy":"http://127.0.0.1:5300",
   "description": "Portfolio + Business Website for Ezzy Jouneys a holistic travel website",
   "author": {
     "name": "Hozefa Jaorawala"
@@ -14,6 +15,7 @@
     "@fortawesome/react-fontawesome": "0.1.9",
     "apexcharts": "3.19.0",
     "availity-reactstrap-validation": "2.6.1",
+    "axios": "^0.21.1",
     "chart.js": "2.9.3",
     "clsx": "1.1.0",
     "draft-js": "0.11.5",

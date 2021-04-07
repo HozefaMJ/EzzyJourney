@@ -48,7 +48,8 @@ export default function Package({match}) {
           <div>
             <PackageDescriptionCard 
             days={packagesAll.duration}
-            places={packagesAll.placesCovered}
+            hotels={packagesAll.hotelNames[0]}
+            places={packagesAll.placesCovered[0]}
             description={packagesAll.description}
             inclusions={packagesAll.inclusions}
             exclusions={packagesAll.exclusions}

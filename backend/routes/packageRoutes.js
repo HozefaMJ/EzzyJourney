@@ -16,7 +16,9 @@ import {
     getTopPackages,
     addPackageToWishlist,
     myWishlist,
-    removeFromWishlist
+    removeFromWishlist,
+    dummyAll,
+    dummyById
 } from "../controllers/packageController.js";
 
 import {
@@ -29,9 +31,18 @@ router.post('/new',protect,employee,addPackage);
 
 router.get("/all",getAllPackages);
 
+
+
 router.get("/top",getTopPackages);
 
 router.get("/myWishlist",protect,myWishlist);
+
+
+////// Dummy
+router.get("/",dummyAll);
+
+router.route('/dummy/:id').get(dummyById);
+
 
 router
     .route('/myWishlist/:id')
