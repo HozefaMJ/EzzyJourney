@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Row, Col, Card } from 'reactstrap';
 
 import CountUp from 'react-countup';
-export default function PackagePrice({adult,child612,child6}) {
+export default function PackagePrice({adults,childAbove6,childBelow6,currency}) {
   return (
     <>
       <Row>
@@ -22,16 +22,7 @@ export default function PackagePrice({adult,child612,child6}) {
                       />
                       <div className="ml-3 line-height-sm">
                         <b className="font-size-xxl">
-                          <CountUp
-                            start={0}
-                            end={adult}
-                            duration={2}
-                            separator=""
-                            decimals={0}
-                            decimal=","
-                            prefix="₹ "
-                            suffix="/-"
-                          />
+                          {currency}{' '}{adults}{' /-'}
                         </b>
                         <span className="text-black-50 d-block">Adults PP</span>
                       </div>
@@ -50,16 +41,7 @@ export default function PackagePrice({adult,child612,child6}) {
                       />
                       <div className="ml-3 line-height-sm">
                         <b className="font-size-xxl">
-                          <CountUp
-                            start={0}
-                            end={child612}
-                            duration={2}
-                            separator=""
-                            decimals={0}
-                            decimal=","
-                            prefix="₹ "
-                            suffix="/-"
-                          />
+                          {currency}{' '}{childAbove6}{' /-'}
                         </b>
                         <span className="text-black-50 d-block">Children (6-12) PP</span>
                       </div>
@@ -77,16 +59,7 @@ export default function PackagePrice({adult,child612,child6}) {
                       />
                       <div className="ml-3 line-height-sm">
                         <b className="font-size-xxl">
-                          <CountUp
-                            start={0}
-                            end={child6}
-                            duration={2}
-                            separator=""
-                            decimals={0}
-                            decimal=","
-                            prefix="₹ "
-                            suffix="/-"
-                          />
+                          {currency}{' '}{childBelow6}{' /-'}
                         </b>
                         <span className="text-black-50 d-block">Children Below 6 PP</span>
                       </div>

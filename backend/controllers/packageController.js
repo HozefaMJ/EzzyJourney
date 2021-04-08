@@ -111,7 +111,7 @@ const addPackage = asyncHandler(async(req,res) => {
 const getAllPackages = asyncHandler(async(req,res) => {
 
     // For Pagination
-    const pageSize = 3
+    const pageSize = 12
     const page = Number(req.query.pageNumber) || 1
     // Modified for search
     // /api/products?keyword=${keyword}

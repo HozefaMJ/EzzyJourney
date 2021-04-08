@@ -50,6 +50,9 @@ return (
                   <p className="text-second-50 opacity-6 mt-2 mb-0">
                     {packagei.description}
                   </p>
+                  <h3 className="text-second-50 opacity-6 mt-2 mb-0">
+                    {packagei.adults}
+                  </h3>
                   <div className="m-1">
                     <LargeRating rating={packagei.rating} unClickable={true}/>
                   </div>

@@ -1,11 +1,10 @@
 const packages = [
     {
         _id:"1",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '$',
         packageImages: ['/images/goa1.jpg','/images/goa2.jpg','/images/goa3.jpg'],
         placesCovered:["Baga, Calungute"],
         hotelNames:[ "Taj, Oberoi"],
@@ -30,11 +29,10 @@ const packages = [
     },
     {
         _id:"2",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '₹',
         packageImages: ['/images/leh1.jpg','/images/leh2.jpg','/images/leh3.jpg'],
         placesCovered:["Baga, Calungute",],
         hotelNames:[ "Taj, Oberoi"],
@@ -59,11 +57,10 @@ const packages = [
     },
     {
         _id:"3",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '$',
         packageImages: ['/images/leh2.jpg','/images/leh2.jpg','/images/leh3.jpg'],
         placesCovered:["Baga, Calungute"],
         hotelNames:[ "Taj, Oberoi"],
@@ -88,11 +85,10 @@ const packages = [
     },
     {
         _id:"4",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '₹',
         packageImages: ['/images/leh3.jpg','/images/leh2.jpg','/images/leh3.jpg'],
         placesCovered:["Baga, Calungute"],
         hotelNames:[ "Taj, Oberoi"],
@@ -117,11 +113,10 @@ const packages = [
     },
     {
         _id:"5",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '₹',
         packageImages: ['/images/goa2.jpg','/images/goa2.jpg','/images/goa3.jpg'],
         placesCovered:["Baga, Calungute","Mahim"],
         hotelNames: ["Taj, Oberoi"],
@@ -146,11 +141,10 @@ const packages = [
     },
     {
         _id:"6",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '$',
         packageImages: ['/images/goa3.jpg','/images/goa2.jpg','/images/goa3.jpg'],
         placesCovered: ["Baga, Calungute","Juhu"],
         hotelNames: ["Taj, Oberoi",],
@@ -175,11 +169,10 @@ const packages = [
     },
     {
         _id:"7",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '$',
         packageImages: ['/images/leh2.jpg','/images/goa2.jpg','/images/goa3.jpg'],
         placesCovered:["Baga, Calungute",],
         hotelNames: ["Taj, Oberoi",],
@@ -204,11 +197,10 @@ const packages = [
     },
     {
         _id:"8",
-        price:{
-            adults:7000,
-            childAbove6:5500,
-            childBelow6:5000
-        },
+        adults:7000,
+        childAbove6:5500,
+        childBelow6:5000,
+        currency: '$',
         packageImages: ['/images/goa3.jpg','/images/goa2.jpg','/images/goa3.jpg'],
         placesCovered:["Baga, Calungute"],
         hotelNames: ["Taj, Oberoi"],

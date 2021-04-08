@@ -3,7 +3,7 @@ const packages = [
         _id:"1",
         price:{
             adults:7000,
-            childAbove6:5500,
+            childAbove6:5155500,
             childBelow6:5000
         },
         packageImages: ['/images/goa1.jpg','/images/goa2.jpg','/images/goa3.jpg'],

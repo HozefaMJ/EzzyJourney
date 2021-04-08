@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
 import Footer1 from 'components/Footer1';
 import Header1 from 'components/Header1';
@@ -19,41 +19,63 @@ import AllReviews from 'components/Ratings/AllReviews';
 import SliderEzzy from 'components/Sliders/SliderEzzy';
 import SliderPackage from 'components/Sliders/SliderPackage/SliderPackage';
 
-import packages from "../packages";
+//import packagesAll from "../packages";
+
+import axios from 'axios';
 
 export default function Package({match}) {
 
-  const packagesAll = packages.find(p => p._id === match.params.id)
+  //const packages = packagesAll.find(p => p._id === match.params.id)
+
+  /**/
+  const [packages,setPackage] = useState([])
+
+  useEffect(() => { 
+    const fetchPackage = async () => {
+      const {data} = await axios.get(`/api/packages/dummy/${match.params.id}`)
+
+      setPackage(data)
+    }
+
+    fetchPackage()
+  }, [])
+
+  console.log("Packages",packages.price)
+  
 
   return (
     <>
       <Header1/>
-      <PackageTitleCard title={packagesAll.title} count={packagesAll.numWishlisted} rating={packagesAll.rating} reviewCount={packagesAll.numReviews}/>
+      
+      <PackageTitleCard title={packages.title} count={packages.numWishlisted} rating={packages.rating} reviewCount={packages.numReviews}/>
       {/*<HeroPackageCarousels/>*/}
-      <SliderPackage/>
+      <SliderPackage />
+      
       <Container>
         <div>
           <div>
-            <PackagePrice adult={packagesAll.price.adults} child612={packagesAll.price.childAbove6} child6={packagesAll.price.childBelow6}/>
+            
+            <PackagePrice currency={packages.currency} adults={packages.adults} childAbove6={packages.childAbove6} childBelow6={packages.childBelow6}/>
+            {/**/}
           </div>
           <div>
             <ServiceIconCard 
-              isMeal={packagesAll.isMeal}
-              isFlights={packagesAll.isFlights}
-              isHotel={packagesAll.isHotel}
-              isTransportation={packagesAll.isTransportation}
-              isVisa={packagesAll.isVisa}
+              isMeal={packages.isMeal}
+              isFlights={packages.isFlights}
+              isHotel={packages.isHotel}
+              isTransportation={packages.isTransportation}
+              isVisa={packages.isVisa}
             />
           </div>
           <div>
             <PackageDescriptionCard 
-            days={packagesAll.duration}
-            hotels={packagesAll.hotelNames[0]}
-            places={packagesAll.placesCovered[0]}
-            description={packagesAll.description}
-            inclusions={packagesAll.inclusions}
-            exclusions={packagesAll.exclusions}
-            itinerary={packagesAll.itinerary}
+            days={packages.duration}
+            hotels={packages.hotelNames}
+            places={packages.placesCovered}
+            description={packages.description}
+            inclusions={packages.inclusions}
+            exclusions={packages.exclusions}
+            itinerary={packages.itinerary}
             />
           </div>
         </div>
@@ -61,8 +83,42 @@ export default function Package({match}) {
           <Reviews/>
         </div>
       </Container>
+      
       <Footer1/>
     </>
   );
 }
 
+
+{/*
+<Container>
+        <div>
+          <div>
+            <PackagePrice adult={packages.price.adults} child612={packages.price.childAbove6} child6={packages.price.childBelow6}/>
+          </div>
+          <div>
+            <ServiceIconCard 
+              isMeal={packages.isMeal}
+              isFlights={packages.isFlights}
+              isHotel={packages.isHotel}
+              isTransportation={packages.isTransportation}
+              isVisa={packages.isVisa}
+            />
+          </div>
+          <div>
+            <PackageDescriptionCard 
+            days={packages.duration}
+            hotels={packages.hotelNames[0]}
+            places={packages.placesCovered[0]}
+            description={packages.description}
+            inclusions={packages.inclusions}
+            exclusions={packages.exclusions}
+            itinerary={packages.itinerary}
+            />
+          </div>
+        </div>
+        <div id="reviews">
+          <Reviews/>
+        </div>
+      </Container>
+      */}

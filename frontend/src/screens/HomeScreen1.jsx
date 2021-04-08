@@ -35,7 +35,8 @@ export default function HomeScreen1() {
   return (
     <>
       <Header1/>
-      {/*<HeroCarousels/>*/}
+      {/*<HeroCarousels/>
+      {packages.length===0 ? <h1>Loading</h1> : <h1>Loaded</h1>}*/}
       <SliderEzzy/>
         <Container>
           
