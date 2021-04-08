@@ -61,7 +61,7 @@ const packages = [
         childAbove6:5500,
         childBelow6:5000,
         currency: '$',
-        packageImages: ['/images/leh2.jpg','/images/leh2.jpg','/images/leh3.jpg'],
+        packageImages: ['/images/goa3.jpg','/images/leh2.jpg','/images/leh3.jpg'],
         placesCovered:["Baga, Calungute"],
         hotelNames:[ "Taj, Oberoi"],
         rating:2,

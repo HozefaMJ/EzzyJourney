@@ -30,9 +30,13 @@ export default function Package({match}) {
   /**/
   const [packages,setPackage] = useState([])
 
+  const [images,setImages] = useState([])
+
   useEffect(() => { 
     const fetchPackage = async () => {
       const {data} = await axios.get(`/api/packages/dummy/${match.params.id}`)
+
+      setImages(data.packageImages)
 
       setPackage(data)
     }
@@ -40,7 +44,8 @@ export default function Package({match}) {
     fetchPackage()
   }, [])
 
-  console.log("Packages",packages.price)
+  console.log("Packages",packages.packageImages)
+  
   
 
   return (
@@ -49,8 +54,8 @@ export default function Package({match}) {
       
       <PackageTitleCard title={packages.title} count={packages.numWishlisted} rating={packages.rating} reviewCount={packages.numReviews}/>
       {/*<HeroPackageCarousels/>*/}
-      <SliderPackage />
-      
+      <SliderPackage images={images}/>
+      {/*{images.map(image => (<img src={image} alt=""/>))}*/}
       <Container>
         <div>
           <div>

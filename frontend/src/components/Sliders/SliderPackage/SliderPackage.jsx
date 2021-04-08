@@ -12,18 +12,18 @@ import I3 from "../../../assets/images/hero-bg/hero-3.jpg";
 import I4 from "../../../assets/images/hero-bg/hero-4.jpg";
 import I5 from "../../../assets/images/hero-bg/hero-5.jpg";
 
-export default function SliderPackage({packageImages}){
+export default function SliderPackage({images}){
 
-    let sliderArr = [<ImgCompPackage src={I5}/>,<ImgCompPackage src={I4}/>,<ImgCompPackage src={I2}/>];
+    /*let sliderArr = [<ImgCompPackage src={I5}/>,<ImgCompPackage src={I4}/>,<ImgCompPackage src={I2}/>];*/
 
 
-    /*
+    
     let sliderArr = []
 
     images.map(i => (
         sliderArr.push(<ImgCompPackage src={i}/>) 
     ))
-    */
+    
 
     const [x,setX] = useState(0)
 
