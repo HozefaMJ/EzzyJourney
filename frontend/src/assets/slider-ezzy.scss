@@ -13,6 +13,7 @@
     i {
         font-size: 2vw;
     }
+    
 }
 
 .slide-ezzy {
@@ -22,6 +23,9 @@
     height: 100%;
     transition: 0.5s;
     overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    transform: translateX(-50%);
 }
 
 
