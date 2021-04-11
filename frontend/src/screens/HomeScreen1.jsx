@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Row, Col, Container } from 'reactstrap';
+import axios from "axios";
+import {useDispatch,useSelector} from "react-redux"
 
 import Header1 from "../components/Header1";
 import Footer1 from "../components/Footer1";
@@ -9,28 +11,19 @@ import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import SliderEzzy from 'components/Sliders/SliderEzzy';
 
 //import packages from "../packages";
-
-import stock3 from '../assets/images/hero-bg/hero-5.jpg';
-import stock5 from '../assets/images/hero-bg/hero-4.jpg';
-import axios from 'axios';
+import {listPackages} from "../actions/packageActions"
 
 export default function HomeScreen1() {
 
-  /**/
-  const [packages,setPackages] = useState([])
+  const dispatch = useDispatch()
+
+  const packageList = useSelector((state) => state.packageList)
+
+  const {loading,error,packages} = packageList;
 
   useEffect(() => {
-    const fetchPackages = async () => {
-      const {data} = await axios.get('/api/packages')
-
-      setPackages(data)
-    }
-
-    fetchPackages()
-  }, [])
-
-  console.log(packages)
-  
+    dispatch(listPackages())
+  }, [dispatch])
 
   return (
     <>
@@ -42,13 +35,16 @@ export default function HomeScreen1() {
           
           
             <h2 className="mt-5">Latest Packages:</h2>
-            <Row>
-              {packages.map(packagei => (
-                <Col key={packagei._id} sm={12} md={10} lg={6} xl={3}>
-                  <PackageCard packagei={packagei}/>
-                </Col>
-              ))}
-            </Row>
+            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> : (
+               <Row>
+               {packages.map(packagei => (
+                 <Col key={packagei._id} sm={12} md={10} lg={6} xl={3}>
+                   <PackageCard packagei={packagei}/>
+                 </Col>
+             ))}
+             </Row>
+            )}
+           
             <Row>
               <Col lg={12}>
                 <AllPackagesPagination/>
@@ -60,3 +56,34 @@ export default function HomeScreen1() {
     </>
   );
 }
+
+
+
+// Component Level Integration
+/*
+  const [packages,setPackages] = useState([])
+
+  useEffect(() => {
+    const fetchPackages = async () => {
+      const {data} = await axios.get('/api/packages')
+
+      setPackages(data)
+    }
+
+    fetchPackages()
+  }, [])
+*/
+
+
+/*
+// Redux Integration
+ const dispatch = useDispatch()
+
+  const packages = []
+
+  useEffect(() => {
+    dispatch(listPackages())
+  }, [dispatch])
+
+
+*/

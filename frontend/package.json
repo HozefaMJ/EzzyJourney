@@ -2,7 +2,7 @@
   "name": "ezzy-journeys",
   "version": "0.0.1",
   "title": "",
-  "proxy":"http://127.0.0.1:5300",
+  "proxy": "http://127.0.0.1:5300",
   "description": "Portfolio + Business Website for Ezzy Jouneys a holistic travel website",
   "author": {
     "name": "Hozefa Jaorawala"
@@ -71,7 +71,7 @@
     "react-perfect-scrollbar": "1.5.8",
     "react-quill": "1.3.5",
     "react-rating": "2.0.5",
-    "react-redux": "^7.2.0",
+    "react-redux": "^7.2.3",
     "react-router": "5.1.2",
     "react-router-dom": "5.1.2",
     "react-scripts": "3.4.1",

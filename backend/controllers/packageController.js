@@ -110,6 +110,10 @@ const addPackage = asyncHandler(async(req,res) => {
 // @access Public
 const getAllPackages = asyncHandler(async(req,res) => {
 
+    const packages = await Package.find({});
+    res.json(packages);
+
+    /*
     // For Pagination
     const pageSize = 12
     const page = Number(req.query.pageNumber) || 1
@@ -126,6 +130,8 @@ const getAllPackages = asyncHandler(async(req,res) => {
     const count = await Package.countDocuments({...keyword})
     const packages = await Package.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
     res.json({packages,page,pages: Math.ceil(count/pageSize)})
+    */
+    
 })
 
 // @desc Get All Packages
