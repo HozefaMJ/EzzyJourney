@@ -12,7 +12,7 @@ export const listPackages = () => async (dispatch) => {
     try {
         dispatch({ type: PACKAGE_LIST_REQUEST })
 
-        const {data} = await axios.get('/api/packages')
+        const {data} = await axios.get('/api/packages/all')
 
         dispatch({
             type: PACKAGE_LIST_SUCCESS,
@@ -23,25 +23,6 @@ export const listPackages = () => async (dispatch) => {
         dispatch({
             type: PACKAGE_LIST_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
-        })
-    }
-}
-
-export const listProducts = () => async (dispatch) => {
-    try {
-        dispatch({ type: PACKAGE_LIST_REQUEST})
-
-        const {data} = await axios.get(`/api/packages`)
-
-        dispatch({
-            type: PACKAGE_LIST_SUCCESS,
-            payload: data
-        })
-
-    } catch (error) {
-        dispatch({
-            type: PACKAGE_LIST_FAIL,
-            payload: error.response && error.response.data.message ? error.response.data.message : error.message,
         })
     }
 }
