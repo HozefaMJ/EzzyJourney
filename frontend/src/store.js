@@ -2,11 +2,12 @@ import {createStore, combineReducers, applyMiddleware} from "redux"
 import thunk from "redux-thunk"
 import {composeWithDevTools} from "redux-devtools-extension"
 import reducersRouting from './reducers';
-import {packageListReducer} from "./reducers/packageReducers";
+import {packageListReducer,packageDetailsReducer} from "./reducers/packageReducers";
 
 const reducer = combineReducers({
     ...reducersRouting,
     packageList: packageListReducer,
+    packageDetails: packageDetailsReducer,
 })
 
 const initialState = {}

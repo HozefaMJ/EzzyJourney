@@ -1,10 +1,6 @@
 import React from 'react';
 
-import { Card } from 'reactstrap';
 
-import {
-  ClimbingBoxLoader,
-} from 'react-spinners';
 export default function ErrorAlert({error}) {
   return (
     <>

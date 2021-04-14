@@ -19,75 +19,68 @@ import AllReviews from 'components/Ratings/AllReviews';
 import SliderEzzy from 'components/Sliders/SliderEzzy';
 import SliderPackage from 'components/Sliders/SliderPackage/SliderPackage';
 
-//import packagesAll from "../packages";
+import {useDispatch,useSelector} from "react-redux";
 
-import axios from 'axios';
+import {listPackageDetails} from "../actions/packageActions";
+import BasicLoader from 'components/LoadingIndicators/BasicLoader';
+import ErrorAlert from 'components/Alerts/ErrorAlert';
 
 export default function Package({match}) {
 
-  //const packages = packagesAll.find(p => p._id === match.params.id)
+  const dispatch = useDispatch()
 
-  /**/
-  const [packages,setPackage] = useState([])
+  const productDetails = useSelector(state => state.packageDetails)
 
-  const [images,setImages] = useState([])
+  const {loading, error, packages} = productDetails
 
   useEffect(() => { 
-    const fetchPackage = async () => {
-      const {data} = await axios.get(`/api/packages/dummy/${match.params.id}`)
+    dispatch(listPackageDetails(match.params.id))
+  }, [dispatch, match])
 
-      setImages(data.packageImages)
-
-      setPackage(data)
-    }
-
-    fetchPackage()
-  }, [])
-
-  console.log("Packages",packages.packageImages)
-  
-  
 
   return (
     <>
       <Header1/>
-      
-      <PackageTitleCard title={packages.title} count={packages.numWishlisted} rating={packages.rating} reviewCount={packages.numReviews}/>
-      {/*<HeroPackageCarousels/>*/}
-      <SliderPackage images={images}/>
-      {/*{images.map(image => (<img src={image} alt=""/>))}*/}
-      <Container>
-        <div>
+      {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/> : (
+        <>
+        <PackageTitleCard title={packages.title} count={packages.numWishlisted} rating={packages.rating} reviewCount={packages.numReviews}/>
+        {packages.packageImages ? (
+          <SliderPackage images={packages.packageImages}/> 
+        ): (<h2>Images not available yet</h2>)}
+        <Container>
           <div>
-            
-            <PackagePrice currency={packages.currency} adults={packages.adults} childAbove6={packages.childAbove6} childBelow6={packages.childBelow6}/>
-            {/**/}
+            {packages.price ? (
+              <div>
+              <PackagePrice currency={packages.currency} adults={packages.price.adults} childAbove6={packages.price.childAbove6} childBelow6={packages.price.childBelow6}/>
+            </div>
+            ) : <h3>Contact to know Price</h3>}
+            <div>
+              <ServiceIconCard 
+                isMeal={packages.isMeal}
+                isFlights={packages.isFlights}
+                isHotel={packages.isHotel}
+                isTransportation={packages.isTransportation}
+                isVisa={packages.isVisa}
+              />
+            </div>
+            <div>
+              <PackageDescriptionCard 
+              days={packages.duration}
+              hotels={packages.hotelNames}
+              places={packages.placesCovered}
+              description={packages.description}
+              inclusions={packages.inclusions}
+              exclusions={packages.exclusions}
+              itinerary={packages.itinerary}
+              />
+            </div>
           </div>
-          <div>
-            <ServiceIconCard 
-              isMeal={packages.isMeal}
-              isFlights={packages.isFlights}
-              isHotel={packages.isHotel}
-              isTransportation={packages.isTransportation}
-              isVisa={packages.isVisa}
-            />
+          <div id="reviews">
+            <Reviews/>
           </div>
-          <div>
-            <PackageDescriptionCard 
-            days={packages.duration}
-            hotels={packages.hotelNames}
-            places={packages.placesCovered}
-            description={packages.description}
-            inclusions={packages.inclusions}
-            exclusions={packages.exclusions}
-            itinerary={packages.itinerary}
-            />
-          </div>
-        </div>
-        <div id="reviews">
-          <Reviews/>
-        </div>
-      </Container>
+        </Container>
+        </>
+      )}
       
       <Footer1/>
     </>
