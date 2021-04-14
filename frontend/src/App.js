@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import configureStore from './config/configureStore';
+import { Provider } from 'react-redux';
 import Routes from './Routes';
 import ScrollToTop from './utils/ScrollToTop';
 import { ToastContainer, toast } from 'react-toastify';
@@ -268,10 +270,11 @@ library.add(
   faSignOutAlt,
   faLink
 );
-
+//const store = configureStore();
 class App extends Component {
   render() {
     return (
+      
         <BrowserRouter> {/*basename="/bamburgh-react-admin-dashboard-reactstrap-pro/"*/}
           {/*
           <Header1/>
@@ -297,9 +300,16 @@ class App extends Component {
             containerId={'C'}
             position={toast.POSITION.BOTTOM_CENTER}
           />
+
+
+
+
+
+          <Provider store={store}></Provider>
           */}
           
         </BrowserRouter>
+        
     );
   }
 }
