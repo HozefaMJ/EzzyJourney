@@ -10,6 +10,9 @@ import PackageCard from 'components/Cards/PackageCard';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import SliderEzzy from 'components/Sliders/SliderEzzy';
 
+import BasicLoader from "../components/LoadingIndicators/BasicLoader";
+import ErrorAlert from "../components/Alerts/ErrorAlert";
+
 //import packages from "../packages";
 import {listPackages} from "../actions/packageActions"
 
@@ -35,7 +38,7 @@ export default function HomeScreen1() {
           
           
             <h2 className="mt-5">Latest Packages:</h2>
-            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> : (
+            {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/> : (
                <Row>
                {packages.map(packagei => (
                  <Col key={packagei._id} sm={12} md={10} lg={6} xl={3}>
