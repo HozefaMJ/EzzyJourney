@@ -1,38 +1,33 @@
 import React, { useState } from 'react';
-
 import clsx from 'clsx';
 
+import {useDispatch, useSelector} from "react-redux";
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
-  Row,
-  Col,
   Collapse,
-  Container,
   Nav,
   NavItem,
   Button
 } from 'reactstrap';
+
 import { NavLink as NavLinkStrap } from 'reactstrap';
 import projectLogo from '../assets/images/react.svg';
 import {Link} from "react-router-dom"
-import {
-  Bell,
-  Settings,
-  Grid,
-  Users,
-  Briefcase,
-  LifeBuoy
-} from 'react-feather';
-
-import hero5 from '../assets/images/hero-bg/hero-5.jpg';
-import particles3 from '../assets/images/hero-bg/particles-3.svg';
 
 import SearchBarNav from "components/SearchBarNav";
 import WordOutlineButton from './Buttons/WordOutineButton';
+import LogoutButton from "./Buttons/LogoutButton";
 
 export default function Header1() {
   const [collapse, setCollapse] = useState(false);
   const toggle = () => setCollapse(!collapse);
+
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
 
   return (
     <>
@@ -76,9 +71,16 @@ export default function Header1() {
               </div>
               <div className="header-nav-actions flex-grow-0 flex-lg-grow-1">
                 <span className="d-none d-lg-block">
+                  {userInfo ? (
+                    <>
+                    <WordOutlineButton route="/Profile" buttonName={userInfo.name}/>
+                    <LogoutButton/>
+                    </>
+                  ) : (
+                    <WordOutlineButton route="/Login" buttonName="Login"/>
+                  )}
                   
-                  <WordOutlineButton route="/Profile" buttonName="Hozefa Jaorawala"/>
-                  <WordOutlineButton route="/Login" buttonName="Login"/>
+                  
 
                 </span>
                 <span className="d-block d-lg-none">
