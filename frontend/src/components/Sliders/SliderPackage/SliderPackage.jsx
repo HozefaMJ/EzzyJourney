@@ -42,7 +42,7 @@ export default function SliderPackage({images}){
 
     return(
         <div className="slider-ezzy">
-            {
+            {sliderArr.length === 0 ? <h1 className="block align-items-center text-center text-light">Images for this package has not been added yet</h1> : (
                 sliderArr.map((item,index)=> {
                     return(
                         <div key={index} className="slide-ezzy" style={{transform:`translateX(${x}%)`}}>
@@ -50,7 +50,7 @@ export default function SliderPackage({images}){
                         </div>
                     )
                 })
-            }
+            )}
             <button id="goLeftEzzy" onClick={goLeft}>
                 <FontAwesomeIcon className="text-light" icon={['fas', 'chevron-left']} />
             </button>

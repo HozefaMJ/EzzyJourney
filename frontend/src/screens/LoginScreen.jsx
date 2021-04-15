@@ -1,20 +1,53 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
+import {Link} from "react-router-dom";
+import {useDispatch,useSelector} from "react-redux";
+import BasicLoader from "../components/LoadingIndicators/BasicLoader";
+import ErrorAlert from "../components/Alerts/ErrorAlert";
+
+import {login} from "../actions/userActions";
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import {
   Row,
   Col,
   Container,
+  Form,
   FormGroup,
   Input,
   UncontrolledTooltip,
   Button
 } from 'reactstrap';
-import {Link} from "react-router-dom";
+
 
 import illustration1 from '../assets/images/illustrations/pack1/authentication.svg';
 
-export default function LoginScreen() {
+export default function LoginScreen({location,history}) {
+
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  const dispatch = useDispatch()
+
+  const userLogin = useSelector(state => state.userLogin);
+  const {loading, error, userInfo} = userLogin;
+
+  const redirect = location.search ? location.search.split('=')[1] : '/'
+
+  useEffect(() => {
+    if(userInfo){
+      history.push(redirect)
+    }
+  }, [userInfo,history,redirect])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    // Dispatch Login
+    dispatch(login(email,password))
+  }
+
+
   return (
     <>
       <div className="app-wrapper bg-white min-vh-100">
@@ -37,6 +70,8 @@ export default function LoginScreen() {
                                 Welcome to Ezzy Journeys
                               </p>
                             </span>
+                            {error && <ErrorAlert error={error}/>}
+                            {loading && <BasicLoader loading={loading}/>}
                             <div className="bg-secondary rounded p-4 my-4">
                               <div className="text-black-50 text-center mb-3">
                                 Sign in with
@@ -74,7 +109,7 @@ export default function LoginScreen() {
                                 </Col>
                               </Row>
                             </div>
-                            <div>
+                            <Form onSubmit={submitHandler}>
                               <FormGroup>
                                 <label className="font-weight-bold">
                                   Email address
@@ -82,6 +117,8 @@ export default function LoginScreen() {
                                 <Input
                                   placeholder="yourname@yourmail.com"
                                   type="email"
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
                                 />
                               </FormGroup>
                               <div className="form-group mb-4">
@@ -98,16 +135,19 @@ export default function LoginScreen() {
                                 <Input
                                   placeholder="Enter your password"
                                   type="password"
+                                  value={password}
+                                  onChange={(e) => setPassword(e.target.value)}
                                 />
                               </div>
 
                               <Button
                                 size="lg"
+                                type="submit"
                                 className="btn-block text-uppercase font-weight-bold font-size-sm"
                                 color="primary">
                                 Sign in
                               </Button>
-                            </div>
+                            </Form>
                             <div className="text-center pt-4 text-black-50">
                               Don't have an account?{' '}
                               <Link to="/Register">Create Account</Link>
