@@ -5,7 +5,7 @@ import { Row, Col, CustomInput, Label, FormGroup, Button } from 'reactstrap';
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
-import {getUserDetails} from "../../actions/userActions";
+import {getUserDetails,updateUserProfile} from "../../actions/userActions";
 
 import {
   AvForm,
@@ -16,7 +16,9 @@ import {
   AvRadioGroup,
   AvRadio
 } from 'availity-reactstrap-validation';
-export default function UpdateProfileForm({location,history}) {
+
+
+export default function UpdateProfileForm({history}) {
 
     /*
     name
@@ -44,6 +46,9 @@ export default function UpdateProfileForm({location,history}) {
 
     const userLogin = useSelector(state => state.userLogin);
     const {userInfo} = userLogin;
+    
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile);
+    const {success} = userUpdateProfile;
   
     
     useEffect(() => {
@@ -63,11 +68,12 @@ export default function UpdateProfileForm({location,history}) {
     }, [dispatch,userInfo,user,history])
   
     const submitHandler = (e) => {
-      e.preventDefault()
+      
       if(password !== confirmPassword) {
         setMessage('Passwords Do Not Match')
       } else {
-      // Dispatch Update
+        // Dispatch Update
+        dispatch(updateUserProfile({id: user._id,name,email,contact,dob,password,address}))
       }
   }
   
@@ -76,6 +82,7 @@ export default function UpdateProfileForm({location,history}) {
     
     <>
     {message && <ErrorAlert error={message}/>}
+    {success && <p className="text-success bg-neutral-success">Profile Updated</p>}
     {error && <ErrorAlert error={error}/>}
     {loading && <BasicLoader loading={loading}/>}
       <AvForm className="m-4" onSubmit={submitHandler}>
