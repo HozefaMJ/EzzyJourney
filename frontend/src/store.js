@@ -9,7 +9,8 @@ import {packageListReducer,
 } from "./reducers/packageReducers";
 
 import {userLoginReducer,
-        userRegisterReducer
+        userRegisterReducer,
+        userDetailsReducer
 } from "./reducers/userReducers";
 
 const reducer = combineReducers({
@@ -17,7 +18,8 @@ const reducer = combineReducers({
     packageList: packageListReducer,
     packageDetails: packageDetailsReducer,
     userLogin: userLoginReducer,
-    userRegister: userRegisterReducer
+    userRegister: userRegisterReducer,
+    userDetails: userDetailsReducer
 })
 
 
