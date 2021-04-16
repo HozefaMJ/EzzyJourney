@@ -1,10 +1,59 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
-import { Row, Col, Container, FormGroup, Input, Button } from 'reactstrap';
+import { Row, Col, Container, Form, FormGroup, Input, Button } from 'reactstrap';
+
+import {useDispatch,useSelector} from "react-redux";
+import BasicLoader from "../components/LoadingIndicators/BasicLoader";
+import ErrorAlert from "../components/Alerts/ErrorAlert";
+
+import {register} from "../actions/userActions";
 
 import illustration1 from '../assets/images/illustrations/pack1/handshake.svg';
+import { Link } from 'react-router-dom';
 
-export default function RegisterScreen() {
+/*
+    "name":"Hozefa J",
+    "email": "hozefa@gmail.com",
+    "contact": 8452088328,
+    "dob": "24/6/96",
+    "password":"123456",
+    "address": "06 chunabhatti mumbai-22"
+*/
+
+export default function RegisterScreen({location,history}) {
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [contact, setContact] = useState('')
+  const [dob, setDob] = useState('')
+  const [address, setAddress] = useState('')
+  const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
+  const [message, setMessage] = useState('')
+
+  const dispatch = useDispatch()
+
+  const userRegister = useSelector(state => state.userRegister);
+  const {loading, error, userInfo} = userRegister;
+
+  const redirect = location.search ? location.search.split('=')[1] : '/'
+
+  useEffect(() => {
+    if(userInfo){
+      history.push(redirect)
+    }
+  }, [userInfo,history,redirect])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    if(password !== confirmPassword) {
+      setMessage('Passwords Do Not Match')
+    } else {
+    // Dispatch Register
+    dispatch(register(name,email,contact,dob,password,address))
+    }
+}
+
   return (
     <>
       <div className="app-wrapper bg-white min-vh-100">
@@ -26,6 +75,10 @@ export default function RegisterScreen() {
                               Start benefiting from our tools right away
                             </p>
                           </div>
+                          {message && <ErrorAlert error={message}/>}
+                          {error && <ErrorAlert error={error}/>}
+                          {loading && <BasicLoader loading={loading}/>}
+                          <Form onSubmit={submitHandler}>
                           <FormGroup>
                             <label className="font-weight-bold">
                               Full Name
@@ -33,16 +86,21 @@ export default function RegisterScreen() {
                             <Input
                               placeholder="Enter your full name"
                               type="text"
+                              value={name}
+                              onChange={(e)=> setName(e.target.value)}
                             />
                           </FormGroup>
+                          
                           <FormGroup>
-                            <label className="font-weight-bold">
-                              Email address
-                            </label>
-                            <Input
-                              placeholder="Enter your email address"
-                              type="email"
-                            />
+                                <label className="font-weight-bold">
+                                  Email address
+                                </label>
+                                <Input
+                                  placeholder="yourname@yourmail.com"
+                                  type="email"
+                                  value={email}
+                                  onChange={(e) => setEmail(e.target.value)}
+                                />
                           </FormGroup>
                           <FormGroup>
                             <label className="font-weight-bold">
@@ -51,6 +109,8 @@ export default function RegisterScreen() {
                             <Input
                               placeholder="Enter your contact number"
                               type="tel"
+                              value={contact}
+                              onChange={(e)=> setContact(e.target.value)}
                             />
                           </FormGroup>
                           <FormGroup>
@@ -60,6 +120,8 @@ export default function RegisterScreen() {
                             <Input
                               placeholder="Enter your date of birth"
                               type="date"
+                              value={dob}
+                              onChange={(e)=> setDob(e.target.value)}
                             />
                           </FormGroup>
                           <FormGroup>
@@ -71,6 +133,8 @@ export default function RegisterScreen() {
                             <Input
                               placeholder="Enter your password"
                               type="password"
+                              value={password}
+                              onChange={(e) => setPassword(e.target.value)}
                             />
                           </FormGroup>
                           <FormGroup>
@@ -82,6 +146,8 @@ export default function RegisterScreen() {
                             <Input
                               placeholder="Enter your confirm password"
                               type="password"
+                              value={confirmPassword}
+                              onChange={(e) => setConfirmPassword(e.target.value)}
                             />
                           </FormGroup>
                           <FormGroup>
@@ -91,6 +157,8 @@ export default function RegisterScreen() {
                             <Input
                               placeholder="Enter your Postal Address"
                               type="text"
+                              value={address}
+                              onChange={(e) => setAddress(e.target.value)}
                             />
                           </FormGroup>
                           <div className="form-group mb-3">
@@ -105,16 +173,25 @@ export default function RegisterScreen() {
                               Create account
                             </Button>
                           </div>
+                          
+                          </Form>
+                          
                         </div>
                       </Col>
                       <Col
                         lg="6"
-                        className="d-none d-lg-flex align-items-center">
-                        <img
-                          alt="ezzy logo illustration"
-                          className="w-100 mx-auto d-block img-fluid"
-                          src={illustration1}
-                        />
+                        className="d-none d-lg-flex align-items-center"
+                        style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center'}}>
+                       
+                          <div>
+                              Already have an account? <Link to="/Login"><b>Login</b></Link>
+                          </div>
+                          <img
+                            alt="ezzy logo illustration"
+                            className="w-100 mx-auto d-block img-fluid"
+                            src={illustration1}
+                          />
+                        
                       </Col>
                     </Row>
                   </Container>

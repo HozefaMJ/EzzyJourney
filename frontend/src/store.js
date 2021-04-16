@@ -8,13 +8,16 @@ import {packageListReducer,
         packageDetailsReducer
 } from "./reducers/packageReducers";
 
-import {userLoginReducer} from "./reducers/userReducers";
+import {userLoginReducer,
+        userRegisterReducer
+} from "./reducers/userReducers";
 
 const reducer = combineReducers({
     ...reducersRouting,
     packageList: packageListReducer,
     packageDetails: packageDetailsReducer,
-    userLogin: userLoginReducer
+    userLogin: userLoginReducer,
+    userRegister: userRegisterReducer
 })
 
 
