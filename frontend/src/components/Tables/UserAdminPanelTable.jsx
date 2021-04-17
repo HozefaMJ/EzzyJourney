@@ -4,7 +4,7 @@ import {useDispatch,useSelector} from "react-redux"
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
-import {listUsers} from "../../actions/userActions";
+import {listUsers, deleteUser} from "../../actions/userActions";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -34,6 +34,9 @@ export default function UserAdminPanelTable({history}) {
 
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
+  
+  const userDelete = useSelector(state => state.userDelete)
+  const {success: successDelete} = userDelete
 
   useEffect(() => {
     if(userInfo && userInfo.isAdmin){
@@ -41,10 +44,12 @@ export default function UserAdminPanelTable({history}) {
     } else {
       history.push('/Login')
     }
-  },[dispatch,history])
+  },[dispatch,history,successDelete])
 
   const deleteHandler = (id) => {
-    console.log(`Delete User ${id}`)
+    if(window.confirm('Are You Sure')){
+      dispatch(deleteUser(id))
+    }
   }
 
   return (
@@ -137,7 +142,7 @@ export default function UserAdminPanelTable({history}) {
                       <Button
                         color="danger"
                         size="sm"
-                        onClick={deleteHandler(user._id)}
+                        onClick={() => deleteHandler(user._id)}
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
                         <FontAwesomeIcon
                           icon={['fas', 'trash-alt']}
