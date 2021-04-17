@@ -8,7 +8,7 @@ import { NavLink as NavLinkStrap } from 'reactstrap';
 import UpdateProfileForm from 'components/forms/UpdateProfileForm';
 import UserQueryTable from 'components/Tables/UserQueryTable';
 
-export default function UserProfileTab() {
+export default function UserProfileTab({history}) {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = (tab) => {
@@ -47,7 +47,7 @@ export default function UserProfileTab() {
             </div>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                   <UpdateProfileForm/> 
+                   <UpdateProfileForm history={history}/> 
               </TabPane>
               <TabPane tabId="2">
                 <UserQueryTable/>

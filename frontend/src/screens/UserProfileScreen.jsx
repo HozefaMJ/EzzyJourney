@@ -19,13 +19,13 @@ import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import UserProfileTab from 'components/Tabs/UserProfileTab';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
-export default function HomeScreen1() {
+export default function HomeScreen1({history}) {
   return (
     <>
       <Header1/>
         <Container>
             <RightIconLink Name="Admin Panel" link="/AdminPanel" icon="user-cog"/>
-            <UserProfileTab/>
+            <UserProfileTab history={history}/>
         </Container>
       <Footer1/>
     </>
