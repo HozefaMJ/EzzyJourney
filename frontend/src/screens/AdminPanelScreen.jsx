@@ -19,12 +19,12 @@ import UserProfileTab from 'components/Tabs/UserProfileTab';
 import AdminPanelTab from 'components/Tabs/AdminPanelTab';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
-export default function HomeScreen1() {
+export default function AdminPanel({history}) {
   return (
     <>
       <Header1/>
         <Container>
-            <AdminPanelTab/>
+            <AdminPanelTab history={history}/>
         </Container>
       <Footer1/>
     </>

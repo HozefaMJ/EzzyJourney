@@ -1,14 +1,6 @@
 import React from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Row, Col, Container, Button } from 'reactstrap';
-
-import particles2 from '../assets/images/hero-bg/particles-2.svg';
-import hero1 from '../assets/images/hero-bg/hero-space-3.jpg';
-
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-
+import { Container} from 'reactstrap';
+import {useSelector} from "react-redux";
 import Header1 from "../components/Header1";
 import Footer1 from "../components/Footer1";
 
@@ -20,11 +12,18 @@ import UserProfileTab from 'components/Tabs/UserProfileTab';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
 export default function HomeScreen1({history}) {
+  
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
+
   return (
     <>
       <Header1/>
         <Container>
-            <RightIconLink Name="Admin Panel" link="/AdminPanel" icon="user-cog"/>
+            {userInfo && userInfo.isAdmin && (
+              <RightIconLink Name="Admin Panel" link="/AdminPanel" icon="user-cog"/>
+            )}
+            
             <UserProfileTab history={history}/>
         </Container>
       <Footer1/>

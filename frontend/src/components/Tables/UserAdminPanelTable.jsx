@@ -1,4 +1,10 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import {useDispatch,useSelector} from "react-redux"
+
+import BasicLoader from "../LoadingIndicators/BasicLoader";
+import ErrorAlert from "../Alerts/ErrorAlert";
+
+import {listUsers} from "../../actions/userActions";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -19,33 +25,57 @@ import avatar2 from '../../assets/images/avatars/avatar2.jpg';
 import avatar3 from '../../assets/images/avatars/avatar3.jpg';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
-export default function UserAdminPanelTable() {
+export default function UserAdminPanelTable({history}) {
+
+  const dispatch = useDispatch();
+
+  const userList = useSelector(state => state.userList)
+  const {loading, error, users} = userList;
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
+
+  useEffect(() => {
+    if(userInfo && userInfo.isAdmin){
+      dispatch(listUsers())
+    } else {
+      history.push('/Login')
+    }
+  },[dispatch,history])
+
+  const deleteHandler = (id) => {
+    console.log(`Delete User ${id}`)
+  }
+
   return (
     <>
       <Card className="card-box mb-5 mt-3">
         <div className="card-header">
           <div className="card-header--title">
-              All Users
+              All Users {`( 21 )`}
           </div>
         </div>
-        <CardBody className="p-0">
+        {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/> : (
+          <CardBody className="p-0">
           <div className="table-responsive-md">
             <Table hover striped className="text-nowrap mb-0">
               <thead className="thead-light">
                 <tr>
                   <th style={{ width: '40%' }}>Employee</th>
+                  <th className="text-center">isAdmin</th>
+                  <th className="text-center">isEmployee</th>
                   <th className="text-center">Edit</th>
-                  <th className="text-center">Block</th>
                   <th className="text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {users.map(user => (
+                  <tr key={user._id}>
                   <td>
                     <div className="d-flex align-items-center">
                       <div className="avatar-icon-wrapper mr-3">
                         <div className="avatar-icon">
-                          <img alt="..." src={avatar2} />
+                          <img alt="..." src={user.profilePicture} />
                         </div>
                       </div>
                       <div>
@@ -54,19 +84,43 @@ export default function UserAdminPanelTable() {
                           onClick={(e) => e.preventDefault()}
                           className="font-weight-bold text-black"
                           title="...">
-                          Shanelle Wynn
+                          {user.name}
                         </a>
-                        <span className="text-black-50 d-block">
-                          UI Engineer, Apple Inc.
-                        </span>
                       </div>
                     </div>
                   </td>
                   
                   <td className="text-center">
                     <div>
+                      <Button
+                        color={user.isAdmin ? "success" : "danger"}
+                        size="sm" 
+                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
+                        <FontAwesomeIcon
+                          icon={['far', 'user']}
+                          className="font-size-lg"
+                        />
+                      </Button>
+                    </div>
+                  </td>
+                  <td className="text-center">
+                    <div>
+                      <Button
+                        color={user.isEmployee ? "success" : "danger"}
+                        size="sm" 
+                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
+                        <FontAwesomeIcon
+                          icon={['far', 'user']}
+                          className="font-size-lg"
+                        />
+                      </Button>
+                    </div>
+                  </td>
+
+                  <td className="text-center">
+                    <div>
                       <Link
-                        to="/EditUser"
+                        to={`/EditUser/${user._id}`}
                         color="primary"
                         size="sm"
                         className="btn-icon text-primary d-40 p-0 btn-animated-icon-sm">
@@ -81,22 +135,9 @@ export default function UserAdminPanelTable() {
                   <td className="text-center">
                     <div>
                       <Button
-                        color="warning"
-                        size="sm"
-                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'ban']}
-                          className="font-size-lg"
-                        />
-                      </Button>
-                    </div>
-                  </td>
-                  
-                  <td className="text-center">
-                    <div>
-                      <Button
                         color="danger"
                         size="sm"
+                        onClick={deleteHandler(user._id)}
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
                         <FontAwesomeIcon
                           icon={['fas', 'trash-alt']}
@@ -106,73 +147,9 @@ export default function UserAdminPanelTable() {
                     </div>
                   </td>
                 </tr>
+                ))}
                 
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar3} />
-                        </div>
-                      </div>
-                      <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Shanelle Wynn
-                        </a>
-                        <span className="text-black-50 d-block">
-                          UI Engineer, Apple Inc.
-                        </span>
-                      </div>
-                    </div>
-                  </td>
-                  
-                  <td className="text-center">
-                    <div>
-                      <Link
-                        to="/EditUser"
-                        color="primary"
-                        size="sm"
-                        className="btn-icon text-primary d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'user-edit']}
-                          className="font-size-lg"
-                        />
-                      </Link>
-                    </div>
-                  </td>
-                  
-                  <td className="text-center">
-                    <div>
-                      <Button
-                        color="warning"
-                        size="sm"
-                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'ban']}
-                          className="font-size-lg"
-                        />
-                      </Button>
-                    </div>
-                  </td>
-                  
-                  <td className="text-center">
-                    <div>
-                      <Button
-                        color="danger"
-                        size="sm"
-                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'trash-alt']}
-                          className="font-size-lg"
-                        />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
+                
                 
               </tbody>
             </Table>
@@ -181,6 +158,8 @@ export default function UserAdminPanelTable() {
           <div className="divider" />
           <AllPackagesPagination/>
         </CardBody>
+        )}
+        
       </Card>
     </>
   );

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import {useSelector} from "react-redux";
 import clsx from 'clsx';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,12 +12,18 @@ import PackagesAdminPanelTable from 'components/Tables/PackagesAdminPanelTable';
 import QueriesAdminPanelTable from 'components/Tables/QueriesAdminPanelTable';
 import UserAdminPanelTable from 'components/Tables/UserAdminPanelTable';
 
-export default function AdminPanelTab() {
+export default function AdminPanelTab({history}) {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = (tab) => {
     if (activeTab !== tab) setActiveTab(tab);
   };
+
+
+
+ 
+
+
   return (
     <>
       <Row>
@@ -75,7 +81,7 @@ export default function AdminPanelTab() {
             </div>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="1">
-                   <UserAdminPanelTable/> 
+                   <UserAdminPanelTable history={history}/> 
               </TabPane>
               <TabPane tabId="2">
                 <QueriesAdminPanelTable/>
