@@ -7,6 +7,8 @@ import ErrorAlert from "../Alerts/ErrorAlert";
 
 import {getUserDetails,updateUserProfile} from "../../actions/userActions";
 
+import {USER_UPDATE_PROFILE_RESET} from "../../constants/userConstants";
+
 import {
   AvForm,
   AvField,
@@ -55,7 +57,8 @@ export default function UpdateProfileForm({history}) {
       if(!userInfo){
         history.push('/Login')
       } else {
-        if(!user.name){
+        if(!user || !user.name || success){
+          dispatch({type: USER_UPDATE_PROFILE_RESET})
           dispatch(getUserDetails('profile'))
         } else {
           setName(user.name)
@@ -65,7 +68,7 @@ export default function UpdateProfileForm({history}) {
           setAddress(user.address)
         }
       }
-    }, [dispatch,userInfo,user,history])
+    }, [dispatch,userInfo,user,history,success])
   
     const submitHandler = (e) => {
       
@@ -101,7 +104,7 @@ export default function UpdateProfileForm({history}) {
                 name="profilepicture"
                 />{/*invalid*/}
             </div>
-            <AvField name="dob" label={`Date of Birth: ${dob}`} type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
+            <AvField name="dob" label={`Date of Birth: (${dob})`} type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
             <AvField name="address" label="Address" type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
             <div className="divider m-3"/>
             <AvField name="password" label="Password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
