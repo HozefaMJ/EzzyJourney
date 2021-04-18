@@ -69,6 +69,7 @@ export default function UserAdminPanelTable({history}) {
                   <th style={{ width: '40%' }}>Employee</th>
                   <th className="text-center">is Admin</th>
                   <th className="text-center">is Employee</th>
+                  <th className="text-center">is Blocked</th>
                   <th className="text-center">Edit</th>
                   <th className="text-center">Delete</th>
                 </tr>
@@ -98,16 +99,16 @@ export default function UserAdminPanelTable({history}) {
                   <td className="text-center">
                     <div>
                       <Button
-                        color={user.isAdmin ? "success" : "danger"}
+                        color={user.isAdmin ? "ezzyColor" : "danger"}
                         size="sm" 
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
                         {user.isAdmin ? (
                           <FontAwesomeIcon
-                          icon={['far', 'check-circle']}
+                          icon={['fas', 'check']}
                           className="font-size-lg"
                         />
                         ) : (<FontAwesomeIcon
-                          icon={['far', 'times-circle']}
+                          icon={['fas', 'times']}
                           className="font-size-lg"
                         />)}
                       </Button>
@@ -116,16 +117,34 @@ export default function UserAdminPanelTable({history}) {
                   <td className="text-center">
                     <div>
                       <Button
-                        color={user.isEmployee ? "success" : "danger"}
+                        color={user.isEmployee ? "ezzyColor" : "danger"}
                         size="sm" 
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        {user.isAdmin ? (
+                        {user.isEmployee ? (
                           <FontAwesomeIcon
-                          icon={['far', 'check-circle']}
+                          icon={['fas', 'check']}
                           className="font-size-lg"
                         />
                         ) : (<FontAwesomeIcon
-                          icon={['far', 'times-circle']}
+                          icon={['fas', 'times']}
+                          className="font-size-lg"
+                        />)}
+                      </Button>
+                    </div>
+                  </td>
+                  <td className="text-center">
+                    <div>
+                      <Button
+                        color={user.isBlocked ? "warning" : "ezzyColor"}
+                        size="sm" 
+                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
+                        {user.isBlocked ? (
+                          <FontAwesomeIcon
+                          icon={['fas', 'lock']}
+                          className="font-size-lg"
+                        />
+                        ) : (<FontAwesomeIcon
+                          icon={['fas', 'lock-open']}
                           className="font-size-lg"
                         />)}
                       </Button>

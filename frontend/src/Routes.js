@@ -687,14 +687,14 @@ const Routes = () => {
                   <Route path="/AllPackages" component={AllPackages} />
                   <Route path="/Profile" component={Profile} />
                   <Route path="/AdminPanel" component={AdminPanel} />
-                  <Route path="/EditUser" component={EditUser} />
-                  <Route path="/EditEmployee" component={EditEmployee} />
+                  <Route path="/EditUser/:id" component={EditUser} />
+                  <Route path="/EditEmployee/:id" component={EditEmployee} />
                   <Route path="/AddEmployees" component={AddEmployees} />
                   <Route path="/AddPackages" component={AddPackages} />
                   <Route path="/EditPackage" component={UpdatePackages} />
                   <Route path="/Terms&Conditions" component={TermsAndPolicy} />
                   <Route path="/PrivacyPolicy" component={TermsAndPolicy} />
-                  <Route path="//UpdateTerms&Conditions" component={UpdateTermsAndPolicy} />
+                  <Route path="/UpdateTerms&Conditions" component={UpdateTermsAndPolicy} />
                   <Route path="/UpdatePrivacyPolicy" component={UpdateTermsAndPolicy} />
                   <Route path="/AboutUs" component={AboutUs} />
                   <Route path="/UpdateAboutUs" component={UpdateAboutUs} />

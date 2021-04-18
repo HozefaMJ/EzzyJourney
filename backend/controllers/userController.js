@@ -214,6 +214,7 @@ const updateUserProfileById = asyncHandler(async(req,res) => {
         user.email = req.body.email || user.email,
         user.contact = req.body.contact || user.contact,
         user.dob = req.body.dob || user.dob,
+        user.isAdmin = req.body.isAdmin,
         user.isEmployee = req.body.isEmployee,
         user.isBlocked = req.body.isBlocked,
         user.address = req.body.address || user.address
