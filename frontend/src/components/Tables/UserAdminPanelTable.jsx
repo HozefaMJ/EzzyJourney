@@ -57,7 +57,7 @@ export default function UserAdminPanelTable({history}) {
       <Card className="card-box mb-5 mt-3">
         <div className="card-header">
           <div className="card-header--title">
-              All Users {`( 21 )`}
+              <span>Showing All <b>({users ? (users.length) : ""})</b> Users </span>
           </div>
         </div>
         {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/> : (
@@ -67,8 +67,8 @@ export default function UserAdminPanelTable({history}) {
               <thead className="thead-light">
                 <tr>
                   <th style={{ width: '40%' }}>Employee</th>
-                  <th className="text-center">isAdmin</th>
-                  <th className="text-center">isEmployee</th>
+                  <th className="text-center">is Admin</th>
+                  <th className="text-center">is Employee</th>
                   <th className="text-center">Edit</th>
                   <th className="text-center">Delete</th>
                 </tr>
@@ -101,10 +101,15 @@ export default function UserAdminPanelTable({history}) {
                         color={user.isAdmin ? "success" : "danger"}
                         size="sm" 
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['far', 'user']}
+                        {user.isAdmin ? (
+                          <FontAwesomeIcon
+                          icon={['far', 'check-circle']}
                           className="font-size-lg"
                         />
+                        ) : (<FontAwesomeIcon
+                          icon={['far', 'times-circle']}
+                          className="font-size-lg"
+                        />)}
                       </Button>
                     </div>
                   </td>
@@ -114,10 +119,15 @@ export default function UserAdminPanelTable({history}) {
                         color={user.isEmployee ? "success" : "danger"}
                         size="sm" 
                         className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['far', 'user']}
+                        {user.isAdmin ? (
+                          <FontAwesomeIcon
+                          icon={['far', 'check-circle']}
                           className="font-size-lg"
                         />
+                        ) : (<FontAwesomeIcon
+                          icon={['far', 'times-circle']}
+                          className="font-size-lg"
+                        />)}
                       </Button>
                     </div>
                   </td>
