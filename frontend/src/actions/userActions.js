@@ -21,7 +21,10 @@ import { USER_LOGIN_FAIL,
          USER_DELETE_FAIL,
          USER_UPDATE_REQUEST,
          USER_UPDATE_SUCCESS,
-         USER_UPDATE_FAIL
+         USER_UPDATE_FAIL,
+         USER_EMPLOYEE_LIST_REQUEST,
+         USER_EMPLOYEE_LIST_FAIL,
+         USER_EMPLOYEE_LIST_SUCCESS
 } from "constants/userConstants"
 
 export const login = (email, password) => async (dispatch) => {
@@ -263,6 +266,38 @@ export const updateUser = (user) => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: USER_UPDATE_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+
+export const listEmployeeUsers = () => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: USER_EMPLOYEE_LIST_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.get(`/api/users/employee`,config)
+
+        dispatch({
+            type: USER_EMPLOYEE_LIST_SUCCESS,
+            payload: data
+        })
+        
+        
+    } catch (error) {
+        dispatch({
+            type: USER_EMPLOYEE_LIST_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }
