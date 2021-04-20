@@ -92,7 +92,7 @@ export default function EmployeesAdminPanelTable(history) {
                   </td>
                   <td className="text-center">
                     <Link
-                      to={`/EditEmployee/${employee._id}`}
+                      to={`/EditUser/${employee._id}`}
                       size="sm"
                       color="neutral-primary"
                       className="hover-scale-sm d-40 p-0 btn-icon">
