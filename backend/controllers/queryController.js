@@ -129,7 +129,7 @@ const allQueries = asyncHandler(async(req,res) => {
 // @route GET /api/queries/myqueries
 // @access Private
 const allMyQueries = asyncHandler(async(req,res) => {
-    const queries = await Query.find({user: req.user._id}).populate('package','title packageCode');
+    const queries = await Query.find({user: req.user._id}).populate('package','title packageCode packageImages');
 
     if(queries) {
         res.json(queries);

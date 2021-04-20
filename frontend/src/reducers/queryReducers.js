@@ -2,6 +2,9 @@ import { QUERY_LIST_FAIL,
          QUERY_LIST_REQUEST,
          QUERY_LIST_RESET,
          QUERY_LIST_SUCCESS,
+         QUERY_MY_LIST_FAIL,
+         QUERY_MY_LIST_REQUEST,
+         QUERY_MY_LIST_SUCCESS,
          QUERY_RESPOND_FAIL,
          QUERY_RESPOND_REQUEST,
          QUERY_RESPOND_SUCCESS,
@@ -30,6 +33,20 @@ export const queryRespondReducer = (state = {}, action) => {
         case QUERY_RESPOND_SUCCESS:
             return {loading: false, success: true}
         case QUERY_RESPOND_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const myQueryListReducer = (state = { queries:[] }, action) => {
+    switch(action.type){
+        case QUERY_MY_LIST_REQUEST:
+            return {loading: true}
+        case QUERY_MY_LIST_SUCCESS:
+            return {loading: false, queries: action.payload}
+        case QUERY_MY_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

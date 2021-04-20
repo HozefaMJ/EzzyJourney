@@ -19,7 +19,8 @@ import {userLoginReducer,
 
 import {
   queryListReducer,
-  queryRespondReducer
+  queryRespondReducer,
+  myQueryListReducer
 } from "./reducers/queryReducers";
 
 const reducer = combineReducers({
@@ -35,6 +36,7 @@ const reducer = combineReducers({
     userUpdate: userUpdateReducer,
     queryList: queryListReducer,
     queryResponed: queryRespondReducer,
+    myQueryList: myQueryListReducer,
 })
 
 
