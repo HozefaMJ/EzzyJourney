@@ -18,7 +18,8 @@ import {userLoginReducer,
 } from "./reducers/userReducers";
 
 import {
-  queryListReducer
+  queryListReducer,
+  queryRespondReducer
 } from "./reducers/queryReducers";
 
 const reducer = combineReducers({
@@ -32,7 +33,8 @@ const reducer = combineReducers({
     userList: userListReducer,
     userDelete: userDeleteReducer,
     userUpdate: userUpdateReducer,
-    queryList: queryListReducer
+    queryList: queryListReducer,
+    queryResponed: queryRespondReducer,
 })
 
 

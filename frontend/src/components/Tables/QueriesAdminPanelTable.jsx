@@ -4,7 +4,7 @@ import {useDispatch,useSelector} from "react-redux";
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
-import {listQueries} from "../../actions/queryActions";
+import {listQueries, respondQuery} from "../../actions/queryActions";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -41,16 +41,21 @@ export default function QueriesAdminPanelTable({history}) {
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
 
+  const queryResponed = useSelector(state => state.queryResponed)
+  const {success: successRespond} = queryResponed
+
   useEffect(() => {
     if(userInfo && userInfo.isAdmin){
       dispatch(listQueries())
     } else {
       history.push('/Login')
     }
-  },[dispatch,history])
+  },[dispatch,history,successRespond])
 
   const respondHandler = (id) => {
-    console.log(`Responded to ${id}`)
+    if(window.confirm("Are You Sure")){
+      dispatch(respondQuery(id))
+    }
   }
 
 
