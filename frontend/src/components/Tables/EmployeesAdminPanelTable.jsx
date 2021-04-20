@@ -7,15 +7,9 @@ import {
   Table,
   CardBody,
   Card,
-  Badge,
-  UncontrolledTooltip,
-  Button,
-  Progress
+  Button
 } from 'reactstrap';
 
-import avatar4 from '../../assets/images/avatars/avatar4.jpg';
-import avatar5 from '../../assets/images/avatars/avatar5.jpg';
-import avatar6 from '../../assets/images/avatars/avatar6.jpg';
 import avatar7 from '../../assets/images/avatars/avatar7.jpg';
 import RightIconLink from 'components/Buttons/RightIconLink';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
@@ -78,80 +72,7 @@ export default function EmployeesAdminPanelTable() {
                     </Button>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar7} />
-                        </div>
-                      </div>
-                      <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                              Khadija Null
-                        </a>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <Link
-                    to="/EditEmployee"
-                      size="sm"
-                      color="neutral-primary"
-                      className="hover-scale-sm d-40 p-0 btn-icon">
-                      <FontAwesomeIcon icon={['fas', 'user-edit']} />
-                    </Link>
-                  </td>
-                  <td className="text-center">
-                    <Button
-                      size="sm"
-                      color="neutral-danger"
-                      className="hover-scale-sm d-40 p-0 btn-icon">
-                      <FontAwesomeIcon icon={['fas', 'trash-alt']} />
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar7} />
-                        </div>
-                      </div>
-                      <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Khadija Dalal
-                        </a>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <Link
-                        to="/EditEmployee"
-                      size="sm"
-                      color="neutral-primary"
-                      className="hover-scale-sm d-40 p-0 btn-icon">
-                      <FontAwesomeIcon icon={['fas', 'user-edit']} />
-                    </Link>
-                  </td>
-                  <td className="text-center">
-                    <Button
-                      size="sm"
-                      color="neutral-danger"
-                      className="hover-scale-sm d-40 p-0 btn-icon">
-                      <FontAwesomeIcon icon={['fas', 'trash-alt']} />
-                    </Button>
-                  </td>
-                </tr>
+                
                 
               </tbody>
             </Table>

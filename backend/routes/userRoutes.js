@@ -8,6 +8,7 @@ import {
     authUser, 
     deleteUserById, 
     deleteUserProfile, 
+    getAllEmployees, 
     getAllUsers, 
     getUserById, 
     getUserProfile, 
@@ -43,6 +44,7 @@ router
 router
     .route('/employee')
     .post(protect,admin,addEmployee)
+    .get(protect,admin,getAllEmployees)
 
 router
     .route('/:id')

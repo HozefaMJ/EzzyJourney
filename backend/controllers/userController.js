@@ -288,6 +288,26 @@ const addEmployee = asyncHandler(async(req,res) => {
 })
 
 
+// @desc Get ALL Employees
+// @route GET /api/user/employees/all
+// @access Private Admin
+const getAllEmployees = asyncHandler(async(req,res) => {
+    const users = await User.find({});
+    let employees = []
+    if(users){
+        {users.map(user => {
+            if (user.isEmployee) {
+                employees.push(user)
+            }
+        })}
+        res.json(employees)
+    } else {
+        res.status(404);
+        throw new Error("No Users have registered yet")
+    }
+})
+
+
 
 export {
     authUser,
@@ -299,5 +319,6 @@ export {
     deleteUserById,
     getUserById,
     updateUserProfileById,
-    addEmployee
+    addEmployee,
+    getAllEmployees
 }
