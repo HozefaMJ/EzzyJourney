@@ -11,18 +11,11 @@ import {
   Table,
   CardBody,
   Card,
-  Badge,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Button
 } from 'reactstrap';
 
 import {Link} from "react-router-dom";
 
-import avatar1 from '../../assets/images/avatars/avatar1.jpg';
-import avatar2 from '../../assets/images/avatars/avatar2.jpg';
-import avatar3 from '../../assets/images/avatars/avatar3.jpg';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
 export default function UserAdminPanelTable({history}) {
@@ -66,7 +59,7 @@ export default function UserAdminPanelTable({history}) {
             <Table hover striped className="text-nowrap mb-0">
               <thead className="thead-light">
                 <tr>
-                  <th style={{ width: '40%' }}>Employee</th>
+                  <th style={{ width: '30%' }}>Employee</th>
                   <th className="text-center">is Admin</th>
                   <th className="text-center">is Employee</th>
                   <th className="text-center">is Blocked</th>

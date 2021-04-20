@@ -1,4 +1,10 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import {useDispatch,useSelector} from "react-redux";
+
+import BasicLoader from "../LoadingIndicators/BasicLoader";
+import ErrorAlert from "../Alerts/ErrorAlert";
+
+import {listQueries} from "../../actions/queryActions";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -6,206 +12,156 @@ import {
   CardBody,
   Card,
   Badge,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Button
 } from 'reactstrap';
 
+import {Link} from "react-router-dom";
+
 import avatar1 from '../../assets/images/avatars/avatar1.jpg';
 import avatar2 from '../../assets/images/hero-bg/hero-leh.jpg';
-import avatar3 from '../../assets/images/avatars/avatar3.jpg';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
-export default function QueriesAdminPanelTable() {
+
+/*
+People: Adults ChildAbove6 ChildBelow6
+isResponded
+user.name
+package.name
+message
+createdAt
+*/
+
+export default function QueriesAdminPanelTable({history}) {
+
+  const dispatch = useDispatch();
+
+  const queryList = useSelector(state => state.queryList)
+  const {loading, error, queries} = queryList
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
+
+  useEffect(() => {
+    if(userInfo && userInfo.isAdmin){
+      dispatch(listQueries())
+    } else {
+      history.push('/Login')
+    }
+  },[dispatch,history])
+
+  const respondHandler = (id) => {
+    console.log(`Responded to ${id}`)
+  }
+
+
   return (
     <>
       <Card className="card-box mt-3 mb-5">
         <div className="card-header">
           <div className="card-header--title mt-3">
-              <p>All Queries</p>
+              <span>Showing All <b>({queries ? (queries.length) : ""})</b> Queries</span>
           </div>
         </div>
-        <CardBody className="p-0">
+        {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/>: (
+          <CardBody className="p-0">
           <div className="table-responsive-md">
             <Table hover striped className="text-nowrap mb-0">
               <thead className="thead-light">
                 <tr>
-                  <th style={{ width: '30%' }}>User</th>
-                  <th style={{ width: '30%' }}>Package</th>
+                  <th style={{ width: '5%' }}>User</th>
+                  <th style={{ width: '5%' }}>Package</th>
+                  <th className="text-center">Adults</th>
+                  <th className="text-center">Child(6-12)</th>
+                  <th className="text-center">Child(-6)</th>
                   <th className="text-center">Status</th>
                   <th className="text-center">Responded</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {queries.map(query => (
+                  <tr key={query._id}>
                   <td>
                     <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar1} />
-                        </div>
-                      </div>
                       <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
+                        <div
+                          className=" text-black"
                           title="...">
-                          Shanelle Wynn
-                        </a>
+                          <p><b>Name:</b> {query.user ? query.user.name : ""}</p>
+                          <p><b>Email:</b> {query.user ? query.user.email : ""}</p>
+                          <p><b>Contact:</b> {query.user ? query.user.contact : ""}</p>
+                          <p><b>Message:</b> {query.message}</p>
+                          <p><b>QueriedAt:</b> {query.createdAt}</p>
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td>
                     <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar2} />
-                        </div>
-                      </div>
                       <div>
                         <a
                           href="#/"
                           onClick={(e) => e.preventDefault()}
                           className="font-weight-bold text-black"
-                          title="...">
-                          Ladakh Dreams
+                          title={query.package ? query.package.packageCode : ""}>
+                          {query.package ? query.package.packageCode : ""}
                         </a>
                       </div>
                     </div>
                   </td>
                   <td className="text-center">
-                    <Badge color="warning" className="h-auto py-0 px-3">
-                      Pending
-                    </Badge>
+                      <div>
+                        {query.people ? query.people.adults : ""}
+                      </div>
                   </td>
                   <td className="text-center">
-                    <div>
-                      <Button
-                        color="ezzyColor"
-                        size="sm"
-                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'reply']}
-                          className="font-size-lg"
-                        />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar3} />
-                        </div>
-                      </div>
                       <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Shanelle Wynn
-                        </a>
+                        {query.people ? query.people.childAbove6 : ""}
                       </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar2} />
-                        </div>
-                      </div>
-                      <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Ladakh Dreams
-                        </a>
-                      </div>
-                    </div>
                   </td>
                   <td className="text-center">
-                    <Badge color="warning" className="h-auto py-0 px-3">
-                      Pending
-                    </Badge>
+                      <div>
+                        {query.people ? query.people.childBelow6 : ""}
+                      </div>
+                  </td>
+                  <td className="text-center">
+                    {query.isResponded ? (
+                      <Badge color="ezzyColor" className="h-auto py-0 px-3">
+                        Responded
+                      </Badge>
+                    ) : (
+                      <Badge color="warning" className="h-auto py-0 px-3">
+                        Pending
+                      </Badge>
+                    )}
                   </td>
                   <td className="text-center">
                     <div>
+                    {query.isResponded ? (
+                       <Button
+                       color="first"
+                       size="sm"
+                       className="btn-icon d-40 p-0 btn-animated-icon-sm">
+                       <FontAwesomeIcon
+                          icon={['far', 'smile']}
+                         className="font-size-lg"
+                       />
+                     </Button>
+                    ) : (
                       <Button
-                        color="ezzyColor"
-                        size="sm"
-                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'reply']}
-                          className="font-size-lg"
-                        />
-                      </Button>
+                      color="ezzyColor"
+                      size="sm"
+                      onClick={() => respondHandler(query._id)}
+                      className="btn-icon d-40 p-0 btn-animated-icon-sm">
+                      <FontAwesomeIcon
+                        icon={['fas', 'reply']}
+                        className="font-size-lg"
+                      />
+                    </Button>
+                    )}
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar1} />
-                        </div>
-                      </div>
-                      <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Shanelle Wynn
-                        </a>
-                      </div>
-                    </div>
-                  </td>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar2} />
-                        </div>
-                      </div>
-                      <div>
-                        <a
-                          href="#/"
-                          onClick={(e) => e.preventDefault()}
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Ladakh Dreams
-                        </a>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <Badge color="warning" className="h-auto py-0 px-3">
-                      Pending
-                    </Badge>
-                  </td>
-                  <td className="text-center">
-                    <div>
-                      <Button
-                        color="ezzyColor"
-                        size="sm"
-                        className="btn-icon d-40 p-0 btn-animated-icon-sm">
-                        <FontAwesomeIcon
-                          icon={['fas', 'reply']}
-                          className="font-size-lg"
-                        />
-                      </Button>
-                    </div>
-                  </td>
-                </tr>
+                ))}
               </tbody>
             </Table>
           </div>
@@ -213,6 +169,7 @@ export default function QueriesAdminPanelTable() {
           <div className="divider" />
           <AllPackagesPagination/>
         </CardBody>
+        )}
       </Card>
     </>
   );

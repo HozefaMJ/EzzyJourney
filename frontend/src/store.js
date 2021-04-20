@@ -17,6 +17,10 @@ import {userLoginReducer,
         userUpdateReducer
 } from "./reducers/userReducers";
 
+import {
+  queryListReducer
+} from "./reducers/queryReducers";
+
 const reducer = combineReducers({
     ...reducersRouting,
     packageList: packageListReducer,
@@ -27,7 +31,8 @@ const reducer = combineReducers({
     userUpdateProfile: userUpdateProfileReducer,
     userList: userListReducer,
     userDelete: userDeleteReducer,
-    userUpdate: userUpdateReducer
+    userUpdate: userUpdateReducer,
+    queryList: queryListReducer
 })
 
 

@@ -84,7 +84,7 @@ export default function AdminPanelTab({history}) {
                    <UserAdminPanelTable history={history}/> 
               </TabPane>
               <TabPane tabId="2">
-                <QueriesAdminPanelTable/>
+                <QueriesAdminPanelTable history={history}/>
               </TabPane>
               <TabPane tabId="3">
                 <PackagesAdminPanelTable/>
