@@ -17,8 +17,6 @@ import {
 
 import {Link} from "react-router-dom";
 
-import avatar1 from '../../assets/images/avatars/avatar1.jpg';
-import avatar2 from '../../assets/images/hero-bg/hero-leh.jpg';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
 
@@ -95,7 +93,7 @@ export default function QueriesAdminPanelTable({history}) {
                           <p><b>Email:</b> {query.user ? query.user.email : ""}</p>
                           <p><b>Contact:</b> {query.user ? query.user.contact : ""}</p>
                           <p><b>Message:</b> {query.message}</p>
-                          <p><b>QueriedAt:</b> {query.createdAt}</p>
+                          <p><b>QueriedAt:</b> {query.createdAt.substring(0,10)} - ({query.createdAt.substring(12,16)} IST)</p>
                         </div>
                       </div>
                     </div>

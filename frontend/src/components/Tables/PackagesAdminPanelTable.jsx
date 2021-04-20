@@ -1,4 +1,11 @@
-import React from 'react';
+import React,{useEffect,useState} from 'react';
+import {useDispatch,useSelector} from "react-redux"
+
+import BasicLoader from "../LoadingIndicators/BasicLoader";
+import ErrorAlert from "../Alerts/ErrorAlert";
+
+import {listPackages} from "../../actions/packageActions";
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -6,49 +13,72 @@ import {
   CardBody,
   Card,
   Badge,
-  Pagination,
-  PaginationItem,
-  PaginationLink,
   Button
 } from 'reactstrap';
 
 import avatar1 from '../../assets/images/hero-bg/hero-leh.jpg';
-import avatar2 from '../../assets/images/avatars/avatar2.jpg';
-import avatar3 from '../../assets/images/avatars/avatar3.jpg';
 import { Link } from 'react-router-dom';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
 
-export default function PackagesAdminPanelTable() {
+export default function PackagesAdminPanelTable({history}) {
+
+  const dispatch = useDispatch();
+
+  const packageList = useSelector((state) => state.packageList)
+  const {loading,error,packages} = packageList;
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
+
+  useEffect(() => {
+    if(userInfo && userInfo.isAdmin){
+      dispatch(listPackages())
+    } else {
+      history.push('/Login')
+    }
+  },[dispatch,history])
+
+  const deleteHandler = (id) => {
+    if(window.confirm('Are You Sure')){
+      //dispatch(deleteUser(id))
+      console.log(id)
+    }
+  }
+
   return (
     <>
       <Card className="card-box mb-5 mt-4">
             <div className="card-header pr-2 d-flex justify-content-between">
-                <div className="card-header--title m-4">All Packages</div>
+                <span className="card-header--title m-4">
+                  Showing All ({packages ? (packages.length): ""}) Packages
+                </span>
                 <div className="card-header--actions">
                     <RightIconLink Name="Add Packages" link="/AddPackages" icon="plus"/>
                 </div>
             </div>
-        <CardBody className="p-0">
+        {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/>: (
+          <CardBody className="p-0">
           <div className="table-responsive-md">
             <Table hover striped className="text-nowrap mb-0">
               <thead className="thead-light">
                 <tr>
                   <th style={{ width: '40%' }}>Package</th>
-                  <th className="text-center">Created On</th>
-                  <th className="text-center">Status</th>
+                  <th className="text-center">Created At</th>
+                  <th className="text-center">Updated At</th>
                   <th className="text-center">Edit</th>
                   <th className="text-center">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
+                {packages.map(packagei => (
+                  <tr key={packagei._id}>
                   <td>
                     <div className="d-flex align-items-center">
                       <div className="avatar-icon-wrapper mr-3">
                         <div className="avatar-icon">
-                          <img alt="..." src={avatar1} />
+                          <img alt="..." src={packagei.packageImages[0]} />
                         </div>
                       </div>
                       <div>
@@ -56,110 +86,37 @@ export default function PackagesAdminPanelTable() {
                           to="/Package"
                           className="font-weight-bold text-black"
                           title="...">
-                          Ladakh Dreams
+                          {packagei.packageCode}
                         </Link>
                       </div>
                     </div>
                   </td>
                   <td className="text-center">
                     <div>
-                        <b>1/4/21</b>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <Badge color="warning" className="h-auto py-0 px-3">
-                      Inactive
-                    </Badge>
-                  </td>
-                  <td className="text-center text-primary">
-                    <Link to="/EditPackage">
-                      <FontAwesomeIcon color="primary" icon={['fas', 'user-edit']} />
-                    </Link>
-                  </td>
-                  <td className="text-center text-danger">
-                    <Button color="danger">
-                      <FontAwesomeIcon color="danger" icon={['fas', 'trash-alt']} />
-                    </Button>
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar1} />
-                        </div>
-                      </div>
-                      <div>
-                        <Link
-                          to="/Package"
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Ladakh Dreams
-                        </Link>
-                      </div>
+                        <b>{packagei.createdAt.substring(0,10)}</b>
+                        <p>  -</p>
+                        <b>({packagei.createdAt.substring(12,16)} IST)</b>
                     </div>
                   </td>
                   <td className="text-center">
                     <div>
-                        <b>1/4/21</b>
+                        <b>{packagei.updatedAt.substring(0,10)}</b>
+                        <p>  -</p>
+                        <b>({packagei.updatedAt.substring(12,16)} IST)</b>
                     </div>
                   </td>
-                  <td className="text-center">
-                    <Badge color="success" className="h-auto py-0 px-3">
-                      Active
-                    </Badge>
-                  </td>
                   <td className="text-center text-primary">
-                    <Link to="/EditPackage">
+                    <Link to={`/EditPackage/${packagei._id}`}>
                       <FontAwesomeIcon color="primary" icon={['fas', 'user-edit']} />
                     </Link>
                   </td>
                   <td className="text-center text-danger">
-                    <Button color="danger">
+                    <Button color="danger" size="sm" onClick={() => deleteHandler(packagei._id)}>
                       <FontAwesomeIcon color="danger" icon={['fas', 'trash-alt']} />
                     </Button>
                   </td>
                 </tr>
-                <tr>
-                  <td>
-                    <div className="d-flex align-items-center">
-                      <div className="avatar-icon-wrapper mr-3">
-                        <div className="avatar-icon">
-                          <img alt="..." src={avatar1} />
-                        </div>
-                      </div>
-                      <div>
-                        <Link
-                          to="/Package"
-                          className="font-weight-bold text-black"
-                          title="...">
-                          Ladakh Dreams
-                        </Link>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <div>
-                        <b>1/4/21</b>
-                    </div>
-                  </td>
-                  <td className="text-center">
-                    <Badge color="success" className="h-auto py-0 px-3">
-                      Active
-                    </Badge>
-                  </td>
-                  <td className="text-center text-primary">
-                    <Link to="/EditPackage">
-                      <FontAwesomeIcon color="primary" icon={['fas', 'user-edit']} />
-                    </Link>
-                  </td>
-                  <td className="text-center text-danger">
-                    <Button color="danger">
-                      <FontAwesomeIcon color="danger" icon={['fas', 'trash-alt']} />
-                    </Button>
-                  </td>
-                </tr>
+                ))}
               </tbody>
             </Table>
           </div>
@@ -169,6 +126,8 @@ export default function PackagesAdminPanelTable() {
               <AllPackagesPagination/>
           </div>
         </CardBody>
+        )}
+        
       </Card>
     </>
   );
