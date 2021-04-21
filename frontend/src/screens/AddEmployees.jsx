@@ -1,6 +1,10 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {useDispatch,useSelector} from "react-redux";
+import BasicLoader from "../components/LoadingIndicators/BasicLoader";
+import ErrorAlert from "../components/Alerts/ErrorAlert";
+
+import {addEmployees} from "../actions/userActions";
 
 import {
     Row,
@@ -8,9 +12,7 @@ import {
     CardBody,
     Card,
     CardTitle,
-    FormText,
     Form,
-    CustomInput,
     Label,
     FormGroup,
     Input,
@@ -18,20 +20,38 @@ import {
     Container
   } from 'reactstrap';
 
-import particles2 from '../assets/images/hero-bg/particles-2.svg';
-import hero1 from '../assets/images/hero-bg/hero-space-3.jpg';
-
-import Header from "../components/Header";
 import Header1 from "../components/Header1";
-import Footer from "../components/Footer";
 import Footer1 from "../components/Footer1";
 
-import PackageCard from 'components/Cards/PackageCard';
-import HeroCarousels from 'components/carousels/HeroCarousels';
-import StickyWhatsappButton from 'components/Buttons/StickyWhatsapp';
-import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
-export default function AddEmployees() {
+export default function AddEmployees({location,history}) {
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+
+  const dispatch = useDispatch()
+
+  const userAddEmployees = useSelector(state => state.userAddEmployees)
+  const {loading, error, success} = userAddEmployees;
+
+  const userLogin = useSelector(state => state.userLogin)
+  const {userInfo} = userLogin
+
+  useEffect(() => {
+    if(!userInfo || !userInfo.isAdmin){
+      history.push('/Login')
+    }
+  }, [userInfo,history])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    setMessage(`${name} has been added as an Employee.`)
+    // Dispatch Register
+    dispatch(addEmployees(name,email))
+    
+}
+
   return (
     <>
       <Header1/>
@@ -43,7 +63,10 @@ export default function AddEmployees() {
                         <CardTitle className="font-weight-bold font-size-lg mb-4">
                             Add Employee
                         </CardTitle>
-                        <Form>
+                        {success && <p className="bg-neutral-success text-success">{message}</p>}
+                        {error && <ErrorAlert error={error}/>}
+                        {loading && <BasicLoader loading={loading}/>}
+                        <Form onSubmit={submitHandler}>
                             <FormGroup>
                                 <Label htmlFor="exampleName">Name</Label>
                                 <Input
@@ -51,7 +74,8 @@ export default function AddEmployees() {
                                     name="name"
                                     id="exampleName"
                                     placeholder="Name"
-                                    value="Hozefa Jaorawala"
+                                    value={name}
+                                    onChange={(e)=> setName(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -61,12 +85,13 @@ export default function AddEmployees() {
                                     name="email"
                                     id="exampleEmail"
                                     placeholder="Email"
-                                    value="hozefa24imp@gmail.com"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
                                 />
                             </FormGroup>
                             
-                            <Button color="ezzyColor" className="mt-1">
-                            Add
+                            <Button color="ezzyColor" type="submit" className="mt-1">
+                                Add
                             </Button>
                         </Form>
                         </CardBody>

@@ -169,6 +169,7 @@ export default function RegisterScreen({location,history}) {
                           <div className="text-center mb-5">
                             <Button
                               color="primary"
+                              type="submit"
                               className="text-uppercase font-weight-bold font-size-sm my-3">
                               Create account
                             </Button>

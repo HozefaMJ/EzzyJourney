@@ -27,7 +27,10 @@ import {
     USER_EMPLOYEE_LIST_REQUEST,
     USER_EMPLOYEE_LIST_SUCCESS,
     USER_EMPLOYEE_LIST_FAIL,
-    USER_EMPLOYEE_LIST_RESET
+    USER_EMPLOYEE_LIST_RESET,
+    USER_ADD_EMPLOYEE_REQUEST,
+    USER_ADD_EMPLOYEE_SUCCESS,
+    USER_ADD_EMPLOYEE_FAIL
 } from "../constants/userConstants";
 
 export const userLoginReducer = (state = { }, action) => {
@@ -149,6 +152,20 @@ export const userEmployeeListReducer = (state = { employees:[] }, action) => {
             return {loading: false, error: action.payload}
         case USER_EMPLOYEE_LIST_RESET:
             return { users: []}
+        default:
+            return state
+    }
+}
+
+
+export const userAddEmployeeReducer = (state = { }, action) => {
+    switch(action.type){
+        case USER_ADD_EMPLOYEE_REQUEST:
+            return {loading: true}
+        case USER_ADD_EMPLOYEE_SUCCESS:
+            return {loading: false, success: true}
+        case USER_ADD_EMPLOYEE_FAIL:
+            return {loading: false, error: action.payload}
         default:
             return state
     }

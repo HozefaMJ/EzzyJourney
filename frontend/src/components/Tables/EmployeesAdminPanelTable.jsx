@@ -71,7 +71,7 @@ export default function EmployeesAdminPanelTable(history) {
               </thead>
               <tbody>
                 {employees.map(employee => (
-                  <tr>
+                  <tr key={employee._id}>
                   <td>
                     <div className="d-flex align-items-center">
                       <div className="avatar-icon-wrapper mr-3">
