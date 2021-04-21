@@ -5,7 +5,10 @@ import {
     PACKAGE_LIST_FAIL,
     PACKAGE_DETAIL_REQUEST,
     PACKAGE_DETAIL_FAIL,
-    PACKAGE_DETAIL_SUCCESS
+    PACKAGE_DETAIL_SUCCESS,
+    PACKAGE_DELETE_REQUEST,
+    PACKAGE_DELETE_SUCCESS,
+    PACKAGE_DELETE_FAIL
 } from "../constants/packageConstants"
 
 
@@ -42,6 +45,36 @@ export const listPackageDetails = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PACKAGE_DETAIL_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+export const deletePackage = (id) => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: PACKAGE_DELETE_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.delete(`/api/packages/${id}`,config)
+
+        dispatch({
+            type: PACKAGE_DELETE_SUCCESS
+        })
+        
+        
+    } catch (error) {
+        dispatch({
+            type: PACKAGE_DELETE_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

@@ -5,7 +5,8 @@ import {composeWithDevTools} from "redux-devtools-extension"
 import reducersRouting from './reducers';
 
 import {packageListReducer,
-        packageDetailsReducer
+        packageDetailsReducer,
+        packageDeleteReducer
 } from "./reducers/packageReducers";
 
 import {userLoginReducer,
@@ -29,6 +30,7 @@ const reducer = combineReducers({
     ...reducersRouting,
     packageList: packageListReducer,
     packageDetails: packageDetailsReducer,
+    packageDelete: packageDeleteReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,

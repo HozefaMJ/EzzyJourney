@@ -1,10 +1,10 @@
-import React,{useEffect,useState} from 'react';
+import React,{useEffect} from 'react';
 import {useDispatch,useSelector} from "react-redux"
 
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
-import {listPackages} from "../../actions/packageActions";
+import {listPackages,deletePackage} from "../../actions/packageActions";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,11 +12,9 @@ import {
   Table,
   CardBody,
   Card,
-  Badge,
   Button
 } from 'reactstrap';
 
-import avatar1 from '../../assets/images/hero-bg/hero-leh.jpg';
 import { Link } from 'react-router-dom';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import RightIconLink from 'components/Buttons/RightIconLink';
@@ -32,18 +30,20 @@ export default function PackagesAdminPanelTable({history}) {
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
 
+  const packageDelete = useSelector(state => state.packageDelete)
+  const {success: successDelete} = packageDelete
+
   useEffect(() => {
     if(userInfo && userInfo.isAdmin){
       dispatch(listPackages())
     } else {
       history.push('/Login')
     }
-  },[dispatch,history])
+  },[dispatch,history,successDelete])
 
   const deleteHandler = (id) => {
     if(window.confirm('Are You Sure')){
-      //dispatch(deleteUser(id))
-      console.log(id)
+      dispatch(deletePackage(id))
     }
   }
 

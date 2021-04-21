@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { Row, Col, Container } from 'reactstrap';
-import axios from "axios";
 import {useDispatch,useSelector} from "react-redux"
 
 import Header1 from "../components/Header1";
@@ -13,7 +12,6 @@ import SliderEzzy from 'components/Sliders/SliderEzzy';
 import BasicLoader from "../components/LoadingIndicators/BasicLoader";
 import ErrorAlert from "../components/Alerts/ErrorAlert";
 
-//import packages from "../packages";
 import {listPackages} from "../actions/packageActions"
 
 export default function HomeScreen1() {

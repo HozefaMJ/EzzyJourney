@@ -4,7 +4,10 @@ import {
     PACKAGE_LIST_FAIL,
     PACKAGE_DETAIL_REQUEST,
     PACKAGE_DETAIL_SUCCESS,
-    PACKAGE_DETAIL_FAIL
+    PACKAGE_DETAIL_FAIL,
+    PACKAGE_DELETE_REQUEST,
+    PACKAGE_DELETE_SUCCESS,
+    PACKAGE_DELETE_FAIL
 } from "../constants/packageConstants"
 
 export const packageListReducer = (state = {packages: []}, action) => {
@@ -28,6 +31,19 @@ export const packageDetailsReducer = (state = {packages: {reviews:[]}}, action) 
         case PACKAGE_DETAIL_SUCCESS:
             return {loading: false, packages: action.payload}
         case PACKAGE_DETAIL_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const packageDeleteReducer = (state = {}, action) => {
+    switch(action.type){
+        case PACKAGE_DELETE_REQUEST:
+            return {loading: true}
+        case PACKAGE_DELETE_SUCCESS:
+            return {loading: false, success: true}
+        case PACKAGE_DELETE_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

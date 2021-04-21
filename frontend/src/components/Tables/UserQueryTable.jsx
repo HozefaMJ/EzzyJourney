@@ -59,7 +59,7 @@ export default function UserQueryTable({history}) {
             </thead>
             <tbody>
             {queries.map(query => (
-              <tr>
+              <tr key={`${query._id}`}>
                 <td>
                   <div className="d-flex align-items-center">
                     <div className="avatar-icon-wrapper mr-3">
