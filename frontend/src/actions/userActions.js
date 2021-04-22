@@ -27,7 +27,13 @@ import { USER_LOGIN_FAIL,
          USER_EMPLOYEE_LIST_SUCCESS,
          USER_ADD_EMPLOYEE_REQUEST,
          USER_ADD_EMPLOYEE_SUCCESS,
-         USER_ADD_EMPLOYEE_FAIL
+         USER_ADD_EMPLOYEE_FAIL,
+         USER_WISHLIST_REQUEST,
+         USER_WISHLIST_SUCCESS,
+         USER_WISHLIST_FAIL,
+         USER_REMOVE_WISHLIST_REQUEST,
+         USER_REMOVE_WISHLIST_SUCCESS,
+         USER_REMOVE_WISHLIST_FAIL
 } from "constants/userConstants"
 
 export const login = (email, password) => async (dispatch) => {
@@ -333,6 +339,68 @@ export const addEmployees = (name, email) => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: USER_ADD_EMPLOYEE_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+export const wishlistPackages = () => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: USER_WISHLIST_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.get(`/api/packages/myWishlist`,config)
+
+        dispatch({
+            type: USER_WISHLIST_SUCCESS,
+            payload: data
+        })
+        
+        
+    } catch (error) {
+        dispatch({
+            type: USER_WISHLIST_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+
+export const removeWishlist = (id) => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: USER_REMOVE_WISHLIST_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.delete(`/api/packages/myWishlist/${id}`,config)
+
+        dispatch({
+            type: USER_REMOVE_WISHLIST_SUCCESS
+        })
+        
+        
+    } catch (error) {
+        dispatch({
+            type: USER_REMOVE_WISHLIST_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

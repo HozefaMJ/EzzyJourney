@@ -1,4 +1,8 @@
-import { QUERY_LIST_FAIL, 
+import { QUERY_ANONYMOUS_MY_LIST_FAIL,
+         QUERY_ANONYMOUS_MY_LIST_REQUEST, 
+         QUERY_ANONYMOUS_MY_LIST_RESET, 
+         QUERY_ANONYMOUS_MY_LIST_SUCCESS, 
+         QUERY_LIST_FAIL, 
          QUERY_LIST_REQUEST,
          QUERY_LIST_RESET,
          QUERY_LIST_SUCCESS,
@@ -20,6 +24,22 @@ export const queryListReducer = (state = { queries:[] }, action) => {
             return {loading: false, error: action.payload}
         case QUERY_LIST_RESET:
             return { queries: []}
+        default:
+            return state
+    }
+}
+
+
+export const queryAnonymousListReducer = (state = { anonymousQueries:[] }, action) => {
+    switch(action.type){
+        case QUERY_ANONYMOUS_MY_LIST_REQUEST:
+            return {loading: true}
+        case QUERY_ANONYMOUS_MY_LIST_SUCCESS:
+            return {loading: false, anonymousQueries: action.payload}
+        case QUERY_ANONYMOUS_MY_LIST_FAIL:
+            return {loading: false, error: action.payload}
+        case QUERY_ANONYMOUS_MY_LIST_RESET:
+            return { anonymousQueries: []}
         default:
             return state
     }

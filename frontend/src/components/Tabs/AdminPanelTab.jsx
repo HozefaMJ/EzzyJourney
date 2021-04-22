@@ -8,6 +8,7 @@ import { NavLink as NavLinkStrap } from 'reactstrap';
 import UpdateProfileForm from 'components/forms/UpdateProfileForm';
 import UserQueryTable from 'components/Tables/UserQueryTable';
 import EmployeesAdminPanelTable from 'components/Tables/EmployeesAdminPanelTable';
+import AnonymousQueriesAdminPanel from "components/Tables/AnonymousQueriesAdminPanel";
 import PackagesAdminPanelTable from 'components/Tables/PackagesAdminPanelTable';
 import QueriesAdminPanelTable from 'components/Tables/QueriesAdminPanelTable';
 import UserAdminPanelTable from 'components/Tables/UserAdminPanelTable';
@@ -60,7 +61,7 @@ export default function AdminPanelTab({history}) {
                       toggle('3');
                     }}>
                     <span className="font-size-md font-weight-bold">
-                      All Packages
+                      All Anonymous Query
                     </span>
                     <div className="divider" />
                   </NavLinkStrap>
@@ -70,6 +71,18 @@ export default function AdminPanelTab({history}) {
                     className={clsx({ active: activeTab === '4' })}
                     onClick={() => {
                       toggle('4');
+                    }}>
+                    <span className="font-size-md font-weight-bold">
+                      All Packages
+                    </span>
+                    <div className="divider" />
+                  </NavLinkStrap>
+                </NavItem>
+                <NavItem>
+                  <NavLinkStrap
+                    className={clsx({ active: activeTab === '5' })}
+                    onClick={() => {
+                      toggle('5');
                     }}>
                     <span className="font-size-md font-weight-bold">
                       All Employees
@@ -87,9 +100,12 @@ export default function AdminPanelTab({history}) {
                 <QueriesAdminPanelTable history={history}/>
               </TabPane>
               <TabPane tabId="3">
+                <AnonymousQueriesAdminPanel history={history}/>
+              </TabPane>
+              <TabPane tabId="43">
                 <PackagesAdminPanelTable history={history}/>
               </TabPane>
-              <TabPane tabId="4">
+              <TabPane tabId="5">
                   <EmployeesAdminPanelTable history={history}/>
               </TabPane>
             </TabContent>

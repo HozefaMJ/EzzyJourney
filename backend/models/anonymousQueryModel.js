@@ -23,11 +23,11 @@ const anonymousQuerySchema = mongoose.Schema({
     },
     date: {
         from: {
-            type: Date,
+            type: String,
             required: true
         },
         to: {
-            type: Date,
+            type: String,
             required: true
         }
     },

@@ -1,6 +1,9 @@
 import axios from "axios";
 
-import { QUERY_LIST_FAIL,
+import { QUERY_ANONYMOUS_MY_LIST_FAIL, 
+         QUERY_ANONYMOUS_MY_LIST_REQUEST,
+         QUERY_ANONYMOUS_MY_LIST_SUCCESS, 
+         QUERY_LIST_FAIL,
          QUERY_LIST_REQUEST,
          QUERY_LIST_SUCCESS,
          QUERY_MY_LIST_FAIL,
@@ -61,7 +64,7 @@ export const respondQuery = (id) => async (dispatch,getState) => {
             }
         }
 
-        const {data} = await axios.put(`/api/queries/${id}/reverted`,config)
+        const {data} = await axios.put(`/api/queries/${id}/reverted`,{},config)
 
         console.log(data)
 
@@ -104,6 +107,39 @@ export const myListQueries = () => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: QUERY_MY_LIST_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+
+
+export const myAnonymousListQueries = () => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: QUERY_ANONYMOUS_MY_LIST_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        const config = {
+            headers: {
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.get(`/api/queries/all/anonymous`,config)
+
+        dispatch({
+            type: QUERY_ANONYMOUS_MY_LIST_SUCCESS,
+            payload: data
+        })
+        
+        
+    } catch (error) {
+        dispatch({
+            type: QUERY_ANONYMOUS_MY_LIST_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

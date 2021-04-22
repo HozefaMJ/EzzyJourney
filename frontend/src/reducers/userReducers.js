@@ -30,7 +30,14 @@ import {
     USER_EMPLOYEE_LIST_RESET,
     USER_ADD_EMPLOYEE_REQUEST,
     USER_ADD_EMPLOYEE_SUCCESS,
-    USER_ADD_EMPLOYEE_FAIL
+    USER_ADD_EMPLOYEE_FAIL,
+    USER_WISHLIST_REQUEST,
+    USER_WISHLIST_SUCCESS,
+    USER_WISHLIST_FAIL,
+    USER_WISHLIST_RESET,
+    USER_REMOVE_WISHLIST_REQUEST,
+    USER_REMOVE_WISHLIST_SUCCESS,
+    USER_REMOVE_WISHLIST_FAIL
 } from "../constants/userConstants";
 
 export const userLoginReducer = (state = { }, action) => {
@@ -165,6 +172,37 @@ export const userAddEmployeeReducer = (state = { }, action) => {
         case USER_ADD_EMPLOYEE_SUCCESS:
             return {loading: false, success: true}
         case USER_ADD_EMPLOYEE_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+
+export const userWishistReducer = (state = { packages:[] }, action) => {
+    switch(action.type){
+        case USER_WISHLIST_REQUEST:
+            return {loading: true}
+        case USER_WISHLIST_SUCCESS:
+            return {loading: false, packages: action.payload}
+        case USER_WISHLIST_FAIL:
+            return {loading: false, error: action.payload}
+        case USER_WISHLIST_RESET:
+            return { users: []}
+        default:
+            return state
+    }
+}
+
+
+export const userRemoveWishlistReducer = (state = {}, action) => {
+    switch(action.type){
+        case USER_REMOVE_WISHLIST_REQUEST:
+            return {loading: true}
+        case USER_REMOVE_WISHLIST_SUCCESS:
+            return {loading: false, success: true}
+        case USER_REMOVE_WISHLIST_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state
