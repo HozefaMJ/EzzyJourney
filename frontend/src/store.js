@@ -6,7 +6,9 @@ import reducersRouting from './reducers';
 
 import {packageListReducer,
         packageDetailsReducer,
-        packageDeleteReducer
+        packageDeleteReducer,
+        packageUpdateReducer,
+        packageCreateReducer
 } from "./reducers/packageReducers";
 
 import {userLoginReducer,
@@ -31,6 +33,8 @@ const reducer = combineReducers({
     packageList: packageListReducer,
     packageDetails: packageDetailsReducer,
     packageDelete: packageDeleteReducer,
+    packageUpdate: packageUpdateReducer,
+    packageCreate: packageCreateReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,

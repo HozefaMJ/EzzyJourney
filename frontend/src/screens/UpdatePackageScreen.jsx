@@ -1,6 +1,14 @@
-import React from 'react';
+import axios from "axios";
+import React,{useEffect,useState} from 'react';
+import {useDispatch,useSelector} from "react-redux"
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BasicLoader from "../components/LoadingIndicators/BasicLoader";
+import ErrorAlert from "../components/Alerts/ErrorAlert";
+
+import {listPackageDetails, updatePackage} from "actions/packageActions";
+import {PACKAGE_UPDATE_RESET} from "../constants/packageConstants";
+
+
 
 import {
     Row,
@@ -10,7 +18,6 @@ import {
     CardTitle,
     FormText,
     Form,
-    CustomInput,
     Label,
     FormGroup,
     Input,
@@ -20,20 +27,138 @@ import {
 
 import TextareaAutosize from 'react-autosize-textarea';
 
-import particles2 from '../assets/images/hero-bg/particles-2.svg';
-import hero1 from '../assets/images/hero-bg/hero-space-3.jpg';
 
-import Header from "../components/Header";
 import Header1 from "../components/Header1";
-import Footer from "../components/Footer";
 import Footer1 from "../components/Footer1";
 
-import PackageCard from 'components/Cards/PackageCard';
-import HeroCarousels from 'components/carousels/HeroCarousels';
-import StickyWhatsappButton from 'components/Buttons/StickyWhatsapp';
-import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
+export default function UpdatePackages({match,history}) {
 
-export default function UpdatePackages() {
+  const packageId = match.params.id;
+
+  const [packageCode, setPackageCode] = useState('')
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [placesCovered, setPlacesCovered] = useState('')
+  const [hotelNames, setHotelNames] = useState('')
+  const [itinerary, setItinerary] = useState('')
+  const [termsConditions, setTermsConditions] = useState('')
+  const [duration,setDuration] = useState('')
+  const [destination, setDestination] = useState('')
+  const [inclusions, setInclusions] = useState('')
+  const [exclusions, setExclusions] = useState('')
+  const [category, setCategory] = useState('')
+  const [currency, setCurrency] = useState('')
+  const [adultPrice, setAdultPrice] = useState('')
+  const [childAbove6, setChildAbove6] = useState('')
+  const [childBelow6, setChildBelow6] = useState('')
+  const [isMeal, setIsMeal] = useState(false)
+  const [isFlights, setIsFlights] = useState(false)
+  const [isHotel, setIsHotel] = useState(false)
+  const [isTransportation, setIsTransportation] = useState(false)
+  const [isVisa, setIsVisa] = useState(false)
+  const [packageImages, setPackageImages] = useState('')
+  const [uploading, setUploading] = useState(false)
+
+  const dispatch = useDispatch();
+
+  const packageDetails = useSelector(state => state.packageDetails)
+  const {loading, error, packages} = packageDetails
+
+  const packageUpdate = useSelector(state => state.packageUpdate)
+  const {loading: loadingUpdate, error: errorUpdate, success: successUpdate} = packageUpdate
+
+  useEffect(() => {
+    
+    if(successUpdate){
+        dispatch({type: PACKAGE_UPDATE_RESET})
+        history.push('/AdminPanel');
+    } else {
+        if(!packages.packageCode || packages._id !== packageId){
+            dispatch(listPackageDetails(match.params.id))
+        } else {
+            setPackageCode(packages.packageCode)
+            setTitle(packages.title)
+            setDescription(packages.description)
+            setPlacesCovered(packages.placesCovered)
+            setHotelNames(packages.hotelNames)
+            setItinerary(packages.itinerary)
+            setTermsConditions(packages.termsConditions)
+            setDuration(packages.duration)
+            setDestination(packages.destination)
+            setInclusions(packages.inclusions)
+            setExclusions(packages.exclusions)
+            setCategory(packages.category)
+            setCurrency(packages.currency)
+            if(packages.price){
+                setAdultPrice(packages.price.adults)
+                setChildAbove6(packages.price.childAbove6)
+                setChildBelow6(packages.price.childBelow6)
+            }
+            setIsMeal(packages.isMeal)
+            setIsFlights(packages.isFlights)
+            setIsHotel(packages.isHotel)
+            setIsTransportation(packages.isTransportation)
+            setIsVisa(packages.isVisa)
+            setPackageImages(packages.packageImages)
+        }
+    }
+  }, [dispatch,packages, packageId, successUpdate, match])
+
+  const uploadFileHandler = async (e) => {
+      const file = e.target.files[0]
+      const formData = new FormData()
+      formData.append('image',file)
+      setUploading(true)
+
+      try {
+          const config = {
+              headers:{
+                  'Content-Type': 'multipart/form-data'
+              }
+          }
+
+          const {data} = await axios.post('/api/upload',formData,config)
+
+          setPackageImages(data)
+
+          setUploading(false)
+      } catch (error) {
+          console.error(error);
+          setUploading(false)
+
+      }
+
+  }
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(updatePackage({
+        _id: packageId,
+        packageCode,
+        title,
+        description,
+        placesCovered,
+        hotelNames,
+        itinerary,
+        termsConditions,
+        duration,
+        destination,
+        inclusions,
+        exclusions,
+        category,
+        currency,
+        adultPrice,
+        childAbove6,
+        childBelow6,
+        isMeal,
+        isFlights,
+        isHotel,
+        isTransportation,
+        isVisa,
+        packageImages
+    }))
+}
+
   return (
     <>
       <Header1/>
@@ -45,7 +170,10 @@ export default function UpdatePackages() {
                         <CardTitle className="font-weight-bold font-size-xl mb-4">
                             Update Package
                         </CardTitle>
-                        <Form>
+                        {loadingUpdate && <BasicLoader loading={loadingUpdate}/>}
+                        {errorUpdate && <ErrorAlert error={errorUpdate}/>}
+                        {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/> : (
+                            <Form onSubmit={submitHandler}>
                             <FormGroup>
                                 <Label htmlFor="exampleName">Package Code</Label>
                                 <Input
@@ -53,6 +181,8 @@ export default function UpdatePackages() {
                                     name="packageCode"
                                     id="exampleName"
                                     placeholder="Package Code"
+                                    value={packageCode}
+                                    onChange={(e)=> setPackageCode(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -61,7 +191,9 @@ export default function UpdatePackages() {
                                     type="text"
                                     name="title"
                                     id="exampleName"
-                                    placeholder="Package Name"
+                                    placeholder="Package Title"
+                                    value={title}
+                                    onChange={(e)=> setTitle(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -71,6 +203,8 @@ export default function UpdatePackages() {
                                     name="destination"
                                     id="exampleName"
                                     placeholder="Destination"
+                                    value={destination}
+                                    onChange={(e)=> setDestination(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -80,6 +214,8 @@ export default function UpdatePackages() {
                                     name="duration"
                                     id="exampleName"
                                     placeholder="Duration"
+                                    value={duration}
+                                    onChange={(e)=> setDuration(e.target.value)}
                                 />
                             </FormGroup>
                             <h4 className="mt-5 mb-3">Package Price</h4>
@@ -90,6 +226,8 @@ export default function UpdatePackages() {
                                     name="adultPrice"
                                     id="exampleName"
                                     placeholder="Enter Price"
+                                    value={adultPrice}
+                                    onChange={(e)=> setAdultPrice(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -99,6 +237,8 @@ export default function UpdatePackages() {
                                     name="childAbove6"
                                     id="exampleName"
                                     placeholder="Enter Price"
+                                    value={childAbove6}
+                                    onChange={(e)=> setChildAbove6(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -108,33 +248,58 @@ export default function UpdatePackages() {
                                     name="childBelow6"
                                     id="exampleName"
                                     placeholder="Enter Price"
+                                    value={childBelow6}
+                                    onChange={(e)=> setChildBelow6(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label htmlFor="exampleSelect">Select Currency</Label>
-                                <Input type="select" name="currency" id="exampleSelect">
-                                    <option>₹ Rupees</option>
-                                    <option>$ Dollars</option>
-                                    <option>€ Euros</option>
-                                </Input>
+                                <Label htmlFor="exampleName">Currency</Label>
+                                <Input
+                                    type="text"
+                                    name="currency"
+                                    id="exampleName"
+                                    placeholder="Enter Currency"
+                                    value={currency}
+                                    onChange={(e)=> setCurrency(e.target.value)}
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="exampleText">Places Covered</Label>
-                                <Input type="textarea" name="placesCovered" id="exampleText" />
+                                <Input 
+                                    type="textarea" 
+                                    name="placesCovered" 
+                                    id="exampleText"
+                                    value={placesCovered}
+                                    onChange={(e)=> setPlacesCovered(e.target.value)}
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="exampleText">Description</Label>
-                                <Input type="textarea" name="description" id="exampleText" />
+                                <Input 
+                                    type="textarea" 
+                                    name="description" 
+                                    id="exampleText" 
+                                    value={description}
+                                    onChange={(e)=> setDescription(e.target.value)}
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="exampleText">Hotel Names</Label>
-                                <Input type="textarea" name="hotelNames" id="exampleText" />
+                                <Input 
+                                    type="textarea" 
+                                    name="hotelNames" 
+                                    id="exampleText"
+                                    value={hotelNames}
+                                    onChange={(e)=> setHotelNames(e.target.value)}    
+                                />
                             </FormGroup>
                             <FormGroup>
                                 <Label htmlFor="exampleText">Itinerary</Label>
                                 <TextareaAutosize
                                     className="form-control"
                                     placehlder="Itinerary"
+                                    value={itinerary}
+                                    onChange={(e)=> setItinerary(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -142,6 +307,8 @@ export default function UpdatePackages() {
                                 <TextareaAutosize
                                     className="form-control"
                                     placehlder="inclusions"
+                                    value={inclusions}
+                                    onChange={(e)=> setInclusions(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -149,6 +316,8 @@ export default function UpdatePackages() {
                                 <TextareaAutosize
                                     className="form-control"
                                     placehlder="exclusions"
+                                    value={exclusions}
+                                    onChange={(e)=> setExclusions(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup>
@@ -156,6 +325,8 @@ export default function UpdatePackages() {
                                 <TextareaAutosize
                                     className="form-control"
                                     placehlder="termsConditions"
+                                    value={termsConditions}
+                                    onChange={(e)=> setTermsConditions(e.target.value)}
                                 />
                             </FormGroup>
                             
@@ -166,44 +337,81 @@ export default function UpdatePackages() {
                                     name="category"
                                     id="exampleEmail"
                                     placeholder="Category"
+                                    value={category}
+                                    onChange={(e)=> setCategory(e.target.value)}
                                 />
                             </FormGroup>
                             <FormGroup check className="mb-2">
                                 <Label check>
-                                    <Input name="isMeal" type="checkbox" /> Meals
+                                    <Input 
+                                        name="isMeal" 
+                                        type="checkbox"
+                                        checked={isMeal}
+                                        onChange={(e)=> setIsMeal(e.target.checked)}
+                                    /> Meals
                                 </Label>
                             </FormGroup>
                             <FormGroup check className="mb-2">
                                 <Label check>
-                                    <Input name="isHotel" type="checkbox" /> Hotels
+                                    <Input 
+                                        name="isHotel" 
+                                        type="checkbox"
+                                        checked={isHotel}
+                                        onChange={(e)=> setIsHotel(e.target.checked)}
+                                    /> Hotels
                                 </Label>
                             </FormGroup>
                             <FormGroup check className="mb-2">
                                 <Label check>
-                                    <Input name="isFlights" type="checkbox" /> Flights
+                                    <Input 
+                                        name="isFlights" 
+                                        type="checkbox"
+                                        checked={isFlights}
+                                        onChange={(e)=> setIsFlights(e.target.checked)} /> Flights
                                 </Label>
                             </FormGroup>
                             <FormGroup check className="mb-2">
                                 <Label check>
-                                    <Input name="isVisa" type="checkbox" /> Visa
+                                    <Input 
+                                        name="isVisa" 
+                                        type="checkbox"
+                                        checked={isVisa}
+                                        onChange={(e)=> setIsVisa(e.target.checked)}
+                                     /> Visa
                                 </Label>
                             </FormGroup>
                             <FormGroup check className="mb-2">
                                 <Label check>
-                                    <Input name="isTransportation" type="checkbox" /> Transporation
+                                    <Input 
+                                        name="isTransportation" 
+                                        type="checkbox"
+                                        checked={isTransportation}
+                                        onChange={(e)=> setIsTransportation(e.target.checked)} 
+                                    /> Transporation
                                 </Label>
                             </FormGroup>
                             <h4 className="mt-5 mb-3">Package Photos</h4>
                             <FormGroup>
-                                <Input type="file" name="file" id="exampleFile" />
+                                <Input
+                                    type="text"
+                                    value={packageImages}
+                                />
+                                <Input 
+                                    type="file" 
+                                    name="file"
+                                    custom
+                                    onChange={uploadFileHandler}
+                                />
                                 <FormText color="muted">
                                     You can only add .jpg/.jpeg/.png (Images Only)
                                 </FormText>
                             </FormGroup>
+                            {uploading && <BasicLoader loading={uploading}/>}
                             <Button color="ezzyColor" className="mt-1">
                             Update Package
                             </Button>
                         </Form>
+                        )}
                         </CardBody>
                     </Card>
                 </Col>

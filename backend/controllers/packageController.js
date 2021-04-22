@@ -177,6 +177,7 @@ const updatePackage = asyncHandler(async(req,res) => {
         packages.packageCode = req.body.packageCode || packages.packageCode,
         packages.title = req.body.title || packages.title,
         packages.description = req.body.description || packages.description,
+        //packages.packageImages = req.body.packageImages || packages.packageImages,
         
         packages.placesCovered = req.body.placesCovered || packages.placesCovered,
         packages.hotelNames = req.body.hotelNames || packages.hotelNames,
@@ -200,13 +201,20 @@ const updatePackage = asyncHandler(async(req,res) => {
         packages.isTransportation = req.body.isTransportation,
         packages.isVisa = req.body.isVisa
         
-        packages.packageImages.push(req.body.packageImages)
+        //packages.packageImages =  packages.packageImages.push(req.body.packageImages) || packages.packageImages
+
+        if(req.body.packageImages){
+            packages.packageImages.push(req.body.packageImages)
+        } else {
+            packages.packageImages
+        }
 
         const updatedPackage = await packages.save();
 
         res.json({
             packageCode: updatedPackage.packageCode,
             title: updatedPackage.title,
+            packageImages: updatedPackage.packageImages,
             description: updatedPackage.description,
             placesCovered: updatedPackage.placesCovered,
             hotelNames: updatedPackage.hotelNames,
@@ -430,6 +438,7 @@ const removeFromWishlist = asyncHandler(async(req,res) => {
             user.wishlist.pop(inWishlist);
 
             await user.save();
+            res.json({message:"Removed From Wishlist"})
         } else {
             res.status(404);
             throw new Error("Not in wishlist")

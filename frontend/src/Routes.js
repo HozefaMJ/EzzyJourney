@@ -691,7 +691,7 @@ const Routes = () => {
                   <Route path="/EditEmployee/:id" component={EditEmployee} />
                   <Route path="/AddEmployees" component={AddEmployees} />
                   <Route path="/AddPackages" component={AddPackages} />
-                  <Route path="/EditPackage" component={UpdatePackages} />
+                  <Route path="/EditPackage/:id" component={UpdatePackages} />
                   <Route path="/Terms&Conditions" component={TermsAndPolicy} />
                   <Route path="/PrivacyPolicy" component={TermsAndPolicy} />
                   <Route path="/UpdateTerms&Conditions" component={UpdateTermsAndPolicy} />
