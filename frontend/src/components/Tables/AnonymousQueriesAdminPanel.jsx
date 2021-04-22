@@ -4,7 +4,7 @@ import {useDispatch,useSelector} from "react-redux";
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
-import {myAnonymousListQueries, respondQuery} from "../../actions/queryActions";
+import {myAnonymousListQueries, respondAnonymousQuery} from "../../actions/queryActions";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -15,19 +15,7 @@ import {
   Button
 } from 'reactstrap';
 
-import {Link} from "react-router-dom";
-
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
-
-
-/*
-People: Adults ChildAbove6 ChildBelow6
-isResponded
-user.name
-package.name
-message
-createdAt
-*/
 
 export default function AnonymousQueriesAdminPanel({history}) {
 
@@ -39,8 +27,8 @@ export default function AnonymousQueriesAdminPanel({history}) {
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
 
-  const queryResponed = useSelector(state => state.queryResponed)
-  const {success: successRespond} = queryResponed
+  const queryAnonymousRespond = useSelector(state => state.queryAnonymousRespond)
+  const {success: successRespond} = queryAnonymousRespond
 
   useEffect(() => {
     if(userInfo && userInfo.isAdmin){
@@ -52,7 +40,7 @@ export default function AnonymousQueriesAdminPanel({history}) {
 
   const respondHandler = (id) => {
     if(window.confirm("Are You Sure")){
-      dispatch(respondQuery(id))
+      dispatch(respondAnonymousQuery(id))
     }
   }
 

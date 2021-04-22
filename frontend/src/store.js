@@ -28,7 +28,8 @@ import {
   queryListReducer,
   queryRespondReducer,
   myQueryListReducer,
-  queryAnonymousListReducer
+  queryAnonymousListReducer,
+  queryAnonymousRespondReducer
 } from "./reducers/queryReducers";
 
 const reducer = combineReducers({
@@ -52,7 +53,8 @@ const reducer = combineReducers({
     queryList: queryListReducer,
     queryResponed: queryRespondReducer,
     myQueryList: myQueryListReducer,
-    queryAnonymousList: queryAnonymousListReducer
+    queryAnonymousList: queryAnonymousListReducer,
+    queryAnonymousRespond: queryAnonymousRespondReducer
 })
 
 
