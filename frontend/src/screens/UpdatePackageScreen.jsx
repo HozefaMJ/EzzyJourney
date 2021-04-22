@@ -99,7 +99,7 @@ export default function UpdatePackages({match,history}) {
             setIsHotel(packages.isHotel)
             setIsTransportation(packages.isTransportation)
             setIsVisa(packages.isVisa)
-            setPackageImages(packages.packageImages)
+            //setPackageImages(packages.packageImages)
         }
     }
   }, [dispatch,packages, packageId, successUpdate, match])

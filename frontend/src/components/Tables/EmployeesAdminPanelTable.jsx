@@ -16,11 +16,10 @@ import {
   Button
 } from 'reactstrap';
 
-import avatar7 from '../../assets/images/avatars/avatar7.jpg';
 import RightIconLink from 'components/Buttons/RightIconLink';
 import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 
-export default function EmployeesAdminPanelTable(history) {
+export default function EmployeesAdminPanelTable({history}) {
 
   const dispatch = useDispatch();
 

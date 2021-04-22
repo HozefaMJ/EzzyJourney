@@ -201,14 +201,15 @@ const updatePackage = asyncHandler(async(req,res) => {
         packages.isTransportation = req.body.isTransportation,
         packages.isVisa = req.body.isVisa
         
-        //packages.packageImages =  packages.packageImages.push(req.body.packageImages) || packages.packageImages
+        //packages.packageImages =  req.body.packageImages || packages.packageImages
 
-        if(req.body.packageImages){
+        if (req.body.packageImages) {
             packages.packageImages.push(req.body.packageImages)
-        } else {
-            packages.packageImages
         }
 
+        
+
+        
         const updatedPackage = await packages.save();
 
         res.json({

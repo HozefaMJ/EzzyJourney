@@ -87,7 +87,7 @@ export const deletePackage = (id) => async (dispatch,getState) => {
 }
 
 
-export const createPackage = () => async (dispatch,getState) => {
+export const createPackage = (packageCode,title,description,placesCovered,hotelNames,itinerary,termsConditions,duration,destination,inclusions,exclusions,category,currency,adultPrice,childAbove6,childBelow6,isMeal,isFlights,isHotel,isTransportation,isVisa,packageImages) => async (dispatch,getState) => {
     try {
         dispatch({
             type: PACKAGE_CREATE_REQUEST
@@ -97,11 +97,12 @@ export const createPackage = () => async (dispatch,getState) => {
 
         const config = {
             headers: {
+                'Content-Type': 'application/json',
                 Authorization: `Bearer ${userInfo.token}`
             }
         }
 
-        const {data} = await axios.post(`/api/packages/new`,{},config)
+        const {data} = await axios.post(`/api/packages/new`,{packageCode,title,description,placesCovered,hotelNames,itinerary,termsConditions,duration,destination,inclusions,exclusions,category,currency,adultPrice,childAbove6,childBelow6,isMeal,isFlights,isHotel,isTransportation,isVisa,packageImages},config)
 
         dispatch({
             type: PACKAGE_CREATE_SUCCESS,
