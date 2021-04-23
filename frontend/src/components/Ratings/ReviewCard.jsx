@@ -28,7 +28,7 @@ export default function ReviewCard({Username,rating,review}) {
                 <h5>{Username}</h5>
             </div>
             <div>
-                <SmallRating rating={4} unClickable={true}/>
+                <SmallRating rating={rating} unClickable={true}/>
             </div>
             <div className="mt-3">
                 <p>

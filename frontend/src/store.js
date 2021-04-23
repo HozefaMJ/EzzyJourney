@@ -8,7 +8,8 @@ import {packageListReducer,
         packageDetailsReducer,
         packageDeleteReducer,
         packageUpdateReducer,
-        packageCreateReducer
+        packageCreateReducer,
+        packageReviewCreateReducer
 } from "./reducers/packageReducers";
 
 import {userLoginReducer,
@@ -39,6 +40,7 @@ const reducer = combineReducers({
     packageDelete: packageDeleteReducer,
     packageUpdate: packageUpdateReducer,
     packageCreate: packageCreateReducer,
+    packageReviewCreate: packageReviewCreateReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,
@@ -49,7 +51,7 @@ const reducer = combineReducers({
     userEmployeeList: userEmployeeListReducer,
     userAddEmployees: userAddEmployeeReducer,
     userWishlist: userWishistReducer,
-    userRemoveWishlist: userWishistReducer,
+    userRemoveWishlist: userRemoveWishlistReducer,
     queryList: queryListReducer,
     queryResponed: queryRespondReducer,
     myQueryList: myQueryListReducer,

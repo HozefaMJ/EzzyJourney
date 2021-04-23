@@ -14,7 +14,10 @@ import {
     PACKAGE_UPDATE_REQUEST,
     PACKAGE_CREATE_REQUEST,
     PACKAGE_CREATE_SUCCESS,
-    PACKAGE_CREATE_FAIL
+    PACKAGE_CREATE_FAIL,
+    PACKAGE_CREATE_REVIEW_REQUEST,
+    PACKAGE_CREATE_REVIEW_SUCCESS,
+    PACKAGE_CREATE_REVIEW_FAIL
 } from "../constants/packageConstants"
 
 
@@ -148,6 +151,35 @@ export const updatePackage = (packages) => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: PACKAGE_UPDATE_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+export const createReview = (packageId,review) => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: PACKAGE_CREATE_REVIEW_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        await axios.post(`/api/packages/${packageId}/reviews`,review,config)
+
+        dispatch({
+            type: PACKAGE_CREATE_REVIEW_SUCCESS
+        })
+        
+    } catch (error) {
+        dispatch({
+            type: PACKAGE_CREATE_REVIEW_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

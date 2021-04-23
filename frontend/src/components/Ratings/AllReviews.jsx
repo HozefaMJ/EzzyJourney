@@ -21,7 +21,7 @@ import LargeRating from "./LargeRating";
 import ReviewCard from './ReviewCard';
 import SmallRating from './SmallRating';
 
-export default function AllReviews({Username,rating,review}) {
+export default function AllReviews({reviews}) {
   return (
     <>
       <Row>
@@ -31,10 +31,12 @@ export default function AllReviews({Username,rating,review}) {
               <CardTitle className="font-weight-bold font-size-lg mb-4">
                 All Reviews
               </CardTitle>
-              <ReviewCard Username="Husain Vadgamwala" rating={3} review="Great time to go ladakh and with Ezzy its always great"/>
-              <ReviewCard Username="Husain Vadgamwala" rating={3} review="Great time to go ladakh and with Ezzy its always great"/>
-              <ReviewCard Username="Husain Vadgamwala" rating={3} review="Great time to go ladakh and with Ezzy its always great"/>
-              <ReviewCard Username="Husain Vadgamwala" rating={3} review="Great time to go ladakh and with Ezzy its always great"/>
+              {/*
+              {reviews ? reviews.length === 0 ? <h6>No Reviews</h6> : "" : ""}
+              {reviews.map(review => (
+                <ReviewCard Username={review.name} rating={review.rating} review={review.comment}/>
+              ))}
+              */}
             </CardBody>
           </Card>
         </Col>
