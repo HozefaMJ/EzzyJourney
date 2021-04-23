@@ -14,6 +14,9 @@ import { QUERY_ANONYMOUS_FAIL, QUERY_ANONYMOUS_MY_LIST_FAIL,
          QUERY_MY_LIST_FAIL,
          QUERY_MY_LIST_REQUEST,
          QUERY_MY_LIST_SUCCESS,
+         QUERY_NORMAL_FAIL,
+         QUERY_NORMAL_REQUEST,
+         QUERY_NORMAL_SUCCESS,
          QUERY_RESPOND_FAIL,
          QUERY_RESPOND_REQUEST,
          QUERY_RESPOND_SUCCESS,
@@ -100,6 +103,19 @@ export const queryAnonymousReducer = (state = { }, action) => {
         case QUERY_ANONYMOUS_SUCCESS:
             return {loading: false, success: true}
         case QUERY_ANONYMOUS_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const queryNormalReducer = (state = { }, action) => {
+    switch(action.type){
+        case QUERY_NORMAL_REQUEST:
+            return {loading: true}
+        case QUERY_NORMAL_SUCCESS:
+            return {loading: false, success: true}
+        case QUERY_NORMAL_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

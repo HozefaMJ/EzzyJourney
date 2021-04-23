@@ -1,4 +1,9 @@
-import React, { useState } from 'react';
+import React,{useState,useEffect} from 'react';
+import {useDispatch,useSelector} from "react-redux";
+import BasicLoader from "../LoadingIndicators/BasicLoader";
+import ErrorAlert from "../Alerts/ErrorAlert";
+
+import {queryNormalAction} from "../../actions/queryActions";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,17 +13,40 @@ import {
   Input,
   Button,
   Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter
+  Form
 } from 'reactstrap';
 
-import {Link} from "react-router-dom";
 
-export default function PackageQueryForm({buttonColor}) {
+export default function PackageQueryForm({buttonColor,match}) {
   const [modal5, setModal5] = useState(false);
-
   const toggle5 = () => setModal5(!modal5);
+
+  const packageId = match.params.id
+
+  const [adults, setAdults] = useState('')
+  const [childAbove6, setChildAbove6] = useState('')
+  const [childBelow6, setChildBelow6] = useState('')
+
+  const [message, setMessage] = useState('')
+  const [diplayMessage, setDisplayMessage] = useState('')
+
+  const dispatch = useDispatch()
+
+  const queryNormal = useSelector(state => state.queryNormal);
+  const {loading, error, success} = queryNormal;
+
+  useEffect(() => {
+    if(success){
+      setDisplayMessage("We'll Contact You Shortly")
+    }
+  }, [success])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    
+    dispatch(queryNormalAction(packageId,message,adults,childAbove6,childBelow6))
+    
+}
 
   return (
     <>
@@ -38,55 +66,78 @@ export default function PackageQueryForm({buttonColor}) {
                   <p>Please enter the required detail</p>
                 </div>
               </div>
-              <div className="card-body px-lg-5 py-lg-5">
-                <div>
-                  <div className="form-group mb-3">
-                    <div className="input-group input-group-alternative">
-                      <div className="input-group-prepend">
-                        <InputGroupText>
-                          <FontAwesomeIcon icon={['fas', 'signature']} />
-                        </InputGroupText>
-                      </div>
-                      <Input placeholder="Message" type="text" />
-                    </div>
-                  </div>
+              {diplayMessage && <p className="bg-neutral-success text-success m-3 text-center">{diplayMessage}</p>}
+              {error && <ErrorAlert error={error}/>}
+              {loading && <BasicLoader loading={loading}/>}
+              <Form onSubmit={submitHandler} className="card-body px-lg-5 py-lg-5">
+                
                   <FormGroup>
                     <div className="input-group input-group-alternative">
                       <div className="input-group-prepend">
                         <InputGroupText>
-                          <FontAwesomeIcon icon={['fas', 'male']} />
+                          <FontAwesomeIcon icon={['fas', 'comment']} />
                         </InputGroupText>
                       </div>
-                      <Input placeholder="Adults" type="number" />
+                      <Input 
+                        placeholder="Message" 
+                        type="text" 
+                        value={message}
+                        onChange={(e)=> setMessage(e.target.value)}
+                        />
                     </div>
                   </FormGroup>
                   <FormGroup>
                     <div className="input-group input-group-alternative">
                       <div className="input-group-prepend">
                         <InputGroupText>
-                          <FontAwesomeIcon icon={['fas', 'child']} />
+                          <FontAwesomeIcon icon={['fas', 'users']} />
                         </InputGroupText>
                       </div>
-                      <Input placeholder="Children Between Age 6 - 12" type="number" />
+                      <Input 
+                        placeholder="Adults" 
+                        type="number" 
+                        value={adults}
+                        onChange={(e)=> setAdults(e.target.value)}
+                        />
                     </div>
                   </FormGroup>
                   <FormGroup>
                     <div className="input-group input-group-alternative">
                       <div className="input-group-prepend">
                         <InputGroupText>
-                          <FontAwesomeIcon icon={['fas', 'baby']} />
+                          <FontAwesomeIcon icon={['fas', 'users']} />
                         </InputGroupText>
                       </div>
-                      <Input placeholder="Children Below Age 6" type="number" />
+                      <Input 
+                        placeholder="Child (6-12)" 
+                        type="number" 
+                        value={childAbove6}
+                        onChange={(e)=> setChildAbove6(e.target.value)}
+                        />
+                    </div>
+                  </FormGroup>
+                  <FormGroup>
+                    <div className="input-group input-group-alternative">
+                      <div className="input-group-prepend">
+                        <InputGroupText>
+                          <FontAwesomeIcon icon={['fas', 'users']} />
+                        </InputGroupText>
+                      </div>
+                      <Input 
+                        placeholder="Child Below 6" 
+                        type="number" 
+                        value={childBelow6}
+                        onChange={(e)=> setChildBelow6(e.target.value)}
+                        />
                     </div>
                   </FormGroup>
                   <div className="text-center">
-                    <Button color="ezzyColor" className="btn-pill mt-4">
+                    <Button color="ezzyColor" type="submit" className="btn-pill mt-4">
                       Let's Go!!!
                     </Button>
                   </div>
-                </div>
-              </div>
+                
+              </Form>
             </Card>
           </div>
         </Modal>

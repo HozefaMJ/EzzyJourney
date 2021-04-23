@@ -8,7 +8,7 @@ import QueryModalForm from "../forms/QueryModalForm";
 import SmallRating from 'components/Ratings/SmallRating';
 import { useSelector } from 'react-redux';
 
-export default function PackageTitleCard({title,count,rating,reviewCount}) {
+export default function PackageTitleCard({title,count,rating,reviewCount,match}) {
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin;
@@ -38,7 +38,7 @@ export default function PackageTitleCard({title,count,rating,reviewCount}) {
                 <Col lg="2">
                     <div className="display-3 m-2 font-weight-bold">
                         {userInfo ? (
-                            <PackageQueryForm buttonColor="ezzyColor"/>
+                            <PackageQueryForm buttonColor="ezzyColor" match={match}/>
                         ) : (
                             <QueryModalForm buttonColor="ezzyColor" buttonName="Send a Query"/>
                         )}

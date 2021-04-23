@@ -14,6 +14,9 @@ import { QUERY_ANONYMOUS_FAIL, QUERY_ANONYMOUS_MY_LIST_FAIL,
          QUERY_MY_LIST_FAIL,
          QUERY_MY_LIST_REQUEST,
          QUERY_MY_LIST_SUCCESS,
+         QUERY_NORMAL_FAIL,
+         QUERY_NORMAL_REQUEST,
+         QUERY_NORMAL_SUCCESS,
          QUERY_RESPOND_FAIL,
          QUERY_RESPOND_REQUEST,
          QUERY_RESPOND_SUCCESS,
@@ -214,6 +217,42 @@ export const queryAnonymousAction = (name, email,contact,destination,from,to,adu
     } catch (error) {
         dispatch({
             type: QUERY_ANONYMOUS_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+
+
+export const queryNormalAction = (packageId,message,adults,childAbove6,childBelow6) => async (dispatch,getState) => {
+    try {
+        dispatch({
+            type: QUERY_NORMAL_REQUEST
+        })
+
+        const { userLogin: {userInfo} } = getState()
+
+        console.log(userInfo.token)
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${userInfo.token}`
+            }
+        }
+
+        const {data} = await axios.post(`/api/queries/${packageId}/new`, {message,adults,childAbove6,childBelow6},config)
+
+        dispatch({
+            type: QUERY_NORMAL_SUCCESS,
+            payload: data
+        })
+        
+
+    } catch (error) {
+        dispatch({
+            type: QUERY_NORMAL_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

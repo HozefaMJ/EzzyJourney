@@ -64,7 +64,7 @@ export default function Package({match}) {
       <Header1/>
       {loading ? <BasicLoader loading={loading}/> : error ? <ErrorAlert error={error}/> : (
         <>
-        <PackageTitleCard title={packages.title} count={packages.numWishlisted} rating={packages.rating} reviewCount={packages.numReviews}/>
+        <PackageTitleCard match={match} title={packages.title} count={packages.numWishlisted} rating={packages.rating} reviewCount={packages.numReviews}/>
         {packages.packageImages ? (
           <SliderPackage images={packages.packageImages}/> 
         ): (<h2>Images not available yet</h2>)}
