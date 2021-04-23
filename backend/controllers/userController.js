@@ -47,7 +47,7 @@ const registerUser = asyncHandler(async(req,res) => {
 
     const user = await User.create({
         name,
-        profilePicture,
+        profilePicture: '/images/default.jpg',
         email,
         contact,
         dob: dob,
@@ -66,7 +66,8 @@ const registerUser = asyncHandler(async(req,res) => {
             password: user.password,
             isAdmin: user.isAdmin,
             isEmployee: user.isEmployee,
-            isBlocked: user.isBlocked
+            isBlocked: user.isBlocked,
+            token: generateToken(user._id)
         })
     } else {
         res.status(404);

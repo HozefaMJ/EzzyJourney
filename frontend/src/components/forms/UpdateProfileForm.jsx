@@ -1,6 +1,8 @@
+import axios from "axios";
+
 import React,{useState,useEffect} from 'react';
 import {useDispatch,useSelector} from "react-redux";
-import { Row, Col, CustomInput, Label, FormGroup, Button } from 'reactstrap';
+import { Row, Col, Input, FormText, Label, FormGroup, Button } from 'reactstrap';
 
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
@@ -9,14 +11,10 @@ import {getUserDetails,updateUserProfile} from "../../actions/userActions";
 
 import {USER_UPDATE_PROFILE_RESET} from "../../constants/userConstants";
 
+
 import {
   AvForm,
   AvField,
-  AvGroup,
-  AvInput,
-  AvFeedback,
-  AvRadioGroup,
-  AvRadio
 } from 'availity-reactstrap-validation';
 
 
@@ -40,6 +38,8 @@ export default function UpdateProfileForm({history}) {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
     const [message, setMessage] = useState('')
+    const [profilePicture, setProfilePicture] = useState('')
+    const [uploading, setUploading] = useState(false)
   
     const dispatch = useDispatch()
   
@@ -70,13 +70,39 @@ export default function UpdateProfileForm({history}) {
       }
     }, [dispatch,userInfo,user,history,success])
   
+    const uploadFileHandler = async (e) => {
+      const file = e.target.files[0]
+      const formData = new FormData()
+      formData.append('image',file)
+      setUploading(true)
+
+      try {
+          const config = {
+              headers:{
+                  'Content-Type': 'multipart/form-data'
+              }
+          }
+
+          const {data} = await axios.post('/api/upload',formData,config)
+
+          setProfilePicture(data)
+
+          setUploading(false)
+      } catch (error) {
+          console.error(error);
+          setUploading(false)
+
+      }
+
+  }
+
     const submitHandler = (e) => {
       
       if(password !== confirmPassword) {
         setMessage('Passwords Do Not Match')
       } else {
         // Dispatch Update
-        dispatch(updateUserProfile({id: user._id,name,email,contact,dob,password,address}))
+        dispatch(updateUserProfile({id: user._id,name,email,contact,dob,password,address,profilePicture}))
       }
   }
   
@@ -96,13 +122,23 @@ export default function UpdateProfileForm({history}) {
             <AvField name="email" label="Email Address" type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
             <AvField name="contact" label="Contact Number" type="tel" value={contact} onChange={(e) => setContact(e.target.value)} />
             <div className="mb-3">
-                <Label for="form-file-4">Update Profile Picture</Label>
-                <CustomInput
-                
-                type="file"
-                id="form-file-4"
-                name="profilepicture"
-                />{/*invalid*/}
+            <FormGroup>
+                                <Input
+                                    type="text"
+                                    value={profilePicture}
+                                    readOnly
+                                />
+                                <Input 
+                                    type="file" 
+                                    name="file"
+                                    custom='true'
+                                    onChange={uploadFileHandler}
+                                />
+                                <FormText color="muted">
+                                    You can only add .jpg/.jpeg/.png (Images Only)
+                                </FormText>
+                            </FormGroup>
+                            {uploading && <BasicLoader loading={uploading}/>}
             </div>
             <AvField name="dob" label={`Date of Birth: (${dob})`} type="date" value={dob} onChange={(e) => setDob(e.target.value)} />
             <AvField name="address" label="Address" type="text" value={address} onChange={(e) => setAddress(e.target.value)} />
