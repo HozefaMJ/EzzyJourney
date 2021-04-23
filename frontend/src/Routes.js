@@ -638,6 +638,8 @@ const Routes = () => {
 
           <Route
             path={[
+              '/search',
+              '/page',
               '/Login',
               '/Register',
               '/Package',
@@ -681,6 +683,9 @@ const Routes = () => {
                   exit="out"
                   variants={pageVariants}
                   transition={pageTransition}>
+                  <Route path="/search/:keyword" component={Home1} />
+                  <Route path="/search/:keyword/page/:pageNumber" component={Home1} />
+                  <Route path="/page/:pageNumber" component={Home1} />
                   <Route path="/Login" component={Login} />
                   <Route path="/Register" component={Register} />
                   <Route path="/Package/:id" component={Package} />

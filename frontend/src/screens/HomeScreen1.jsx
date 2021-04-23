@@ -14,17 +14,21 @@ import ErrorAlert from "../components/Alerts/ErrorAlert";
 
 import {listPackages} from "../actions/packageActions"
 
-export default function HomeScreen1() {
+export default function HomeScreen1({match}) {
+
+  const keyword = match.params.keyword
+
+  const pageNumber = match.params.pageNumber || 1
 
   const dispatch = useDispatch()
 
   const packageList = useSelector((state) => state.packageList)
 
-  const {loading,error,packages} = packageList;
+  const {loading,error,packages,page,pages} = packageList;
 
   useEffect(() => {
-    dispatch(listPackages())
-  }, [dispatch])
+    dispatch(listPackages(keyword,pageNumber))
+  }, [dispatch,keyword,pageNumber])
 
   return (
     <>
@@ -48,7 +52,7 @@ export default function HomeScreen1() {
            
             <Row>
               <Col lg={12}>
-                <AllPackagesPagination/>
+                <AllPackagesPagination pages={pages} page={page} keyword={keyword ? keyword : ""}/>
               </Col>
             </Row>
          

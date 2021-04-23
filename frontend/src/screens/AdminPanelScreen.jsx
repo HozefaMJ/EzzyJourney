@@ -19,12 +19,12 @@ import UserProfileTab from 'components/Tabs/UserProfileTab';
 import AdminPanelTab from 'components/Tabs/AdminPanelTab';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
-export default function AdminPanel({history}) {
+export default function AdminPanel({history,match}) {
   return (
     <>
       <Header1/>
         <Container>
-            <AdminPanelTab history={history}/>
+            <AdminPanelTab history={history} match={match}/>
         </Container>
       <Footer1/>
     </>

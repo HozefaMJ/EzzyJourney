@@ -17,15 +17,18 @@ import {
     PACKAGE_CREATE_FAIL,
     PACKAGE_CREATE_REVIEW_REQUEST,
     PACKAGE_CREATE_REVIEW_SUCCESS,
-    PACKAGE_CREATE_REVIEW_FAIL
+    PACKAGE_CREATE_REVIEW_FAIL,
+    PACKAGE_ADMIN_LIST_REQUEST,
+    PACKAGE_ADMIN_LIST_SUCCESS,
+    PACKAGE_ADMIN_LIST_FAIL
 } from "../constants/packageConstants"
 
 
-export const listPackages = () => async (dispatch) => {
+export const listPackages = (keyword = "", pageNumber = "") => async (dispatch) => {
     try {
         dispatch({ type: PACKAGE_LIST_REQUEST })
 
-        const {data} = await axios.get('/api/packages/all')
+        const {data} = await axios.get(`/api/packages/all?keyword=${keyword}&pageNumber=${pageNumber}`)
 
         dispatch({
             type: PACKAGE_LIST_SUCCESS,
@@ -35,6 +38,24 @@ export const listPackages = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: PACKAGE_LIST_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+export const listPackagesAdmin = () => async (dispatch) => {
+    try {
+        dispatch({ type: PACKAGE_ADMIN_LIST_REQUEST })
+
+        const {data} = await axios.get(`/api/packages/all/admin`)
+
+        dispatch({
+            type: PACKAGE_ADMIN_LIST_SUCCESS,
+            payload: data  
+        })
+
+    } catch (error) {
+        dispatch({
+            type: PACKAGE_ADMIN_LIST_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

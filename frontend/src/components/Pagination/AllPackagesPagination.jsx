@@ -3,8 +3,28 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-export default function AllPackagesPagination() {
-  return (
+export default function AllPackagesPagination({page,pages,keyword="",isAdmin=false}) {
+  return pages > 1 && (
+    <>
+        <div className="d-flex align-items-center justify-content-center flex-wrap m-5">
+          <Pagination className="pagination-success">
+            {[...Array(pages).keys()].map(x => (
+              <PaginationItem active={x+1 === page} key={x+1}>
+                <PaginationLink href={keyword ? (`/search/${keyword}/page/${x+1}`) : (`/page/${x+1}`)}>
+                  {x+1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
+            
+          </Pagination>
+        </div>
+    </>
+  )
+}
+
+
+/*
+(
     <>
       <div className="d-flex align-items-center justify-content-center flex-wrap m-5">
         <Pagination className="pagination-info">
@@ -51,4 +71,4 @@ export default function AllPackagesPagination() {
       
     </>
   );
-}
+*/

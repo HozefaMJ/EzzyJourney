@@ -19,7 +19,10 @@ import {
     PACKAGE_CREATE_REVIEW_REQUEST,
     PACKAGE_CREATE_REVIEW_SUCCESS,
     PACKAGE_CREATE_REVIEW_FAIL,
-    PACKAGE_CREATE_REVIEW_RESET
+    PACKAGE_CREATE_REVIEW_RESET,
+    PACKAGE_ADMIN_LIST_REQUEST,
+    PACKAGE_ADMIN_LIST_SUCCESS,
+    PACKAGE_ADMIN_LIST_FAIL
 } from "../constants/packageConstants"
 
 export const packageListReducer = (state = {packages: []}, action) => {
@@ -27,8 +30,25 @@ export const packageListReducer = (state = {packages: []}, action) => {
         case PACKAGE_LIST_REQUEST:
             return {loading: true, packages: []}
         case PACKAGE_LIST_SUCCESS:
-            return {loading: false, packages: action.payload}
+            return { loading: false,
+                     packages: action.payload.packages,
+                     pages: action.payload.pages,
+                     page: action.payload.page}
         case PACKAGE_LIST_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+export const packageListAdminReducer = (state = {packages: []}, action) => {
+    switch(action.type){
+        case PACKAGE_ADMIN_LIST_REQUEST:
+            return {loading: true, packages: []}
+        case PACKAGE_ADMIN_LIST_SUCCESS:
+            return { loading: false,
+                     packages: action.payload}
+        case PACKAGE_ADMIN_LIST_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

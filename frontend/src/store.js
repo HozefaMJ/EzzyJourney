@@ -9,7 +9,8 @@ import {packageListReducer,
         packageDeleteReducer,
         packageUpdateReducer,
         packageCreateReducer,
-        packageReviewCreateReducer
+        packageReviewCreateReducer,
+        packageListAdminReducer
 } from "./reducers/packageReducers";
 
 import {userLoginReducer,
@@ -36,6 +37,7 @@ import {
 const reducer = combineReducers({
     ...reducersRouting,
     packageList: packageListReducer,
+    packageListAdmin: packageListAdminReducer,
     packageDetails: packageDetailsReducer,
     packageDelete: packageDeleteReducer,
     packageUpdate: packageUpdateReducer,

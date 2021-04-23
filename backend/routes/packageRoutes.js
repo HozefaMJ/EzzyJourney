@@ -18,7 +18,8 @@ import {
     myWishlist,
     removeFromWishlist,
     dummyAll,
-    dummyById
+    dummyById,
+    getAllPackagesAdmin
 } from "../controllers/packageController.js";
 
 import {
@@ -30,6 +31,7 @@ import {
 router.post('/new',protect,employee,addPackage);
 
 router.get("/all",getAllPackages);
+router.get("/all/admin",getAllPackagesAdmin);
 
 
 

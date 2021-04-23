@@ -14,7 +14,7 @@ import {
 
 import { NavLink as NavLinkStrap } from 'reactstrap';
 import projectLogo from '../assets/images/react.svg';
-import {Link} from "react-router-dom"
+import {Link, Route} from "react-router-dom"
 
 import SearchBarNav from "components/SearchBarNav";
 import WordOutlineButton from './Buttons/WordOutineButton';
@@ -38,7 +38,7 @@ export default function Header1() {
             <div className="header-nav-wrapper bg-ezzy px-4 shadow-lg header-nav-wrapper-lg navbar-light">
               <div className="app-nav-logo">
                 <a
-                  href="/DashboardMonitoring"
+                  href="/Home"
                   title="Ezzy Jouneys"
                   className="app-nav-logo app-nav-logo--dark">
                   <div className="app-nav-logo--icon rounded-sm bg-light border-0">
@@ -65,7 +65,7 @@ export default function Header1() {
                     </a>
                   </li>
                   <li>
-                      <SearchBarNav/>
+                      <Route render={({history})=> <SearchBarNav history={history}/>}/>
                   </li>
                 </ul>
               </div>

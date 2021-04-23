@@ -110,9 +110,24 @@ const addPackage = asyncHandler(async(req,res) => {
 // @access Public
 const getAllPackages = asyncHandler(async(req,res) => {
 
-    const packages = await Package.find({});
-    res.json(packages);
+    // For Pagination
+    const pageSize = 12
+    const page = Number(req.query.pageNumber) || 1
 
+    // Modified for search
+    // /api/products?keyword=${keyword}
+    const keyword = req.query.keyword ? {
+        title: {
+            $regex: req.query.keyword,
+            $options: 'i'
+        }
+    } : {}
+
+    const count = await Package.countDocuments({...keyword})
+    const packages = await Package.find({...keyword}).limit(pageSize).skip(pageSize * (page - 1))
+    res.json({packages,page,pages: Math.ceil(count/pageSize)})
+
+    
     /*
     // For Pagination
     const pageSize = 12
@@ -133,6 +148,17 @@ const getAllPackages = asyncHandler(async(req,res) => {
     */
     
 })
+
+// @desc Get All Packages
+// @route GET /api/package/all
+// @access Public
+const getAllPackagesAdmin = asyncHandler(async(req,res) => {
+
+    const packages = await Package.find({});
+    res.json(packages)
+    
+})
+
 
 // @desc Get All Packages
 // @route GET /api/package/
@@ -463,6 +489,7 @@ const getTopPackages = asyncHandler(async (req, res) => {
 export {
     addPackage,
     getAllPackages,
+    getAllPackagesAdmin,
     getPackageById,
     updatePackage,
     verifyPackageById,

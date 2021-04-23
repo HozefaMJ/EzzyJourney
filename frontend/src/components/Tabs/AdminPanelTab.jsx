@@ -13,7 +13,7 @@ import PackagesAdminPanelTable from 'components/Tables/PackagesAdminPanelTable';
 import QueriesAdminPanelTable from 'components/Tables/QueriesAdminPanelTable';
 import UserAdminPanelTable from 'components/Tables/UserAdminPanelTable';
 
-export default function AdminPanelTab({history}) {
+export default function AdminPanelTab({history,match}) {
   const [activeTab, setActiveTab] = useState('1');
 
   const toggle = (tab) => {
@@ -102,7 +102,7 @@ export default function AdminPanelTab({history}) {
               <TabPane tabId="3">
                 <AnonymousQueriesAdminPanel history={history}/>
               </TabPane>
-              <TabPane tabId="43">
+              <TabPane tabId="4">
                 <PackagesAdminPanelTable history={history}/>
               </TabPane>
               <TabPane tabId="5">

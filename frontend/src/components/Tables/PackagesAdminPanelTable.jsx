@@ -4,7 +4,8 @@ import {useDispatch,useSelector} from "react-redux"
 import BasicLoader from "../LoadingIndicators/BasicLoader";
 import ErrorAlert from "../Alerts/ErrorAlert";
 
-import {listPackages,deletePackage} from "../../actions/packageActions";
+
+import {listPackagesAdmin,deletePackage} from "../../actions/packageActions";
 
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -16,16 +17,16 @@ import {
 } from 'reactstrap';
 
 import { Link } from 'react-router-dom';
-import AllPackagesPagination from 'components/Pagination/AllPackagesPagination';
 import RightIconLink from 'components/Buttons/RightIconLink';
 
 
 export default function PackagesAdminPanelTable({history}) {
 
+
   const dispatch = useDispatch();
 
-  const packageList = useSelector((state) => state.packageList)
-  const {loading,error,packages} = packageList;
+  const packageListAdmin = useSelector((state) => state.packageListAdmin)
+  const {loading,error,packages: packagesAdmin} = packageListAdmin;
 
   const userLogin = useSelector(state => state.userLogin)
   const {userInfo} = userLogin
@@ -35,11 +36,11 @@ export default function PackagesAdminPanelTable({history}) {
 
   useEffect(() => {
     if(userInfo && userInfo.isAdmin){
-      dispatch(listPackages())
+      dispatch(listPackagesAdmin())
     } else {
       history.push('/Login')
     }
-  },[dispatch,history,successDelete])
+  },[dispatch,history,userInfo,successDelete])
 
   const deleteHandler = (id) => {
     if(window.confirm('Are You Sure')){
@@ -52,7 +53,7 @@ export default function PackagesAdminPanelTable({history}) {
       <Card className="card-box mb-5 mt-4">
             <div className="card-header pr-2 d-flex justify-content-between">
                 <span className="card-header--title m-4">
-                  Showing All ({packages ? (packages.length): ""}) Packages
+                  Showing All ({packagesAdmin ? (packagesAdmin.length): ""}) Packages
                 </span>
                 <div className="card-header--actions">
                     <RightIconLink Name="Add Packages" link="/AddPackages" icon="plus"/>
@@ -72,7 +73,7 @@ export default function PackagesAdminPanelTable({history}) {
                 </tr>
               </thead>
               <tbody>
-                {packages.map(packagei => (
+                {packagesAdmin.map(packagei => (
                   <tr key={packagei._id}>
                   <td>
                     <div className="d-flex align-items-center">
@@ -120,11 +121,14 @@ export default function PackagesAdminPanelTable({history}) {
               </tbody>
             </Table>
           </div>
+          
+          {/*
           <div className="divider" />
           <div className="divider" />
           <div className=" d-flex justify-content-center">
-              <AllPackagesPagination/>
+              <AllPackagesPagination pages={pages} page={page} isAdmin={true}/>
           </div>
+          */}
         </CardBody>
         )}
         
