@@ -10,7 +10,8 @@ import {packageListReducer,
         packageUpdateReducer,
         packageCreateReducer,
         packageReviewCreateReducer,
-        packageListAdminReducer
+        packageListAdminReducer,
+        packageTopReducer
 } from "./reducers/packageReducers";
 
 import {userLoginReducer,
@@ -43,6 +44,7 @@ const reducer = combineReducers({
     packageUpdate: packageUpdateReducer,
     packageCreate: packageCreateReducer,
     packageReviewCreate: packageReviewCreateReducer,
+    packageTop: packageTopReducer,
     userLogin: userLoginReducer,
     userRegister: userRegisterReducer,
     userDetails: userDetailsReducer,

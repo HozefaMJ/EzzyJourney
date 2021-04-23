@@ -22,7 +22,10 @@ import {
     PACKAGE_CREATE_REVIEW_RESET,
     PACKAGE_ADMIN_LIST_REQUEST,
     PACKAGE_ADMIN_LIST_SUCCESS,
-    PACKAGE_ADMIN_LIST_FAIL
+    PACKAGE_ADMIN_LIST_FAIL,
+    PACKAGE_TOP_REQUEST,
+    PACKAGE_TOP_SUCCESS,
+    PACKAGE_TOP_FAIL
 } from "../constants/packageConstants"
 
 export const packageListReducer = (state = {packages: []}, action) => {
@@ -49,6 +52,21 @@ export const packageListAdminReducer = (state = {packages: []}, action) => {
             return { loading: false,
                      packages: action.payload}
         case PACKAGE_ADMIN_LIST_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const packageTopReducer = (state = {packages: []}, action) => {
+    switch(action.type){
+        case PACKAGE_TOP_REQUEST:
+            return {loading: true, packages: []}
+        case PACKAGE_TOP_SUCCESS:
+            return { loading: false,
+                     packages: action.payload}
+        case PACKAGE_TOP_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

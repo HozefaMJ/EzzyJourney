@@ -20,31 +20,41 @@ export default function ImgComp({src,packageName,route,isHotel,isFlight,isFood,i
                             {packageName}
                         </h1>
                         <div className="d-flex justify-content-around mt-4 text-secondary">
-                            <FontAwesomeIcon
-                            icon={['fas', 'utensils']}
-                            className=""
-                            style={{fontSize:'35px'}}
-                            />
-                            <FontAwesomeIcon
-                            icon={['fas', 'plane']}
-                            style={{fontSize:'35px'}}
-                            color="light"
-                            />
-                            <FontAwesomeIcon
-                            icon={['fas', 'car']}
-                            style={{fontSize:'35px'}}
-                            color="light"
-                            />
-                            <FontAwesomeIcon
-                            icon={['fab', 'cc-visa']}
-                            style={{fontSize:'35px'}}
-                            color="light"
-                            />
-                            <FontAwesomeIcon
-                            icon={['fas', 'hotel']}
-                            style={{fontSize:'35px'}}
-                            color="light"
-                            />
+                            {isFood && (
+                                <FontAwesomeIcon
+                                icon={['fas', 'utensils']}
+                                className=""
+                                style={{fontSize:'35px'}}
+                                />
+                            )}
+                            {isFlight && (
+                                <FontAwesomeIcon
+                                icon={['fas', 'plane']}
+                                style={{fontSize:'35px'}}
+                                color="light"
+                                />
+                            )}
+                            {isTransportation && (
+                                <FontAwesomeIcon
+                                icon={['fas', 'car']}
+                                style={{fontSize:'35px'}}
+                                color="light"
+                                />
+                            )}
+                            {isVisa && (
+                                <FontAwesomeIcon
+                                icon={['fab', 'cc-visa']}
+                                style={{fontSize:'35px'}}
+                                color="light"
+                                />
+                            )}
+                            {isHotel && (
+                                <FontAwesomeIcon
+                                icon={['fas', 'hotel']}
+                                style={{fontSize:'35px'}}
+                                color="light"
+                                />
+                            )}
                         </div>
                     </div>
                     <img src={src} alt="slide-img" style={imgStyles}/>

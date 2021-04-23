@@ -20,7 +20,10 @@ import {
     PACKAGE_CREATE_REVIEW_FAIL,
     PACKAGE_ADMIN_LIST_REQUEST,
     PACKAGE_ADMIN_LIST_SUCCESS,
-    PACKAGE_ADMIN_LIST_FAIL
+    PACKAGE_ADMIN_LIST_FAIL,
+    PACKAGE_TOP_REQUEST,
+    PACKAGE_TOP_SUCCESS,
+    PACKAGE_TOP_FAIL
 } from "../constants/packageConstants"
 
 
@@ -42,6 +45,7 @@ export const listPackages = (keyword = "", pageNumber = "") => async (dispatch) 
         })
     }
 }
+
 export const listPackagesAdmin = () => async (dispatch) => {
     try {
         dispatch({ type: PACKAGE_ADMIN_LIST_REQUEST })
@@ -201,6 +205,26 @@ export const createReview = (packageId,review) => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: PACKAGE_CREATE_REVIEW_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+export const listPackagesTop = () => async (dispatch) => {
+    try {
+        dispatch({ type: PACKAGE_TOP_REQUEST })
+
+        const {data} = await axios.get(`/api/packages/top`)
+
+        dispatch({
+            type: PACKAGE_TOP_SUCCESS,
+            payload: data  
+        })
+
+    } catch (error) {
+        dispatch({
+            type: PACKAGE_TOP_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }
