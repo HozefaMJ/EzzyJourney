@@ -166,6 +166,7 @@ export default function Footer1() {
                   </NavLinkStrap>
                 </NavItem>
               </Nav>
+              {/*
               <Nav className="nav-transparent justify-content-center">
                 <NavItem>
                   <NavLinkStrap
@@ -175,6 +176,7 @@ export default function Footer1() {
                   </NavLinkStrap>
                 </NavItem>
               </Nav>
+              */}
             </div>
           </div>
         </Container>

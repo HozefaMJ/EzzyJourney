@@ -105,7 +105,7 @@ export default function ContactUs() {
                             <NavLinkStrap
                                 className="text-success"
                                 target='_blank'
-                                href="https://api.whatsapp.com/send?phone=918452088328">
+                                href="https://api.whatsapp.com/send?phone=919137847581">
                                 <FontAwesomeIcon
                                 icon={['fab', 'whatsapp']}
                                 className="font-size-lg"
@@ -128,7 +128,7 @@ export default function ContactUs() {
                             </Col>
                             <Col md="5" xl="6">
                                 <div className="mt-4">
-                                    <QueryModalForm buttonColor="ezzyColor"/>
+                                    <QueryModalForm buttonColor="ezzyColor" buttonName="Send A Query!"/>
                                     <img style={{width:'100%'}} src={projectLogo} alt=""/>
                                 </div>
                             </Col>
