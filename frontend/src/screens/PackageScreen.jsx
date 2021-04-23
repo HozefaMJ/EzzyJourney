@@ -12,10 +12,8 @@ import PackagePrice from 'components/CountUps/PackagePrice';
 import PackageTitleCard from 'components/Cards/PackageTitleCard';
 import ServiceIconCard from 'components/Cards/ServiceIconCard';
 import PackageDescriptionCard from 'components/Cards/PackageDescriptionCard.';
-import Reviews from 'components/Ratings/Reviews';
 import ReviewCard from "../components/Ratings/ReviewCard";
 import SliderPackage from 'components/Sliders/SliderPackage/SliderPackage';
-import LargeRating from "../components/Ratings/LargeRating";
 import {useDispatch,useSelector} from "react-redux";
 
 import {listPackageDetails,createReview} from "../actions/packageActions";

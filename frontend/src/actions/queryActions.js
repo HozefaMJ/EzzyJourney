@@ -1,11 +1,13 @@
 import axios from "axios";
 
-import { QUERY_ANONYMOUS_MY_LIST_FAIL, 
+import { QUERY_ANONYMOUS_FAIL, QUERY_ANONYMOUS_MY_LIST_FAIL, 
          QUERY_ANONYMOUS_MY_LIST_REQUEST,
          QUERY_ANONYMOUS_MY_LIST_SUCCESS, 
+         QUERY_ANONYMOUS_REQUEST, 
          QUERY_ANONYMOUS_RESPOND_FAIL, 
          QUERY_ANONYMOUS_RESPOND_REQUEST, 
          QUERY_ANONYMOUS_RESPOND_SUCCESS, 
+         QUERY_ANONYMOUS_SUCCESS, 
          QUERY_LIST_FAIL,
          QUERY_LIST_REQUEST,
          QUERY_LIST_SUCCESS,
@@ -183,6 +185,35 @@ export const respondAnonymousQuery = (id) => async (dispatch,getState) => {
     } catch (error) {
         dispatch({
             type: QUERY_ANONYMOUS_RESPOND_FAIL,
+            payload: error.message && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
+
+
+export const queryAnonymousAction = (name, email,contact,destination,from,to,adults,childAbove6,childBelow6,foodPreferance,message) => async (dispatch) => {
+    try {
+        dispatch({
+            type: QUERY_ANONYMOUS_REQUEST
+        })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const {data} = await axios.post('/api/queries/anonymous', {name, email,contact,destination,from,to,adults,childAbove6,childBelow6,foodPreferance,message},config)
+
+        dispatch({
+            type: QUERY_ANONYMOUS_SUCCESS,
+            payload: data
+        })
+        
+
+    } catch (error) {
+        dispatch({
+            type: QUERY_ANONYMOUS_FAIL,
             payload: error.message && error.response.data.message ? error.response.data.message : error.message
         })
     }

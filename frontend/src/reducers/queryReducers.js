@@ -1,10 +1,12 @@
-import { QUERY_ANONYMOUS_MY_LIST_FAIL,
+import { QUERY_ANONYMOUS_FAIL, QUERY_ANONYMOUS_MY_LIST_FAIL,
          QUERY_ANONYMOUS_MY_LIST_REQUEST, 
          QUERY_ANONYMOUS_MY_LIST_RESET, 
          QUERY_ANONYMOUS_MY_LIST_SUCCESS, 
+         QUERY_ANONYMOUS_REQUEST, 
          QUERY_ANONYMOUS_RESPOND_FAIL, 
          QUERY_ANONYMOUS_RESPOND_REQUEST, 
          QUERY_ANONYMOUS_RESPOND_SUCCESS, 
+         QUERY_ANONYMOUS_SUCCESS, 
          QUERY_LIST_FAIL, 
          QUERY_LIST_REQUEST,
          QUERY_LIST_RESET,
@@ -84,6 +86,20 @@ export const queryAnonymousRespondReducer = (state = {}, action) => {
         case QUERY_ANONYMOUS_RESPOND_SUCCESS:
             return {loading: false, success: true}
         case QUERY_ANONYMOUS_RESPOND_FAIL:
+            return {loading: false, error: action.payload}
+        default:
+            return state
+    }
+}
+
+
+export const queryAnonymousReducer = (state = { }, action) => {
+    switch(action.type){
+        case QUERY_ANONYMOUS_REQUEST:
+            return {loading: true}
+        case QUERY_ANONYMOUS_SUCCESS:
+            return {loading: false, success: true}
+        case QUERY_ANONYMOUS_FAIL:
             return {loading: false, error: action.payload}
         default:
             return state

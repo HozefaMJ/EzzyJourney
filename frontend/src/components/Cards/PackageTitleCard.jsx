@@ -2,11 +2,17 @@ import React from 'react';
 
 import { Row, Col, Card } from 'reactstrap';
 
-import CountUp from 'react-countup';
 import WishlistedCount from 'components/Badges/WishlistedCount';
 import PackageQueryForm from 'components/forms/PackageQueryForm';
+import QueryModalForm from "../forms/QueryModalForm";
 import SmallRating from 'components/Ratings/SmallRating';
+import { useSelector } from 'react-redux';
+
 export default function PackageTitleCard({title,count,rating,reviewCount}) {
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin;
+
   return (
     <>
         <Card className=" mb-0 mt-0">
@@ -31,7 +37,11 @@ export default function PackageTitleCard({title,count,rating,reviewCount}) {
                 </Col>
                 <Col lg="2">
                     <div className="display-3 m-2 font-weight-bold">
-                        <PackageQueryForm buttonColor="ezzyColor"/>
+                        {userInfo ? (
+                            <PackageQueryForm buttonColor="ezzyColor"/>
+                        ) : (
+                            <QueryModalForm buttonColor="ezzyColor" buttonName="Send a Query"/>
+                        )}
                     </div>
                 </Col>
             </Row>

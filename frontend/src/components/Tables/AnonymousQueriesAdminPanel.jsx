@@ -80,6 +80,13 @@ export default function AnonymousQueriesAdminPanel({history}) {
                           <p><b>Name:</b> {query.user ? query.name : ""}</p>
                           <p><b>Email:</b> {query.user ? query.email : ""}</p>
                           <p><b>Contact:</b> {query.user ? query.contact : ""}</p>
+                          <p><b>Destination:</b> {query.user ? query.destination : ""}</p>
+                          <div className="d-flex">
+                            <p><b>From:</b> {query.date ? query.date.from.substring(0,10) : ""}</p>
+                            <p> -- </p>
+                            <p><b>To:</b> {query.date ? query.date.to.substring(0,10) : ""}</p>
+                          </div>
+                          <p><b>Food Preferance:</b> {query.user ? query.foodPreferance : ""}</p>
                           <p><b>Message:</b> {query.message}</p>
                           <p><b>QueriedAt:</b> {query.createdAt.substring(0,10)} - ({query.createdAt.substring(12,16)} IST)</p>
                         </div>

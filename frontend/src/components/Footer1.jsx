@@ -142,7 +142,7 @@ export default function Footer1() {
                 </div>
               </Col>
               <Col md="2" xl="4">
-                <QueryModalForm buttonColor="secondary"/>
+                <QueryModalForm buttonColor="secondary" buttonName="Your Dream Vacation Just a Query Away!"/>
               </Col>
             </Row>
             <div className="divider mb-4 mt-5 bg-white opacity-2" />

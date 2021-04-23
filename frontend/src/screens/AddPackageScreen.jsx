@@ -344,11 +344,12 @@ export default function AddPackages({history}) {
                                 <Input
                                     type="text"
                                     value={packageImages}
+                                    readOnly
                                 />
                                 <Input 
                                     type="file" 
                                     name="file"
-                                    custom
+                                    custom="true"
                                     onChange={uploadFileHandler}
                                 />
                                 <FormText color="muted">
