@@ -4,6 +4,10 @@
   "description": "Ezzy Journeys a one stop for all your destinations",
   "main": "server.js",
   "type": "module",
+  "engines": {
+    "node": "14.15.4",
+    "npm": "6.14.11"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node backend/server",
